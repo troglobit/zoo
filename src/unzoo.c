@@ -2402,9 +2402,11 @@ int             ListArch ( ver, arc, filec, files )
     /* loop over the members of the archive                                */
     Entry.posnxt = Descript.posent;
     while ( 1 ) {
+	unsigned long oldpos = Entry.posnxt;
 
         /* read the directory entry for the next member                    */
-        if ( ! GotoReadArch( Entry.posnxt ) || ! EntrReadArch() ) {
+        if ( ! GotoReadArch( Entry.posnxt ) || ! EntrReadArch() ||
+             Entry.posnxt <= oldpos ) {
             printf("unzoo: found bad directory entry in archive '%s'\n",arc);
             return 0;
         }
@@ -2558,9 +2560,11 @@ int             ExtrArch ( bim, out, ovr, pre, arc, filec, files )
     /* loop over the members of the archive                                */
     Entry.posnxt = Descript.posent;
     while ( 1 ) {
+	unsigned long oldpos = Entry.posnxt;
 
         /* read the directory entry for the next member                    */
-        if ( ! GotoReadArch( Entry.posnxt ) || ! EntrReadArch() ) {
+        if ( ! GotoReadArch( Entry.posnxt ) || ! EntrReadArch() ||
+             Entry.posnxt <= oldpos ) {
             printf("unzoo: found bad directory entry in archive '%s'\n",arc);
             return 0;
         }
