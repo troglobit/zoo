@@ -244,6 +244,7 @@
 *H
 */
 #include        <stdio.h>
+#include        <string.h>
 
 
 /****************************************************************************
@@ -505,16 +506,16 @@ FILE *          WritBinr;
 **  want to use the universal conversion function 'ConvName'.
 */
 #ifdef  SYS_IS_UNIX
-#define CONV_NAME(naml,namu)    strcpy( (naml), (namu) )
+#define CONV_NAME(naml,namu)    strncpy( (naml), (namu), sizeof((naml)) - 1 )
 #endif
 #ifdef  SYS_IS_DOS_DJGPP
 #define CONV_NAME(naml,namu)    ConvName( (naml), (namu), 8L, 3L, '_' )
 #endif
 #ifdef  SYS_IS_OS2_EMX
-#define CONV_NAME(naml,namu)    strcpy( (naml), (namu) )
+#define CONV_NAME(naml,namu)    strncpy( (naml), (namu), sizeof((naml)) - 1 )
 #endif
 #ifdef  SYS_IS_TOS_GCC
-#define CONV_NAME(naml,namu)    strcpy( (naml), (namu) )
+#define CONV_NAME(naml,namu)    strncpy( (naml), (namu), sizeof((naml)) - 1 )
 #endif
 #ifdef  SYS_IS_VMS
 #define CONV_NAME(naml,namu)    ConvName( (naml), (namu), 39L, 39L, '_' )
@@ -1221,9 +1222,13 @@ int             MakeDirs ( pre, patu )
         *d = '\0';  *n = '\0';
         CONV_DIRE( dirl, diru );
         CONV_NAME( naml, namu );
-        strcpy( patl, pre  );
-        strcat( patl, dirl );
-        strcat( patl, naml );
+        strncpy( patl, pre,  sizeof(patl) - 1 );
+        if ( sizeof(patl) - strnlen( patl, sizeof(patl) ) >
+             strnlen( dirl, sizeof( dirl ) ) + 1)
+            strncat( patl, dirl, sizeof( dirl ) );
+        if ( sizeof(patl) - strnlen( patl, sizeof(patl) ) >
+             strnlen( naml, sizeof( naml ) ) + 1)
+            strncat( patl, naml, sizeof(naml) );
         /*N 1993/11/03 martin what should I do with the return code?       */
         /*N 1993/11/03 martin it could be 0 if the directory exists!       */
         MAKE_DIRE( patl );
@@ -1580,14 +1585,17 @@ int             EntrReadArch ()
         CONV_NAME( Entry.naml, (Entry.lnamu ? Entry.namu : Entry.nams) );
     }
     else {
-        strcpy( Entry.dirl, Entry.diru );
-        strcpy( Entry.naml, (Entry.lnamu ? Entry.namu : Entry.nams) );
+        strncpy( Entry.dirl, Entry.diru, sizeof(Entry.dirl) - 1 );
+        strncpy( Entry.naml, (Entry.lnamu ? Entry.namu : Entry.nams),
+	         sizeof(Entry.naml) - 1 );
     }
-    strcpy( Entry.patl, Entry.dirl );
-    strcat( Entry.patl, Entry.naml );
+    strncpy( Entry.patl, Entry.dirl, sizeof(Entry.patl) - 1 );
+    if ( sizeof( Entry.patl) - strnlen( Entry.patl, sizeof( Entry.patl ) ) >
+         strnlen( Entry.naml, sizeof( Entry.naml ) ) + 1 )
+        strncat( Entry.patl, Entry.naml, sizeof( Entry.naml ) );
 
     /* create the name with the version appended                           */
-    strcpy( Entry.patv, Entry.patl );
+    strncpy( Entry.patv, Entry.patl, sizeof(Entry.patv) - 1 );
     p = Entry.patv;  while ( *p != '\0' )  p++;
     *p++ = ';';
     for ( l = 10000; 0 < l; l /= 10 )
@@ -2346,7 +2354,9 @@ int             ListArch ( ver, arc, filec, files )
     unsigned long       i;              /* loop variable                   */
 
     /* try to open the archive under various names                         */
-    strcpy(arczoo,arc);  strcat(arczoo,".zoo");
+    strncpy(arczoo,arc,sizeof(arczoo)-1);
+    if (sizeof(arczoo) - strnlen(arczoo, sizeof(arczoo)) > 5)
+        strncat(arczoo,".zoo",4);
     if ( OpenReadArch(arc) ) {
         if ( ! DescReadArch() ) {
             ClosReadArch();
@@ -2501,7 +2511,9 @@ int             ExtrArch ( bim, out, ovr, pre, arc, filec, files )
     unsigned long       i;              /* loop variable                   */
 
     /* try to open the archive under various names                         */
-    strcpy(arczoo,arc);  strcat(arczoo,".zoo");
+    strncpy(arczoo,arc,sizeof(arczoo)-1);
+    if (sizeof(arczoo) - strnlen(arczoo, sizeof(arczoo)) > 5)
+        strncat(arczoo,".zoo",4);
     if ( OpenReadArch(arc) ) {
         if ( ! DescReadArch() ) {
             ClosReadArch();
@@ -2574,7 +2586,10 @@ int             ExtrArch ( bim, out, ovr, pre, arc, filec, files )
         }
 
         /* check that such a file does not already exist                   */
-        strcpy( patl, pre );  strcat( patl, Entry.patl );
+        strncpy( patl, pre, sizeof( patl ) - 1 );
+        if ( sizeof(patl) - strnlen( patl, sizeof(patl) ) >
+             strnlen( Entry.patl, sizeof( Entry.patl ) ) + 1)
+            strncat( patl, Entry.patl, sizeof( Entry.patl ) );
         if ( out == 2 && ovr == 0 && OpenReadFile(patl,0L) ) {
             ClosReadFile();
             do {
