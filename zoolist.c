@@ -93,6 +93,7 @@ int genson = 1;					/* enable/disable generations */
 int show_mode = 0;				/* show file protection */
 #endif
 int first_dir = 1;				/* if first direntry -- to adjust dat_ofs */
+unsigned long zoo_pointer = 0; /* Track our position in the file */
 
 while (*option) {
    switch (*option) {
@@ -211,6 +212,9 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
 		void show_acmt PARMS ((struct zoo_header *, ZOOFILE, int));
 		show_acmt (&zoo_header, zoo_file, 0);		/* show archive comment */
 	}
+
+   /* Begin tracking our position in the file */
+   zoo_pointer = zoo_header.zoo_start;
 
    /* Seek to the beginning of the first directory entry */
    if (zooseek (zoo_file, zoo_header.zoo_start, 0) != 0) {
@@ -438,6 +442,11 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
          if (verb_list && !fast)
             show_comment (&direntry, zoo_file, 0, (char *) NULL);
       } /* end if (lots of conditions) */
+
+      /* Make sure we are not seeking to already processed data */
+      if (direntry.next <= zoo_pointer)
+        prterror ('f', "ZOO chain structure is corrupted\n");
+      zoo_pointer = direntry.next;
    
 		/* ..seek to next dir entry */
       zooseek (zoo_file, direntry.next, 0);

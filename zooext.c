@@ -90,6 +90,7 @@ int alloc_size;                           /* disk allocation unit size */
 #endif
 struct direntry direntry;                 /* directory entry */
 int first_dir = 1;								/* first dir entry seen? */
+unsigned long zoo_pointer = 0;            /* Track our position in the file */
 
 static char extract_ver[] = "Zoo %d.%d is needed to extract %s.\n";
 static char no_space[] = "Insufficient disk space to extract %s.\n";
@@ -174,6 +175,9 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
 		exit_status = 1;
    }
    zooseek (zoo_file, zoo_header.zoo_start, 0); /* seek to where data begins */
+
+   /* Begin tracking our position in the file */
+   zoo_pointer = zoo_header.zoo_start;
 }
 
 #ifndef PORTABLE
@@ -602,6 +606,11 @@ bit 23==0 and bit 22==1. */
    } /* end if */
 
 loop_again:
+   /* Make sure we are not seeking to already processed data */
+   if (next_ptr <= zoo_pointer)
+     prterror ('f', "ZOO chain structure is corrupted\n");
+   zoo_pointer = next_ptr;
+
    zooseek (zoo_file, next_ptr, 0); /* ..seek to next dir entry */
 } /* end while */
 
