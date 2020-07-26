@@ -7,6 +7,10 @@ static char sccsid[]="@(#) misc2.c 2.7 88/01/24 12:47:36";
 Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 (C) Copyright 1988 Rahul Dhesi -- All rights reserved
 */
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "options.h"
 /* Miscellaneous routines */
 #include "portable.h"

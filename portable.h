@@ -90,6 +90,12 @@ int mkdir (char *);
 #define  MKDIR(x)       mkdir(x, 0777)
 #endif
 
+/* Linux */
+#ifdef LINUX
+#define NIX_IO       /* standard **IX I/O */
+#define  MKDIR(x)       mkdir(x, 0777)
+#endif
+
 /* Amiga */
 #ifdef MCH_AMIGA
 # include "MCH_AMIGA NEEDS REVISION"

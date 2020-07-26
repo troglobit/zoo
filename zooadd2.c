@@ -7,7 +7,9 @@ static char sccsid[]="$Id: zooadd2.c,v 1.5 91/07/04 13:33:55 dhesi Exp $";
 Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 (C) Copyright 1988 Rahul Dhesi -- All rights reserved
 */
+#include <unistd.h>
 #include "options.h"
+#undef PORTABLE
 #include "zoo.h"
 #ifndef	OK_STDIO
 #include <stdio.h>
@@ -20,7 +22,7 @@ Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 #include "assert.h"
 #include "debug.h"
 #include "parse.h"
-
+int isfdir PARMS((char *));
 /*
 Miscellaneous routines to support zooadd().
 */

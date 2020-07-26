@@ -42,12 +42,12 @@ char *nextfile PARMS ((int, char *, int));
 int cfactor PARMS ((long, long));
 int chname PARMS ((char *, char *));
 int cmpnum PARMS ((unsigned int, unsigned int, unsigned int, unsigned int));
-T_SIGNAL ctrl_c PARMS ((void));
+T_SIGNAL ctrl_c PARMS ((int));
 int exists PARMS ((char *));
 int getfile PARMS ((ZOOFILE, ZOOFILE, long, int));
 int getutime PARMS ((char *, unsigned *, unsigned *));
 int gettime PARMS ((ZOOFILE, unsigned *, unsigned *));
-T_SIGNAL handle_break PARMS ((void));
+T_SIGNAL handle_break PARMS ((int));
 
 #ifdef USE_ASCII
 int isupper PARMS ((int));
@@ -85,7 +85,7 @@ void addbfcrc PARMS ((char *, int));
 void addfname PARMS ((char *, long, unsigned int, unsigned int, 
 							unsigned, unsigned));
 void add_version PARMS ((char *, struct direntry *));
-void basename PARMS ((char *, char []));
+void zoo_basename PARMS ((char *, char []));
 void break_off PARMS ((void));
 void close_file PARMS ((ZOOFILE));
 void comment PARMS ((char *, char *));

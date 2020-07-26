@@ -15,6 +15,7 @@ Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 (C) Copyright 1988 Rahul Dhesi -- All rights reserved
 (C) Copyright 1991 Rahul Dhesi -- All rights reserved
 */
+#include <unistd.h>
 #include "options.h"
 #include "zooio.h"
 #include "various.h"

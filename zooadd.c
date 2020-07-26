@@ -9,11 +9,13 @@ Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 (C) Copyright 1988 Rahul Dhesi -- All rights reserved
 (C) Copyright 1991 Rahul Dhesi -- All rights reserved
 */
+#include <unistd.h>
 #include "options.h"
 /* Adds files specified in parameter-list to archive zoo_path. */
 
 #define LONGEST	20					/* assumed length of longest filename */
 #include "zoomem.h"             /* to define MAXADD */
+#undef PORTABLE
 #include "zoo.h"
 #include "zooio.h"
 #include "various.h"
@@ -37,6 +39,7 @@ void get_comment PARMS ((struct direntry *, ZOOFILE, char *));
 void copyfields PARMS ((struct direntry *, struct tiny_header *));
 void storefname PARMS ((struct direntry *, char *, int));
 char *choosefname PARMS ((struct direntry *));
+int isadir PARMS((ZOOFILE));
 
 extern struct zoo_header zoo_header;
 
@@ -132,7 +135,7 @@ if (exists (zoo_path)) {
 
 if (zoo_file == NOFILE)
    prterror ('f', could_not_open, zoo_path);
-basename(zoo_path, zoo_fname);      /* get basename of archive */
+zoo_basename(zoo_path, zoo_fname);  /* get basename of archive */
 rootname (zoo_path, zoo_bak);       /* name without extension */
 strcat (zoo_bak, BACKUP_EXT);       /* name of backup of this archive */
 
@@ -222,7 +225,7 @@ while (1) {
 		break;
 	}
 
-   basename (this_path, this_fname);   /* get just filename for later */
+   zoo_basename (this_path, this_fname);   /* get just filename for later */
 
    this_file = zooopen(this_path, Z_READ);
    if (this_file == NOFILE) {

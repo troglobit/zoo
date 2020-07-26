@@ -18,7 +18,7 @@ Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 
 /* This function strips device/directory information from
 a pathname and returns just the plain filename */
-void basename (pathname, fname)
+void zoo_basename (pathname, fname)
 char *pathname;
 char fname[];
 {

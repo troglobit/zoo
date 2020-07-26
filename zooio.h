@@ -7,6 +7,7 @@ The contents of this file are hereby placed in the public domain.
 
 											-- Rahul Dhesi 1988/01/24
 */
+#include "zoo.h"
 #ifndef	OK_STDIO
 #include <stdio.h>
 #define	OK_STDIO

@@ -10,6 +10,9 @@ The contents of this file are hereby released to the public domain.
 
                                     -- Rahul Dhesi  1986/12/31
 */
+#include <sys/types.h>
+#include <time.h>
+#include <utime.h>
 
 struct tm *localtime();
 
@@ -51,9 +54,10 @@ unsigned int date, time;
 {
 	long mstonix();
 	long gettz();
-	long utimbuf[2];
-	utimbuf[0] = utimbuf[1] = gettz() + mstonix (date, time);
-	return (utime (path, utimbuf));
+        struct utimbuf utbf;
+
+	utbf.actime = utbf.modtime = gettz() + mstonix (date, time);
+	return (utime (path, &utbf));
 }
 
 /****************

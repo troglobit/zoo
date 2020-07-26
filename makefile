@@ -23,8 +23,8 @@ CFLAGS =
 MODEL =
 EXTRA = -DBIG_MEM -DNDEBUG
 LINTFLAGS = -DLINT
-OPTIM = -O
-DESTDIR = .
+OPTIM = -O -Wall
+DESTDIR = /usr/local/bin
 
 #List of all object files created for Zoo
 ZOOOBJS = addbfcrc.o addfname.o basename.o comment.o crcdefs.o \
@@ -53,6 +53,7 @@ help :
 	@echo "ultrix:       ULTRIX 4.1"
 	@echo "convex:       Convex C200 series"
 	@echo "sysv:         System V Release 2 or 3; or SCO Xenix"
+	@echo "linux:        Linux"
 	@echo "scodos:       Cross-compiler under SCO Xenix/UNIX for MS-DOS"
 	@echo "xenix286:     Older Xenix/286 (not tested)"
 	@echo "xenix68k:     Xenix/68000 (not tested)"
@@ -93,6 +94,10 @@ generic:
 # Reasonably generic BSD 4.3
 bsd:
 	$(MAKE) CFLAGS="-c $(OPTIM) -DBSD4_3" $(TARGETS)
+
+# Linux
+linux:
+	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DANSI_HDRS" $(TARGETS)
 
 # ULTRIX 4.1
 ultrix:
@@ -235,7 +240,11 @@ parse.o: /usr/include/stdio.h assert.h options.h parse.h various.h zoo.h
 parse.o: zoofns.h zooio.h
 portable.o: /usr/include/stdio.h assert.h debug.h machine.h options.h
 portable.o: portable.h various.h zoo.h zoofns.h zooio.h
-prterror.o: /usr/include/stdio.h /usr/include/varargs.h options.h various.h
+
+# I deleted varags.h dependancy from prterror.o since that is a
+# dependancy covered by a #ifdef, and in Debian's case #undef'ed
+
+prterror.o: /usr/include/stdio.h options.h various.h
 prterror.o: zoofns.h zooio.h
 sysv.o: /usr/include/sys/stat.h /usr/include/sys/types.h /usr/include/time.h
 sysv.o: nixmode.i nixtime.i

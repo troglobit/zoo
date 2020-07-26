@@ -10,6 +10,7 @@ $Id: zoopack.c,v 1.5 91/07/09 01:54:17 dhesi Exp $";
 Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 (C) Copyright 1988 Rahul Dhesi -- All rights reserved
 */
+#include <unistd.h>
 #include "options.h"
 /* Packs an archive.  The sequence is:
    1. Copy all files from current archive to new one.
@@ -171,7 +172,7 @@ if (!curr_dir) {
 } else {
    strcpy (temp_file, xes);
 }
-mktemp (temp_file);                    /* ... and make unique */
+mkstemp (temp_file);                    /* ... and make unique */
 new_file = zoocreate (temp_file);
 if (new_file == NOFILE)
    prterror ('f', "Could not create temporary file %s.\n", temp_file);
@@ -388,7 +389,7 @@ OSs might not allow renaming of read-only files
 
 /* handle_break() */
 /* Sets break_hit to 1 when called */
-T_SIGNAL handle_break()
+T_SIGNAL handle_break(int dummy)
 {
 #ifndef NOSIGNAL
    signal (SIGINT, SIG_IGN);     /* ignore future control ^Cs for now */

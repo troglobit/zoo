@@ -1,5 +1,6 @@
 /* derived from: zoo.h 2.16 88/01/27 23:21:36 */
-
+#ifndef ZOO_H
+#define ZOO_H
 /*
 The contents of this file are hereby released to the public domain.
 
@@ -240,3 +241,4 @@ version flag, 2 for version number, plus a fudge factor of 5.
 #define	MAXGEN				0x0f
 /* version mask to prune down to correct size on large-word machines */
 #define VER_MASK				0xffff
+#endif

@@ -48,6 +48,10 @@ unsigned count;
 /* PART 2.  FOR EACH SPECIFIC SYSTEM, INCLUDE A C FILE HERE.           */
 /***********************************************************************/
 
+#ifdef LINUX
+#include "linux.c"
+#endif
+
 #ifdef SYS_V
 #include "sysv.c"
 #endif

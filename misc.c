@@ -8,6 +8,7 @@ $Id: misc.c,v 1.8 91/07/09 01:54:08 dhesi Exp $";
 Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 (C) Copyright 1988 Rahul Dhesi -- All rights reserved
 */
+#include <signal.h>
 #include "options.h"
 /* Miscellaneous functions needed by Zoo but not by Ooz */
 
@@ -201,7 +202,7 @@ struct direntry *direntry;
 ZOOFILE zoo_file;
 {
 #ifndef NOSIGNAL  
-   T_SIGNAL (*oldsignal)();
+   T_SIGNAL (*oldsignal)(int);
    oldsignal = signal (SIGINT, SIG_IGN);
 #endif
    if (fwr_dir (direntry, zoo_file) == -1)

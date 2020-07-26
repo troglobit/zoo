@@ -14,7 +14,8 @@ Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
 /* Extract file from archive.  Extracts files specified in parameter-list
    from archive zoo_path.  If none specified, extracts all files from
    archive. */
-
+#include <unistd.h>
+#include <signal.h>
 #include "options.h"
 #include "zoo.h"
 #include "parse.h"      /* defines struct for parse() */
@@ -62,7 +63,7 @@ char *zoo_path, *option;
 char *whichname;                          /* which name to extract */
 char matchname[PATHSIZE];                 /* for pattern matching only */
 #ifndef NOSIGNAL
-T_SIGNAL (*oldsignal)();        /* to save previous SIGINT handler */
+T_SIGNAL (*oldsignal)(int);        /* to save previous SIGINT handler */
 #endif
 ZOOFILE zoo_file;                         /* open archive */
 long next_ptr;                            /* pointer to within archive */
@@ -626,7 +627,7 @@ ZOOFILE file;
 
 /* Ctrl_c() is called if ^C is hit while a file is being extracted.
    It closes the files, deletes it, and exits. */
-T_SIGNAL ctrl_c()
+T_SIGNAL ctrl_c(int dummy)
 {
 #ifndef NOSIGNAL
    signal (SIGINT, SIG_IGN);     /* ignore any more */

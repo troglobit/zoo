@@ -13,6 +13,32 @@ For documentation about this file, see options.doc.
 
 
 /***********************************************************************/
+/* Linux                                                               */
+/***********************************************************************/
+
+#ifdef LINUX
+#define FILTER
+#define IO_MACROS
+#define EXISTS(f)		(access(f, 00) == 0)
+#define FNLIMIT 1023
+#define CHEKDIR
+#define NIXTIME
+#define NIXFNAME
+#define NEEDCTYP
+#define NOENUM
+#define REN_STDC
+#define SETBUF
+#define GETTZ
+#define FATTR
+#define T_SIGNAL        void
+#define STDARG
+#define HAVE_ISATTY          /* undocumented #define option */
+#define ANSI_PROTO
+#define VOIDPTR  void *
+#define NO_STDIO_FN          /* Do we need this? RUARI QUINN */
+#endif /* Linux */
+
+/***********************************************************************/
 /* SYSTEM V (should be compatible with most releases)                  */
 /***********************************************************************/
 

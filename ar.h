@@ -7,6 +7,7 @@ Adapted from "ar" archiver written by Haruhiko Okumura.
 ***********************************************************/
 
 #include <stdio.h>
+#include <sys/types.h>
 
 #ifdef ANSI_HDRS
 # include <limits.h>
@@ -15,9 +16,11 @@ Adapted from "ar" archiver written by Haruhiko Okumura.
 /* uchar should be 8 bits or more */
 /* typedef unsigned char  uchar;   -- already in zoo.h */
 
+#ifndef _SYS_TYPES_H
 typedef unsigned int   uint;    /* 16 bits or more */
 typedef unsigned short ushort;  /* 16 bits or more */
 typedef unsigned long  ulong;   /* 32 bits or more */
+#endif
 
 /* T_UINT16 must be #defined in options.h to be 
 a 16-bit unsigned integer type */

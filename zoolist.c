@@ -47,6 +47,7 @@ void show_comment PARMS((struct direntry *, ZOOFILE, int, char *));
 int ver_too_high PARMS((struct zoo_header *));
 int needed PARMS((char *, struct direntry *, struct zoo_header *));
 void printtz PARMS((int));
+int fputchar PARMS ((int));
 
 void zoolist (argv, option, argc)
 char **argv, *option;
@@ -414,7 +415,7 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
 					if (direntry.fattr == 0)
 						printf ("--- ");
 					else if ((direntry.fattr >> 22) == 1)
-						printf ("%03o ", direntry.fattr & 0x1ff);
+						printf ("%03lo ", direntry.fattr & 0x1ff);
 					else
 						printf ("??? ");
 				}
