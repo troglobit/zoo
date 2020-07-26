@@ -167,7 +167,7 @@ int cmd = NONE;
                   cmd == UPDATE || cmd == DELETE) && argc < 4) ||
             ((cmd == EXTRACT || cmd == TEST || cmd == LIST ||
                      cmd == PRINT || cmd == COMMENT) && argc < 3)) {
-         fprintf (stderr, incorrect_args);
+         fprintf (stderr, "%s", incorrect_args);
          goto show_usage;
       }
    } else {
@@ -191,7 +191,7 @@ int cmd = NONE;
 					)
 				 )
 			) {
-         fprintf (stderr, incorrect_args);
+         fprintf (stderr, "%s", incorrect_args);
          goto show_usage;
       }
    }
@@ -282,25 +282,25 @@ show_usage:
 
 /* brief usage list */
 give_list:
-	fprintf (stderr, usage); zooexit (1);
+	fprintf (stderr, "%s", usage); zooexit (1);
 
 /* help screen */
 bigusage:
 printf ("Zoo archiver, %s\n", version);
 printf("(C) Copyright 1991 Rahul Dhesi -- Noncommercial use permitted\n");
 
-printf (usage);
+printf ("%s", usage);
 printf ("\nChoose a command from within {} and zero or more modifiers from within [].\n");
 
 printf ("E.g.:  `zoo a save /bin/*' will archive all files in /bin into save.zoo.\n");
 printf ("(Please see the user manual for a complete description of commands.)\n");
-printf (nov_usage);
-printf (nov_cmds);
+printf ("%s", nov_usage);
+printf ("%s", nov_cmds);
 printf ("\n");
 wait_return();	/* print msg & wait for RETURN */
 
 printf ("\n");
-printf (usage);
+printf ("%s", usage);
 
 printf (" Commands in {} mean:         |Modifiers in [] mean:\n");
 
