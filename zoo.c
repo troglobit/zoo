@@ -511,6 +511,7 @@ static void wait_return()
 	if (!isatty(fileno(stdout)) || !isatty(fileno(stdin)))
 		return;
 #endif
+#ifdef PAUSE_HELP
 	(void) printf("Hit RETURN (or ENTER) key to continue...");
 	for ( ; ;) {
 		int key; 
@@ -520,4 +521,5 @@ static void wait_return()
 		if (key == '\n' || key == '\r')
 			return;
 	}
+#endif
 }
