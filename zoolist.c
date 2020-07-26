@@ -373,7 +373,7 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
          } else {
             if (talking && first_time && !show_name) {/*print archive header */
                printf ("Length    CF  Size Now  Date      Time\n");
-               printf (tot_line);
+               printf ("%s", tot_line);
             }
             printf ("%8lu %3u%% %8lu  %2d %-.3s %02d %02d:%02d:%02d",  
                      direntry.org_size, 
@@ -476,7 +476,7 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
    if (talking && !show_name) {
       if (!fast && file_count) {
          tot_sf = cfactor (tot_org_siz, tot_siz_now);
-         printf (tot_line);
+         printf ("%s", tot_line);
       
          printf (tot_fmt, tot_org_siz, tot_sf, tot_siz_now, file_count);
 			if (file_count > 1)
@@ -486,7 +486,7 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
          
          if (del_count || expl_ver || expl_deleted || expl_comment ||
 					expl_star || (show_gen && (zoo_header.type > 0)))
-            printf (dashes);
+            printf ("%s", dashes);
       }
    
       if (!fast) {
@@ -528,7 +528,7 @@ loop_end:            /* jump here on badly structured archive */
 if (talking && show_name) {
    if (file_count) {
       tot_sf = cfactor (tot_org_siz, tot_siz_now);
-      printf (tot_line);
+      printf ("%s", tot_line);
       printf (tot_fmt, tot_org_siz, tot_sf, tot_siz_now, file_count);
 		if (file_count > 1)
 			printf ("s\n");
