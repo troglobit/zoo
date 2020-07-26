@@ -286,7 +286,6 @@ give_list:
 
 /* help screen */
 bigusage:
-printf("\n\n\n\n\n\n\n\n");
 printf ("Zoo archiver, %s\n", version);
 printf("(C) Copyright 1991 Rahul Dhesi -- Noncommercial use permitted\n");
 
@@ -294,13 +293,13 @@ printf (usage);
 printf ("\nChoose a command from within {} and zero or more modifiers from within [].\n");
 
 printf ("E.g.:  `zoo a save /bin/*' will archive all files in /bin into save.zoo.\n");
-printf ("(Please see the user manual for a complete description of commands.)\n\n");
+printf ("(Please see the user manual for a complete description of commands.)\n");
 printf (nov_usage);
 printf (nov_cmds);
-printf ("\n\n\n\n");
+printf ("\n");
 wait_return();	/* print msg & wait for RETURN */
 
-printf ("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+printf ("\n");
 printf (usage);
 
 printf (" Commands in {} mean:         |Modifiers in [] mean:\n");
@@ -485,7 +484,7 @@ char *options;
 
 	/* loop thru screens */
 	for (curscreen = screens; *curscreen != NULL; ++curscreen) {
-		printf("\n\n\n\n");
+/*		printf("\n\n\n\n"); */
 		linecount = scrnlen;
 		curline = *curscreen;
 		while (*curline != NULL) {
@@ -494,7 +493,7 @@ char *options;
 		}
 
 		/* slew page */
-		while (--linecount != 0) putchar('\n');
+/*		while (--linecount != 0) putchar('\n'); */
 		wait_return();	/* print msg & wait for RETURN */
 	}
 
