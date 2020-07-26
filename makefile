@@ -54,6 +54,7 @@ help :
 	@echo "convex:       Convex C200 series"
 	@echo "sysv:         System V Release 2 or 3; or SCO Xenix"
 	@echo "linux:        Linux"
+	@echo "linux64:      Linux with 64 bit long"
 	@echo "scodos:       Cross-compiler under SCO Xenix/UNIX for MS-DOS"
 	@echo "xenix286:     Older Xenix/286 (not tested)"
 	@echo "xenix68k:     Xenix/68000 (not tested)"
@@ -98,6 +99,10 @@ bsd:
 # Linux
 linux:
 	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DANSI_HDRS" $(TARGETS)
+
+# Linux64
+linux64:
+	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DLONG64 -DANSI_HDRS" $(TARGETS)
 
 # ULTRIX 4.1
 ultrix:
