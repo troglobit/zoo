@@ -364,6 +364,41 @@ ZOOFILE zoo_file;
       show_dir(direntry);
    }
 #endif
+   /* #########################################################################
+    *
+    *  THIS CODE WAS WRITTEN TO SOLVE PROBLEM WITH DIRECTORY TRAVERSAL SECURITY
+    *  BUG (CVE id CAN-2005-2349).
+    *
+    *  ########################################################################
+    */
+   char *p;
+   /* take off '../'   */
+   while ((p = strstr( direntry->dirname, "../" )) != NULL) {
+      while (*(p+3) != '\0') {
+        *p = *(p + 3);
+        p++;
+      }
+      *p = *(p+3); /* move last null */
+      //printf("zoo: skipped \"../\" path component in '%s'\n", direntry->dirname);
+   }
+   /* take off  '/'  */
+   if ( direntry->dirname[0] == '/' ) {
+      p = direntry->dirname;
+      while (*p != '\0') {
+        *p = *(p + 1);
+        p++;
+      }
+      *p = *(p+1); /* move last null */
+      //printf("zoo: skipped \"/\" path component in '%s'\n", direntry->dirname);
+   }
+   /* direntry->dirlen = strlen(direntry->dirname); */
+
+   /* ##################################################################
+    *
+    * END
+    *
+    * ###################################################################
+   */
    return (0);
 }
 
