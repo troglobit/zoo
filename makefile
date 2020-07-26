@@ -23,7 +23,11 @@ CFLAGS =
 MODEL =
 EXTRA = -DBIG_MEM -DNDEBUG
 LINTFLAGS = -DLINT
-OPTIM = -O -Wall
+OPTIM = `dpkg-buildflags --get CFLAGS`
+OPTIM += -Wall
+OPTIM += `dpkg-buildflags --get CPPFLAGS`
+LDFLAGS = `dpkg-buildflags --get LDFLAGS`
+
 DESTDIR = /usr/local/bin
 
 #List of all object files created for Zoo
@@ -98,11 +102,11 @@ bsd:
 
 # Linux
 linux:
-	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DANSI_HDRS" $(TARGETS)
+	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DANSI_HDRS" LDFLAGS="$(LDFLAGS)" $(TARGETS)
 
 # Linux64
 linux64:
-	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DLONG64 -DANSI_HDRS" $(TARGETS)
+	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DLONG64 -DANSI_HDRS" LDFLAGS="$(LDFLAGS)" $(TARGETS)
 
 # ULTRIX 4.1
 ultrix:
