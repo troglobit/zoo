@@ -542,7 +542,7 @@ printf ("zooadd:  direntry.lfname = [%s]  direntry.dirname = [%s]\n",
          status = getfile (this_file, zoo_file, -1L, 1);
          if (status != 0) {  /* if III */
             success = 0;
-            printf (disk_full);
+            printf ("%s", disk_full);
             exit_status++;
          } else {
             success = 1;
