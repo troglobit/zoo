@@ -11,9 +11,9 @@ static char sccsid[]="$Id: zoo.c,v 1.21 91/07/09 02:36:40 dhesi Exp $";
 extern char version[];
 
 /*
-Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
-(C) Copyright 1988 Rahul Dhesi -- All rights reserved
-(C) Copyright 1991 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 */
 #include <unistd.h>
 #include "options.h"
@@ -287,7 +287,6 @@ give_list:
 /* help screen */
 bigusage:
 printf ("Zoo archiver, %s\n", version);
-printf("(C) Copyright 1991 Rahul Dhesi -- Noncommercial use permitted\n");
 
 printf ("%s", usage);
 printf ("\nChoose a command from within {} and zero or more modifiers from within [].\n");

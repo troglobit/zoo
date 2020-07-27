@@ -1,0 +1,41 @@
+Return-Path: <dhesi@rahul.net>
+Date: Sat, 19 Jun 2004 13:50:26 -0700 (PDT)
+From: dhesi@rahul.net
+To: Niklas Vainio <nvainio@iki.fi>
+Subject: Re: License of Zoo
+
+Hi, the last release of the zoo archive program was marked entirely
+public domain, with no restrictions. I'm sure this statement will be
+found somewhere in the files in the sources. If not, I hope this email
+will suffice:  everything in the zoo package is entirely public domain,
+with no restrictions whatsoever.
+
+Rahul
+
+On Sat, 19 Jun 2004, Niklas Vainio wrote:
+> Dear Rahul Dhesi,
+>
+> The Zoo archiving program you wrote, is part of the Debian GNU/Linux system,
+> in its unofficial section called "non-free". I'm asking you to relax licence
+> conditions of Zoo a bit to make it free software and allow it to move into
+> the official Debian distribution.
+>
+> Zoo licensing conditions have two clauses that make it non-free software.
+> Those clauses are the following:
+>
+> "(b) do not create, whether deliberately or through negligence, any
+> derivative work that violates the compatibility goals describe in the
+> reference manual for zoo 2.1,"
+>
+> "(d) make the fully commented source code of the derivative work available
+> to me at no cost if I so request, and make no attempt to restrict the
+> distribution or use of this source code."
+>
+> Of course this is more of historical interest than any actual need, but
+> would you please consider licensing Zoo under a free license?
+>
+> Best regards,
+>     - Nikke, a Debian volunteer
+>
+> --
+> Niklas Vainio <niklas.vainio@iki.fi>

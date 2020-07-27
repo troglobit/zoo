@@ -4,8 +4,9 @@ static char sccsid[]="@(#) makelist.c 2.3 88/01/24 12:46:44";
 #endif /* LINT */
 
 /*
-Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
-(C) Copyright 1988 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 */
 
 #include "options.h"

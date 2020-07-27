@@ -933,12 +933,7 @@ COMPATIBILITY
      incompatibility that if high-performance compression is
      used, earlier versions cannot extract files compressed with
      version 2.1.  This is the only incompatibility that is
-     permissible.  You are forbidden, with the force of copyright
-     law, to create from the zoo source code any derivative work
-     that violates this compatibility goal, whether knowingly or
-     through negligence.  If any violation of this compatibility
-     goal is observed, this should be considered a serious prob-
-     lem and reported to me.
+     permissible.
 
 CHANGES
      Here is a list of changes occurring from version 1.50 to

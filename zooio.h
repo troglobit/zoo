@@ -5,7 +5,7 @@ Declarations for portable I/O
 
 The contents of this file are hereby placed in the public domain.
 
-											-- Rahul Dhesi 1988/01/24
+				-- Rahul Dhesi 1988/01/24
 */
 #include "zoo.h"
 #ifndef	OK_STDIO

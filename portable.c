@@ -5,8 +5,9 @@ static char sccsid[]="@(#) portable.c 2.24 88/08/24 01:22:06";
 
 #include "options.h"
 /*
-Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
-(C) Copyright 1988 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 */
 /**********************
 portable.c contains functions needed to make Zoo portable to various

@@ -16,7 +16,6 @@ Loop optimization done by J. Brian Waters.
 I claim no copyright over the contents of this file.
 
                                     -- Rahul Dhesi 1986/08/27
-
 */
 
 extern unsigned int crccode;

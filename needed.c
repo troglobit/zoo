@@ -3,8 +3,9 @@ static char sccsid[]="@(#) needed.c 2.16 88/01/31 15:54:37";
 #endif /* LINT */
 
 /*
-Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
-(C) Copyright 1988 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 */
 
 #define	STRCMP(s1,op,s2)		(strcmp(s1,s2) op 0)

@@ -3,7 +3,9 @@
 /* $Id: zoomem.h,v 1.3 91/07/09 01:43:06 dhesi Exp $ */
 
 /*
-(C) Copyright 1991 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 
 Defines parameters used for memory allocation.
 */

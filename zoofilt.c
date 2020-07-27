@@ -5,8 +5,9 @@ static char sccsid[]="@(#) $Id: zoofilt.c,v 1.5 91/07/09 01:54:15 dhesi Exp $";
 #endif
 
 /*
-(C) Copyright 1988 Rahul Dhesi -- All rights reserved
-(C) Copyright 1991 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 
 Filter mode -- compress or decompress standard input and write
 to standard output.

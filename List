@@ -16,7 +16,7 @@
 ##
 ##      egrep '@bsd|@all' list.master | grep -v '@doc' | grep -v '^##'
 ##
-Copyright            @doc @all
+UNLICENSE            @doc @all
 Install              @doc @all
 List                 @doc @all
 addbfcrc.c           @all -@tcc

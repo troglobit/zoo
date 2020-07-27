@@ -7,7 +7,7 @@ Generic template for machine-dependent functions.
 
 The contents of this file are hereby released to the public domain
 
-											-- Rahul Dhesi 1991/07/05
+				-- Rahul Dhesi 1991/07/05
 */
 
 /****************

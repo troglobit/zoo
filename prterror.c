@@ -7,7 +7,6 @@ static char sccsid[]="@(#) prterror.c 2.8 88/01/31 18:48:17";
 The contents of this file are hereby released to the public domain.
 
                                  -- Rahul Dhesi 1986/11/14
-
 */
 
 #include "options.h"

@@ -7,8 +7,9 @@ $Id: zoodel.c,v 1.4 91/07/09 01:54:11 dhesi Exp $";
 #endif /* LINT */
 
 /*
-Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
-(C) Copyright 1988 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 */
 #include "options.h"
 /* Deletes or undeletes entries from an archive.  choice=1 requests

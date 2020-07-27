@@ -6,16 +6,9 @@ This program performs conversion of files between stream-LF format
 (as used by zoo) and fixed-length record binary format (used for Kermit
 transfers of zoo archives).
 
-This program is:
-   (C) Copyright 1987 Rahul Dhesi.
-   All Rights Reserved.
+The contents of this file are hereby released to the public domain.
 
-Permission is hereby granted to copy and modify this for any purpose,
-whether commercial or noncommercial, provided only that the above
-copyright notice and this paragraph be preserved and included
-in all copies.
-
-                                 -- Rahul Dhesi 1987/07/25
+                           -- Rahul Dhesi 2004/06/19
 */
 
 #include <stdio.h>
@@ -37,9 +30,6 @@ char *argv[];
 
    if (argc < 3 || argc > 4) {
       printf ("BILF version 1.00 for VAX/VMS by Rahul Dhesi (1987/07/25)\n\n");
-      printf ("(C) Copyright 1987 Rahul Dhesi,  All Rights Reserved\n");
-      printf ("Permission to use and distribute is granted provided this copyright\n"); 
-      printf ("notice is preserved and included in all copies.\n\n");
       printf ("Usage:  BILF {lb} infile [ outfile ]\n\n");
       printf ("Choose one character from within braces.  If outfile is not supplied\n");
       printf ("it has the same name as infile but a higher version number.\n");

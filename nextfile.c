@@ -4,7 +4,9 @@ static char sccsid[]="@(#) nextfile.c 2.2 87/12/26 12:23:43";
 
 #include "options.h"
 /*
-Copyright (C) 1986, 1987 Rahul Dhesi -- All rights reserved
+The contents of this file are hereby released to the public domain.
+
+                           -- Rahul Dhesi 2004/06/19
 */
 /*
 Functions to collect filenames from command line etc.  Nextfile() is
