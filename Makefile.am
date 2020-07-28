@@ -1,7 +1,6 @@
-SUBDIRS        = src
+SUBDIRS        = man src
 EXTRA_DIST     = README.md UNLICENSE
 doc_DATA       = README.md UNLICENSE
-dist_man1_MANS = zoo.1 fiz.1
 
 ## Check if tagged in git
 release-hook:
