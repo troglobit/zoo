@@ -1,43 +1,37 @@
-#ifndef LINT
-static char sccsid[]="@(#) getfile.c 2.7 88/01/24 12:44:23";
-#endif /* LINT */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
+/* This function copies n chars from source to destination file
+ *
+ * Input:   out_f:		destination file
+ *          in_f:		source file
+ *          count:         count of characters to copy
+ *          docrc:         0 if crc not wanted
+ *
+ * If count is -1, copying is done until eof is encountered.
+ *
+ * The source file is transferred to the current file pointer position
+ * in the destination file, using the handles provided.  Function return
+ * value is 0 if no error, 2 if write error, and 3 if read error.
+ *
+ * If docrc is not 0, the global variable crccode is updated via
+ * addbfcrc().  This is done even if the output is to the null device.
+ *
+ * If UNBUF_IO is defined, and if more than UNBUF_LIMIT bytes are being
+ * transferred or copying is to end of file, the data transfer is done
+ * using low-level read() and write() functions, which must be defined
+ * elsewhere.  File descriptors are obtained for this purpose using the
+ * fileno() macro, which must be provided elsewhere too.  This is meant
+ * to provide greater efficiency on some systems.  The files of type
+ * ZOOFILE are synchronized with their file descriptors by doing a
+ * reasonable number of seeks and other miscellaneous operations before
+ * and after the transfer.  Such simultaneous use of buffered and
+ * unbuffered files is not portable and should not be used without
+ * extensive testing.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
-/*
-This function copies n characters from the source file to the destination
-
-Input:   out_f:    		destination file
-         in_f:     		source file
-         count:         count of characters to copy
-         docrc:         0 if crc not wanted
-
-If count is -1, copying is done until eof is encountered.
-
-The source file is transferred to the current file pointer position in the
-destination file, using the handles provided.  Function return value is 0
-if no error, 2 if write error, and 3 if read error.
-
-If docrc is not 0, the global variable crccode is updated via addbfcrc().
-This is done even if the output is to the null device.
-
-If UNBUF_IO is defined, and if more than UNBUF_LIMIT bytes are 
-being transferred or copying is to end of file, the data transfer 
-is done using low-level read() and write() functions, which must 
-be defined elsewhere.  File descriptors are obtained for this 
-purpose using the fileno() macro, which must be provided elsewhere 
-too.  This is meant to provide greater efficiency on some systems.
-The files of type ZOOFILE are synchronized with their file 
-descriptors by doing a reasonable number of seeks and other
-miscellaneous operations before and after the transfer.  Such 
-simultaneous use of buffered and unbuffered files is not
-portable and should not be used without extensive testing.
-*/
 
 #ifdef UNBUF_IO
 int read PARMS ((int, VOIDPTR, unsigned));

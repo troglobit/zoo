@@ -1,13 +1,9 @@
-#ifndef LINT
-/* @(#) misc2.c 2.7 88/01/24 12:47:36 */
-static char sccsid[]="@(#) misc2.c 2.7 88/01/24 12:47:36";
-#endif /* LINT */
-
 /*
-The contents of this file are hereby released to the public domain.
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>

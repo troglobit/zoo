@@ -1,10 +1,4 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/ar.h,v $*/
-/*$Id: ar.h,v 1.17 91/07/09 01:39:50 dhesi Exp $*/
-/***********************************************************
-	ar.h
-
-Adapted from "ar" archiver written by Haruhiko Okumura.
-***********************************************************/
+/* Adapted from "ar" archiver written by Haruhiko Okumura. */
 
 #include <stdio.h>
 #include <sys/types.h>

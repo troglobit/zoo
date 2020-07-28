@@ -1,12 +1,8 @@
-#ifndef LINT
-static char mstimeid[]="@(#) mstime.i 2.2 88/01/24 12:47:58";
-#endif /* LINT */
-
 /*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #define BASEYEAR 1970
 

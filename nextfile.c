@@ -1,20 +1,17 @@
-#ifndef LINT
-static char sccsid[]="@(#) nextfile.c 2.2 87/12/26 12:23:43";
-#endif /* LINT */
+/* Functions to collect filenames from command line etc. 
+ *
+ * nextfile() is used by both Atoz and Zoo.  Wildcard expansion by
+ * nextfile() is specific to MS-DOS and this implementation is specific
+ * to Microsoft C.  If the symbol PORTABLE is defined, nextfile()
+ * becomes effectively a no-op that will return the original filespec
+ * the first time and NULL subsequently.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
-/*
-Functions to collect filenames from command line etc.  Nextfile() is
-used by both Atoz and Zoo.  Wildcard expansion by nextfile() is specific to 
-MS-DOS and this implementation is specific to Microsoft C.  If the symbol 
-PORTABLE is defined, nextfile() becomes effectively a no-op that will return
-the original filespec the first time and NULL subsequently.
-*/
 
 #define  FMAX  3        /* Number of different filename patterns */
 

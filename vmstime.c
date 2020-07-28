@@ -1,16 +1,12 @@
-/* vmstime.c */
-#ifndef LINT
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/vmstime.c,v $\n\
-$Id: vmstime.c,v 1.6 91/07/06 12:20:26 dhesi Exp $";
-#endif
-/*
-This file was graciously supplied by Randal Barnes to support preservation
-of file timestamps under VAX/VMS.  I claim no copyright on the contents of
-this file.  I assume that neither do its authors.  However, if you adapt
-this code for your own use, I recommend preserving author attributions.
-
-                                -- Rahul Dhesi  1991/07/04
-*/
+/* File timestamp support for VAX/VMS
+ *
+ * This file was graciously supplied by Randal Barnes to support preservation
+ * of file timestamps under VAX/VMS.  I claim no copyright on the contents of
+ * this file.  I assume that neither do its authors.  However, if you adapt
+ * this code for your own use, I recommend preserving author attributions.
+ *
+ *                              -- Rahul Dhesi  1991/07/04
+ */
 
 /*
 *  This module sets a VAX/VMS file's creation and revision date/time to a

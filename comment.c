@@ -1,17 +1,12 @@
-#ifndef LINT
-static char sccsid[]="@(#) comment.c 2.14 88/01/24 12:42:13";
-#endif /* LINT */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
+/* comment() Updates comments
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
 #include "portable.h"
-/* comment() */
-/* Updates comments */
 
 /* buffer size for any one comment line */
 #define  COMMENT_LINE_SIZE 76

@@ -1,15 +1,11 @@
-#ifndef LINT
-static char sccsid[]="@(#) lzd.c 2.6 88/01/30 20:39:18";
-#endif /* LINT */
-
-/*********************************************************************/
 /* This file contains two versions of the lzd() decompression routine.
-The default is to use a fast version coded by Ray Gardner.  If the
-symbol SLOW_LZD is defined, the older slower one is used.  I have tested
-Ray's code and it seems to be portable and reliable.  But if you
-suspect any problems you can define SLOW_LZD for your system in
-options.h and cause the older code to be used.  --R.D. */
-/*********************************************************************/
+ *
+ * The default is to use a fast version coded by Ray Gardner.  If the
+ * symbol SLOW_LZD is defined, the older slower one is used.  I have
+ * tested Ray's code and it seems to be portable and reliable.  But if
+ * you suspect any problems you can define SLOW_LZD for your system in
+ * options.h and cause the older code to be used.  --R.D.
+ */
 
 #include "options.h"
 #include "zoo.h"

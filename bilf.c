@@ -1,15 +1,13 @@
-/* $Source: /usr/home/dhesi/zoo/RCS/bilf.c,v $ */
-/* $Id: bilf.c,v 1.2 91/07/07 14:57:06 dhesi Exp $ */
-
-/*
-This program performs conversion of files between stream-LF format
-(as used by zoo) and fixed-length record binary format (used for Kermit
-transfers of zoo archives).
-
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
+/* Main entry point for bilf
+ *
+ * This program performs conversion of files between stream-LF format
+ * (as used by zoo) and fixed-length record binary format (used for
+ * Kermit transfers of zoo archives).
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include <stdio.h>
 #include <ssdef.h>

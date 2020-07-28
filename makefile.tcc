@@ -1,5 +1,3 @@
-# $Source: /usr/home/dhesi/zoo/RCS/makefile.tcc,v $
-# $Id: makefile.tcc,v 1.6 91/07/07 18:39:28 dhesi Exp $
 # Make Zoo -- works with Turbo C++ 1.0 under MS-DOS and
 # Don Kneller's NDMAKE version 4.31.
 #

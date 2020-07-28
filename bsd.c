@@ -1,20 +1,13 @@
-#ifndef LINT
-static char bsdid[]="@(#) bsd.c 2.3 88/01/10 14:45:19";
-#endif /* LINT */
-
-/* machine.c for 4.3BSD. */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                                    -- Rahul Dhesi  1987/07/23
-*/
-
-/* 
-WARNING:  This file assumes that ZOOFILE is a standard buffered
-file.  It will have to be modified if ZOOFILE is changed to
-be an unbuffered file descriptor or to any other kind of file.
-*/
+/* machine.c for 4.3BSD.
+ *
+ * WARNING: This file assumes that ZOOFILE is a standard buffered file.
+ * It will have to be modified if ZOOFILE is changed to be an unbuffered
+ * file descriptor or to any other kind of file.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi  1987/07/23
+ */
 
 #ifdef UNBUF_IO
 /*

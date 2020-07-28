@@ -1,14 +1,12 @@
-/* @(#) options.h 2.22 88/08/24 15:27:36 */
+/* For documentation about this file, see options.doc
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1991/07/06
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-                           -- Rahul Dhesi 1991/07/06
-
-For documentation about this file, see options.doc.
-*/
-
-#define ZOO				/* always defined */
-#define PORTABLE		/* always defined */
+#define ZOO		/* always defined */
+#define PORTABLE	/* always defined */
 #define ZOOCOMMENT	/* always defined */
 
 

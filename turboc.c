@@ -1,5 +1,3 @@
-/* @(#) turboc.c 1.2 87/06/21 16:08:54 */
-
 int _stklen = 30000;		/* stack size in bytes */
 void _setenvp() {}      /* don't initialize environment pointer etc. */
 #include <stdio.h>		/* to get fileno() */

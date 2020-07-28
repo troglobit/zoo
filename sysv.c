@@ -1,15 +1,9 @@
-#ifndef LINT
-/* @(#) sysv.c 2.5 88/01/10 14:47:24 */
-static char sysvid[]="@(#) sysv.c 2.5 88/01/10 14:47:24";
-#endif /* LINT */
-
-/* machine.c for System V */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                                    -- Rahul Dhesi  1986/12/31
-*/
+/* machine.c for System V
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi  1986/12/31
+ */
 
 #ifdef UNBUF_IO	/* do not use */
 /*

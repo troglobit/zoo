@@ -1,10 +1,4 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/decode.c,v $*/
-/*$Id: decode.c,v 1.6 91/07/09 01:39:49 dhesi Exp $*/
-/***********************************************************
-	decode.c
-
-Adapted from "ar" archiver written by Haruhiko Okumura.
-***********************************************************/
+/* Adapted from "ar" archiver written by Haruhiko Okumura. */
 
 #include "options.h"
 #include "zoo.h"

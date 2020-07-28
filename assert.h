@@ -1,25 +1,23 @@
-/* @(#) assert.h 2.1 87/12/25 12:21:32 */
-
 /*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 1991/07/04
-
-Defines a macro assert() that causes an assertion error if the assertion
-fails.
-
-Conditional compilation:
-
-   If NDEBUG is defined then
-      assert() is defined as null so all assertions vanish
-   else
-		if __FILE__ and __LINE__ are defined then
-         assertions print message including filename and line number
-      else
-         assertions print a message but not the filename and line number
-      endif
-   endif
-*/
+ * Defines a macro assert() that causes an assertion error if the
+ * assertion fails.
+ *
+ * Conditional compilation:
+ *
+ *    If NDEBUG is defined then
+ *       assert() is defined as null so all assertions vanish
+ *    else
+ *	 if __FILE__ and __LINE__ are defined then
+ *          assertions print message including filename and line number
+ *       else
+ *          assertions print a message but not the filename and line number
+ *       endif
+ *    endif
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1991/07/04
+ */
 
 #ifdef NDEBUG
 # define assert(E)

@@ -1,19 +1,15 @@
-# derived from: @(#) makefile 2.2 88/01/27 19:37:59 
-# $Id: makefile,v 1.22 91/07/09 04:10:38 dhesi Exp $
 # Make Zoo
 #
-#The contents of this makefile are hereby released to the public domain.
-#                                  -- Rahul Dhesi 1991/07/05
-#
 # This makefile expects two macro names, `CFLAGS' and `EXTRA', to hold
-# all the switches to be supplied to the C compiler.  It also expects
-# a macro `LDFLAGS' to hold the switch for the loader when invoked.
-# The macro "MODEL" holds switches needed for both compile and link, 
-# such as "memory model" for Intel and Z8000 processors. OPTIM is the 
-# optimize option and may be set on the make command line to -O2 or 
-# whatever your compiler thinks is nice.
+# all the switches to be supplied to the C compiler.  It also expects a
+# macro `LDFLAGS' to hold the switch for the loader when invoked.  The
+# macro "MODEL" holds switches needed for both compile and link, such as
+# "memory model" for Intel and Z8000 processors. OPTIM is the optimize
+# option and may be set on the make command line to -O2 or whatever your
+# compiler thinks is nice.
 #
-# To run lint, select an appropriate lint_* target (e.g. "make lint_sysv").
+# The contents of this makefile are hereby released to the public domain.
+#                             -- Rahul Dhesi 1991/07/05
 
 
 MAKE      ?= make	      # needed for some systems e.g. older BSD
@@ -22,7 +18,6 @@ CC        ?= cc
 CFLAGS    ?=
 MODEL     ?=
 EXTRA     ?= -DBIG_MEM -DNDEBUG
-LINTFLAGS ?= -DLINT
 
 DESTDIR   ?= /usr/local/bin
 
@@ -62,11 +57,6 @@ help :
 	@echo "install:      Move zoo to $(DESTDIR)/tzoo (alpha test)"
 	@echo "inst_beta:    Move zoo to $(DESTDIR)/bzoo (beta test)"
 	@echo "inst_prod:    Move zoo to $(DESTDIR)/zoo  (production)"
-	@echo ' '
-	@echo "lint_sysv:    Run lint for System V"
-	@echo "lint_bsd:     Run lint for 4.3BSD"
-	@echo "lint_generic: Run lint for generic **IX"
-	@echo "lint_turboc:  Run lint under **IX for checking Turbo C/MSDOS code"
 
 # install alpha zoo as "tzoo"
 install:
@@ -98,11 +88,11 @@ bsd:
 
 # Linux
 linux:
-	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DANSI_HDRS" LDFLAGS="$(LDFLAGS)" $(TARGETS)
+	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) -DLINUX -DANSI_HDRS" LDFLAGS="$(LDFLAGS)" $(TARGETS)
 
 # Linux64
 linux64:
-	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) $(LINTFLAGS) -DLINUX -DLONG64 -DANSI_HDRS" LDFLAGS="$(LDFLAGS)" $(TARGETS)
+	$(MAKE) CC="gcc" CFLAGS="-c $(OPTIM) -DLINUX -DLONG64 -DANSI_HDRS" LDFLAGS="$(LDFLAGS)" $(TARGETS)
 
 # ULTRIX 4.1
 ultrix:
@@ -164,34 +154,6 @@ zoo: $(ZOOOBJS)
 
 fiz: $(FIZOBJS)
 	$(CC) -o fiz $(MODEL) $(LDFLAGS) $(FIZOBJS)
-
-#######################################################################
-# SELECTED TARGETS FOR LINT
-#######################################################################
-
-# generic system V
-lint_sysv:
-	echo $(ZOOOBJS) | sed -e 's/\.o/.c/g' | \
-	xargs lint -DSYS_V $(EXTRA) $(LINTFLAGS) | \
-	grep -v 'possible pointer alignment problem'
-
-# generic BSD
-lint_bsd:
-	echo $(ZOOOBJS) | sed -e 's/\.o/.c/g' | \
-	xargs lint -DBSD4_3 $(EXTRA) $(LINTFLAGS) | \
-	grep -v 'possible pointer alignment problem'
-
-# generic **IX
-lint_generic:
-	echo $(ZOOOBJS) | sed -e 's/\.o/.c/g' | \
-	xargs lint -DGENERIC $(EXTRA) $(LINTFLAGS) | \
-	grep -v 'possible pointer alignment problem'
-
-# Cross-lint for checking Turbo C code under **IX.  For checking only;
-# compilation requires separate makefile called "makefile.tcc"
-lint_turboc:
-	echo $(ZOOOBJS) turboc.c | sed -e 's/\.o/.c/g' | \
-	xargs lint -DTURBOC -DCROSS_LINT $(EXTRA) $(LINTFLAGS)
 
 #######################################################################
 # DEPENDENCIES

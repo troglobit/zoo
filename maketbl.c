@@ -1,10 +1,8 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/maketbl.c,v $*/
-/*$Id: maketbl.c,v 1.8 91/07/09 01:39:52 dhesi Exp $*/
-/***********************************************************
-	maketbl.c -- make table for decoding
+/* make table for decoding
+ *
+ * Adapted from "ar" archiver written by Haruhiko Okumura.
+ */
 
-Adapted from "ar" archiver written by Haruhiko Okumura.
-***********************************************************/
 #include "options.h"
 #include "zoo.h"
 #include "ar.h"

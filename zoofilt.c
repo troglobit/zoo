@@ -1,17 +1,9 @@
-/* derived from: zoofilt.c 1.8 88/01/30 23:47:05 */
-
-#ifndef LINT
-static char sccsid[]="@(#) $Id: zoofilt.c,v 1.5 91/07/09 01:54:15 dhesi Exp $";
-#endif
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-
-Filter mode -- compress or decompress standard input and write
-to standard output.
-*/
+/* Filter mode -- compress or decompress standard input and write to stdout
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
 

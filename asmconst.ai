@@ -1,7 +1,5 @@
-; $Source: /usr/home/dhesi/zoo/RCS/asmconst.ai,v $
-; $Id: asmconst.ai,v 1.2 91/07/07 09:37:47 dhesi Exp $
-;The contents of this file are hereby released to the public domain.
-;                                 -- Rahul Dhesi 1988/08/25
+; The contents of this file are hereby released to the public domain.
+;                               -- Rahul Dhesi 1988/08/25
 
 ;Constant values for lzc.asm and lzd.asm
 maxbits		equ	13

@@ -1,13 +1,9 @@
-/* @(#) zoofns.h 2.5 88/01/16 19:03:13 */
-/* @(#) zoofns.h 2.7 88/01/27 19:39:18 */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 1986/11/14
-*/
-
-/* Defines function declarations for all Zoo functions */
+/* Defines function declarations for all Zoo functions
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1986/11/14
+ */
 
 #ifndef PARMS
 #ifdef LINT_ARGS

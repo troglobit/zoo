@@ -1,18 +1,15 @@
-#ifndef LINT
-static char sccsid[]="@(#) addfname.c 2.11 88/02/06 20:17:17";
-#endif /* LINT */
+/* Adds a filename to global list.
+ *
+ * This global list will eventually be searched by the inlist() function.
+ * The second and subsequent parameters suppplied are stored with the
+ * name of the file and returned by inlist.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include "options.h"
-
-/* Adds a filename to global list.  (This global list will eventually
-be searched by the inlist() function.)  The second and subsequent
-parameters suppplied are stored with the name of the file and 
-returned by inlist. */
 
 #include "zooio.h"
 #include "various.h"

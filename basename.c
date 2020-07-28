@@ -1,13 +1,8 @@
-#ifndef LINT
-/* @(#) basename.c 2.2 87/12/27 13:42:40 */
-static char sccsid[]="@(#) basename.c 2.2 87/12/27 13:42:40";
-#endif /* LINT */
-
 /*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
 #include "zooio.h"

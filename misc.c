@@ -1,17 +1,12 @@
-#ifndef LINT
-/* derived from: misc.c 2.6 88/08/15 16:17:23 */
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/misc.c,v $\n\
-$Id: misc.c,v 1.8 91/07/09 01:54:08 dhesi Exp $";
-#endif /* LINT */
+/* Miscellaneous functions needed by Zoo but not by Ooz
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include <signal.h>
 #include "options.h"
-/* Miscellaneous functions needed by Zoo but not by Ooz */
 
 #include "zoo.h"
 #include "zooio.h"

@@ -1,12 +1,8 @@
-#ifndef LINT
-static char sccsid[]="@(#) parse.c 2.1 87/12/25 12:24:10";
-#endif /* LINT */
-
 /*
-The contents of this file are hereby released to the public domain.
-
-                                 -- Rahul Dhesi 1986/11/14
-*/
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1986/11/14
+ */
 
 #include "options.h"
 #include "zoo.h"

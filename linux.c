@@ -1,6 +1,4 @@
-/* machine.c for Linux. */
-
-/* Basically code stolen from bsd.c, and adjusted for Linux. */
+/* Basically code stolen from bsd.c and adjusted for Linux. */
 
 #include <sys/stat.h>
 #include <sys/time.h>

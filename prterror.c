@@ -1,13 +1,55 @@
-#ifndef LINT
-/* @(#) prterror.c 2.8 88/01/31 18:48:17 */
-static char sccsid[]="@(#) prterror.c 2.8 88/01/31 18:48:17";
-#endif /* LINT */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                                 -- Rahul Dhesi 1986/11/14
-*/
+/* General error handler.
+ *
+ * Input format:
+ *
+ *    parameter 1:  'w', 'e', or 'f'.
+ *
+ *       'm':  message
+ *       'M':  message without preceding identification
+ *       'w':  WARNING
+ *       'e':  ERROR
+ *       'f':  FATAL
+ *       'F':  FATAL but program doesn't exist immediately
+ *
+ *    All text printed is preceded by "Zoo:  " or "Ooz:  "  depending
+ *    upon conditional compilation, except in the case of 'M' messages
+ *    which are printed without any text being added.
+ *
+ *    For messages, the text supplied is printed if and only if the global
+ *    variable "quiet" is zero.  Control then returns to the caller.
+ *
+ *    For warnings, errors, and fatal errors, the variable "quiet" is used
+ *	as follows.  Warning messages are suppressed if quiet > 1;  error
+ *	messages are suppressed if quiet > 2.  Fatal error messages are
+ *	never suppressed--doing so would be a bit risky.
+ *
+ *    For warnings and errors, the error message is preceded by the "WARNING:"
+ *    or "ERROR".  The error message is printed and control returns to the
+ *    caller.
+ *
+ *    For fatal errors, the error message is preceded by "FATAL:" and an
+ *    error message is printed.  If the option was 'f', the program exits with
+ *    a status of 1.  If the option was 'F', control returns to the caller and
+ *    it is assumed that the caller will do any cleaning up necessary and then
+ *    exit with an error status.
+ *
+ *    parameter 2:  The format control string for printf.
+ *	remining parameters:  passed on to vprintf().
+ *
+ *	All messages, whether informative or error, are sent to standard
+ *	output via printf.  It might be a good idea to eventually send 'e' and
+ *	'f' class messages to the standard error stream.  Best would be
+ *	some way of telling if standard output and standard error are not
+ *	the same device, so that we could always send error messages to
+ *	standard error, and also duplicate them to standard output if
+ *	different from standard error.  This is one thing that VMS seems
+ *	to be capable of doing.  There seems to be no way of doing this
+ *	in the general case.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1986/11/14
+ */
 
 #include "options.h"
 #ifndef	OK_STDIO
@@ -35,53 +77,6 @@ The contents of this file are hereby released to the public domain.
 #ifdef NEED_VPRINTF
 static int zvfprintf();
 #endif
-
-/* General error handler.  Input format:
-
-   parameter 1:  'w', 'e', or 'f'.
-
-      'm':  message
-      'M':  message without preceding identification
-      'w':  WARNING
-      'e':  ERROR
-      'f':  FATAL
-      'F':  FATAL but program doesn't exist immediately
-
-   All text printed is preceded by "Zoo:  " or "Ooz:  "  depending
-   upon conditional compilation, except in the case of 'M' messages
-   which are printed without any text being added.
-
-   For messages, the text supplied is printed if and only if the global
-   variable "quiet" is zero.  Control then returns to the caller.
-
-   For warnings, errors, and fatal errors, the variable "quiet" is used
-	as follows.  Warning messages are suppressed if quiet > 1;  error
-	messages are suppressed if quiet > 2.  Fatal error messages are 
-	never suppressed--doing so would be a bit risky.
-
-   For warnings and errors, the error message is preceded by the "WARNING:"
-   or "ERROR".  The error message is printed and control returns to the
-   caller.
-
-   For fatal errors, the error message is preceded by "FATAL:" and an
-   error message is printed.  If the option was 'f', the program exits with 
-   a status of 1.  If the option was 'F', control returns to the caller and 
-   it is assumed that the caller will do any cleaning up necessary and then 
-   exit with an error status.
-
-   parameter 2:  The format control string for printf.   
-	remining parameters:  passed on to vprintf().
-
-	All messages, whether informative or error, are sent to standard
-	output via printf.  It might be a good idea to eventually send 'e' and
-	'f' class messages to the standard error stream.  Best would be
-	some way of telling if standard output and standard error are not
-	the same device, so that we could always send error messages to
-	standard error, and also duplicate them to standard output if 
-	different from standard error.  This is one thing that VMS seems
-	to be capable of doing.  There seems to be no way of doing this
-	in the general case.
-*/
 
 extern int quiet;
 

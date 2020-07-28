@@ -1,21 +1,15 @@
-#ifndef LINT
-static char sccsid[]="@(#) needed.c 2.16 88/01/31 15:54:37";
-#endif /* LINT */
-
 /*
-The contents of this file are hereby released to the public domain.
+ * Uses FIRST_ARG in zoo.h, so must be recompiled when switching between
+ * Ooz and Zoo.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-                           -- Rahul Dhesi 2004/06/19
-*/
-
-#define	STRCMP(s1,op,s2)		(strcmp(s1,s2) op 0)
+#define	STRCMP(s1,op,s2)	(strcmp(s1,s2) op 0)
 
 #include "options.h"
-/* Accepts a filename from an archive and returns 1 if a command-line
-   argument filename matches it.  Otherwise returns 0. Returns
-   1 if no arguments were supplied (so by default, all files will
-   be extracted */
-
 #include "zoo.h"
 
 #ifdef NEEDCTYP
@@ -32,9 +26,13 @@ The contents of this file are hereby released to the public domain.
 extern int next_arg;          /* filenames start at this position */
 extern int arg_count;         /* count of arguments supplied to program */
 extern char **arg_vector;     /* vector of arguments supplied to program */
-/* Uses FIRST_ARG in zoo.h, so must be recompiled when switching
-   between Ooz and Zoo */
 
+/* Accepts a filename from an archive and returns 1 if a command-line
+ * argument filename matches it.  Otherwise returns 0.
+ *
+ * Returns 1 if no arguments were supplied (so by default, all files
+ * will be extracted
+ */
 int needed(pathname, direntry, header)
 char *pathname;
 struct direntry *direntry;
@@ -45,8 +43,8 @@ struct zoo_header *header;
    char *justname;
 	char arg_copy[PATHSIZE];				/* working copy of an argument */
 	char path_copy[PATHSIZE];				/* working copy of pathname */
-	char *p;										/* a temporary pointer */
-	char *q;										/* a temporary pointer */
+	char *p;						/* a temporary pointer */
+	char *q;						/* a temporary pointer */
 
 	/* if no filenames supplied, match latest version of each 
 		(but match any version if versions not enabled) */

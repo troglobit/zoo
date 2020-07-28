@@ -1,12 +1,10 @@
-/* @(#) zooio.h 2.7 88/01/27 19:39:24 */
+/* Declarations for portable I/O
+ *
+ * The contents of this file are hereby placed in the public domain.
+ *
+ *				-- Rahul Dhesi 1988/01/24
+ */
 
-/*
-Declarations for portable I/O
-
-The contents of this file are hereby placed in the public domain.
-
-				-- Rahul Dhesi 1988/01/24
-*/
 #include "zoo.h"
 #ifndef	OK_STDIO
 #include <stdio.h>
@@ -42,7 +40,7 @@ typedef FILE *ZOOFILE;
 #define zoowrite(file, buffer, count) \
 	(file == NULLFILE ? count : fwrite (buffer, 1, count, file))
 #define zooseek(file, offset, whence)		fseek (file, offset, whence)
-#define zootell(file)							ftell (file)
+#define zootell(file)				ftell (file)
 #else
 int zooread PARMS((ZOOFILE, char *, int));
 int zoowrite PARMS((ZOOFILE, char *, int));

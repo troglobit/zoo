@@ -1,6 +1,4 @@
-; $Source: /usr/home/dhesi/zoo/RCS/macros.ai,v $
-; $Id: macros.ai,v 1.2 91/07/07 09:37:52 dhesi Exp $
-;procedure index, used in-line to save some microseconds
+; procedure index, used in-line to save some microseconds
 call_index	macro
 	mov	si,bx			;si = bx * 5 (5 byte hash entries)
 	shl	si,1			;si = bx * 2 * 2 + bx

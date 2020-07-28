@@ -1,17 +1,13 @@
-#ifndef LINT
-/* @(#) nixmode.i 1.2 88/01/24 12:48:57 */
-static char modeid[]="@(#) nixmode.i 1.2 88/01/24 12:48:57";
-#endif
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-
-UNIX-specific routines to get and set file attribute.  These might be 
-usable on other systems that have the following identical things:
-fileno(), fstat(), chmod(), sys/types.h and sys/stat.h.
-*/
+/* UNIX-specific routines to get and set file attribute.
+ *
+ * These might be usable on other systems that have the following
+ * identical things: fileno(), fstat(), chmod(), sys/types.h and
+ * sys/stat.h.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 /*
 Get file attributes.  Currently only the lowest nine of the

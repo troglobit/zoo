@@ -1,19 +1,15 @@
-/* @(#) various.h 2.3 87/12/27 14:44:34 */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 1986/11/14
-*/
-
-/*
-This files gives definitions for most external functions used by Zoo.
-If ANSI_PROTO is defined, ANSI-style function prototypes are used, else
-normal K&R function declarations are used.
-
-Note:  Always precede this file with an include of stdio.h because it uses
-the predefined type FILE.
-*/
+/* Definitions for most external functions used by Zoo
+ *
+ * If ANSI_PROTO is defined, ANSI-style function prototypes are used,
+ * else normal K&R function declarations are used.
+ *
+ * Note: Always precede this file with an include of stdio.h because it
+ *       uses the predefined type FILE.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1986/11/14
+ */
 
 #ifndef PARMS
 #ifdef ANSI_PROTO

@@ -1,9 +1,3 @@
-#ifndef LINT
-/* derived from: @(#) vms.c 2.2 88/01/09 03:47:52 */
-static char vmsid[]="$Source: /usr/home/dhesi/zoo/RCS/vms.c,v $\n\
-$Id: vms.c,v 1.10 91/07/07 14:41:17 dhesi Exp $";
-#endif /* LINT */
-
 /* Support routines for VAX/VMS. */
 
 #include <stat.h>

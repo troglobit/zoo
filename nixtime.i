@@ -1,15 +1,12 @@
-#ifndef LINT
-static char nixtimeid[]="@(#) nixtime.i 2.3 88/01/24 12:49:28";
-#endif /* LINT */
+/* Time handling routines for UNIX systems. 
+ *
+ * These functions are included by the file machine.c as needed.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi  1986/12/31
+ */
 
-/*
-Time handling routines for UNIX systems.  These are included by the file
-machine.c as needed.
-
-The contents of this file are hereby released to the public domain.
-
-                                    -- Rahul Dhesi  1986/12/31
-*/
 #include <sys/types.h>
 #include <time.h>
 #include <utime.h>

@@ -1,7 +1,4 @@
-/* $Id: lzh.c,v 1.15 91/07/06 19:18:51 dhesi Exp $ */
-/*
-lzh compression and uncompression interface module
-*/
+/* lzh compression and uncompression interface module */
 
 #include "options.h"
 #include "zoo.h"

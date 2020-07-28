@@ -1,8 +1,9 @@
-#ifndef LINT
-/* derived from: zoolist.c 2.27 88/08/15 11:03:16 */
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/zoolist.c,v $\n\
-$Id: zoolist.c,v 1.4 91/07/09 01:54:16 dhesi Exp $";
-#endif /* LINT */
+/* Lists files in archive 
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 /*
 If TRACE_LIST is defined, any list command may be followed
@@ -14,16 +15,10 @@ duplicate information will be dumped.
 
 /* #define TRACE_LIST */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include "options.h"
 #include "portable.h"
 #include "zoomem.h"  /* to get ZOOCOUNT */
 
-/* Lists files in archive */
 #include "zoo.h"
 #include "errors.i"
 #include "zooio.h"

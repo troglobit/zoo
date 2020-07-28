@@ -1,18 +1,11 @@
-#ifndef LINT
-static char genericid[]="@(#) generic.c 2.2 88/01/24 12:44:03";
-#endif /* LINT */
-
-/* 
-Generic template for machine-dependent functions.
-
-The contents of this file are hereby released to the public domain
-
-				-- Rahul Dhesi 1991/07/05
-*/
-
-/****************
-Date and time functions are assumed to be standard **IX-style functions.
-*/
+/* Generic template for machine-dependent functions.
+ *
+ * Date and time functions are assumed to be standard **IX-style functions.
+ *
+ * The contents of this file are hereby released to the public domain
+ *
+ * 				-- Rahul Dhesi 1991/07/05
+ */
 
 #include <sys/types.h>
 #include <sys/stat.h>

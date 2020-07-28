@@ -1,19 +1,13 @@
-#ifndef LINT
-/* derived from: zooext.c 2.21 88/08/24 02:39:04 */
-/*$Source: /usr/home/dhesi/zoo/RCS/zooext.c,v $*/
-/*$Id: zooext.c,v 1.9 91/07/09 01:54:13 dhesi Exp $*/
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/zooext.c,v $\n\
-$Id: zooext.c,v 1.9 91/07/09 01:54:13 dhesi Exp $";
-#endif /* LINT */
+/* Extract file from archive
+ *
+ * Extracts files specified in parameter-list from archive zoo_path.
+ * If none specified, extracts all files from archive.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
-/* Extract file from archive.  Extracts files specified in parameter-list
-   from archive zoo_path.  If none specified, extracts all files from
-   archive. */
 #include <unistd.h>
 #include <signal.h>
 #include "options.h"

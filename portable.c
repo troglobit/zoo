@@ -1,28 +1,19 @@
-#ifndef LINT
-/* @(#) portable.c 2.24 88/08/24 01:22:06 */
-static char sccsid[]="@(#) portable.c 2.24 88/08/24 01:22:06";
-#endif /* LINT */
+/* Functions needed to make Zoo portable to various implementations of C
+ *
+ * Note: Provided a 2's complement machine is used, all functions in
+ *       this file are themselves machine-independent and need not be
+ *       changed when implementing Zoo on a different machine.  Some
+ *       code will choke on 1's complement machines -- I think.
+ *
+ * - For machine-dependent declarations see files "machine.h" and "options.h".
+ * - For machine-dependent functions see file "machine.c"
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
-/**********************
-portable.c contains functions needed to make Zoo portable to various
-implementations of C.
-
-Note:  Provided a 2's complement machine is used, all functions in
-this file are themselves machine-independent and need not be changed
-when implementing Zoo on a different machine.  Some code will choke
-on 1's complement machines--I think.  
-
-For machine-dependent declarations see files "machine.h" and "options.h". 
-
-For machine-dependent functions see file "machine.c"
-*/
-
 #include "zoo.h"
 #include "zooio.h"
 

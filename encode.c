@@ -1,9 +1,4 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/encode.c,v $*/
-/*$Id: encode.c,v 1.41 91/07/09 01:39:47 dhesi Exp $*/
-
-/*
-Adapted from "ar" archiver written by Haruhiko Okumura.
-*/
+/* Adapted from "ar" archiver written by Haruhiko Okumura. */
 
 #include "options.h"
 #include "zoo.h"

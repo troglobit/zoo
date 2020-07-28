@@ -1,28 +1,21 @@
-#ifndef LINT
-/* derived from: @(#) zoopack.c 2.16 88/08/22 15:51:20 */
-/*$Source: /usr/home/dhesi/zoo/RCS/zoopack.c,v $*/
-/*$Id: zoopack.c,v 1.5 91/07/09 01:54:17 dhesi Exp $*/
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/zoopack.c,v $\n\
-$Id: zoopack.c,v 1.5 91/07/09 01:54:17 dhesi Exp $";
-#endif /* LINT */
+/* Packs an archive. 
+ *
+ * The sequence is:
+ *   1. Copy all files from current archive to new one.
+ *   2. If the user didn't want a backup, delete the old archive
+ *      else rename it to same name with extension of .BAK.
+ *   3. Rename temporary archive to old name.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include <unistd.h>
 #include "options.h"
-/* Packs an archive.  The sequence is:
-   1. Copy all files from current archive to new one.
-   2. If the user didn't want a backup, delete the old archive
-      else rename it to same name with extension of .BAK.
-   3. Rename temporary archive to old name.
-*/
 
 /* define this to make packing noisless */
 #define QUIETPACK 1
-
 
 #include "portable.h"
 #include "zooio.h"
@@ -37,16 +30,16 @@ The contents of this file are hereby released to the public domain.
 char *mktemp PARMS((char *));
 
 struct zoo_header zoo_header = {
-   TEXT,
-   ZOO_TAG,
-   (long) SIZ_ZOOH,
-   (long) (-SIZ_ZOOH),
-   MAJOR_VER,
-   MINOR_VER,
+	TEXT,
+	ZOO_TAG,
+	(long) SIZ_ZOOH,
+	(long) (-SIZ_ZOOH),
+	MAJOR_VER,
+	MINOR_VER,
 	H_TYPE,
-	0L,						/* comment position */
-	0,							/* comment length */
-	GEN_DEFAULT				/* generations */
+	0L,				  /* comment position */
+	0,				  /* comment length */
+	GEN_DEFAULT			  /* generations */
 };
 char file_leader[] = FILE_LEADER;
 extern int quiet;

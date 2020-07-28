@@ -1,9 +1,4 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/lzh.h,v $*/
-/*$Id: lzh.h,v 1.3 91/07/09 01:39:23 dhesi Exp $*/
-
-/*
-Adapted from "ar" archiver written by Haruhiko Okumura.
-*/
+/* Adapted from "ar" archiver written by Haruhiko Okumura. */
 
 /* Define some things if they aren't defined in header files */
 #ifndef CHAR_BIT

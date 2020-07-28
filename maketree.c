@@ -1,10 +1,8 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/maketree.c,v $*/
-/*$Id: maketree.c,v 1.6 91/07/09 01:39:51 dhesi Exp $*/
-/***********************************************************
-	maketree.c -- make Huffman tree
+/* Make Huffman tree
+ *
+ * Adapted from "ar" archiver written by Haruhiko Okumura.
+ */
 
-Adapted from "ar" archiver written by Haruhiko Okumura.
-***********************************************************/
 #include "options.h"
 #include "zoo.h"
 #include "ar.h"

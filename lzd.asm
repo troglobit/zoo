@@ -1,10 +1,9 @@
-title	Lempel-Ziv Decompressor
-; $Source: /usr/home/dhesi/zoo/RCS/lzd.asm,v $
-; $Id: lzd.asm,v 1.3 91/07/07 09:36:23 dhesi Exp $
+; Derived from Tom Pfau's public domain assembly code.
+;
+; The contents of this file are hereby released to the public domain.
+;                               -- Rahul Dhesi 1988/08/24
 
-;Derived from Tom Pfau's public domain assembly code.
-;The contents of this file are hereby released to the public domain.
-;                                   -- Rahul Dhesi 1988/08/24
+title	Lempel-Ziv Decompressor
 
 UNBUF_IO	equ	1		;use unbuffered I/O
 

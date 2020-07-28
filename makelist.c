@@ -1,13 +1,8 @@
-#ifndef LINT
-/* @(#) makelist.c 2.3 88/01/24 12:46:44 */
-static char sccsid[]="@(#) makelist.c 2.3 88/01/24 12:46:44";
-#endif /* LINT */
-
 /*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
 #include "portable.h"

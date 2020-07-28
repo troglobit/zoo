@@ -1,10 +1,8 @@
-/* @(#) lzconst.h 2.1 87/12/25 12:22:30 */
-
 /*
-The contents of this file are hereby released to the public domain.
-
-                                    -- Rahul Dhesi  1986/12/31
-*/
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi  1986/12/31
+ */
 
 #define  INBUFSIZ    (IN_BUF_SIZE - 10)   /* avoid obo errors */
 #define  OUTBUFSIZ   (OUT_BUF_SIZE - 10)

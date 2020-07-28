@@ -1,61 +1,58 @@
-/* derived from: zoo.h 2.16 88/01/27 23:21:36 */
+/* Global data structures incl. information about archive structure
+ *
+ * Among other things, the archive header contains:
+ *
+ * (a) A text message.  In the MS-DOS version this message is terminated by
+ * control Z.  This allows naive users to type the archive to the screen
+ * and see a brief but meaningful message instead of garbage.  The contents of
+ * the text message are however not used by Zoo and they may be anything.
+ * In particular, the text message may identify the type or archive or the
+ * particular computer system it was created on.  When an archive is packed
+ * by any version of Zoo, the text message is changed to the text message
+ * used by that version.  For example, if Zoo 1.10 packs an archive created
+ * by Zoo 1.31, the text message changes to "Zoo 1.10 archive.".  This
+ * was once considered a shortcoming, but it is now an essential feature,
+ * because packing will also update an old archiver header structure
+ * into a new one.
+ *
+ * (b) A four-byte tag that identifies all Zoo archives.  This helps prevent
+ * arbitrary binary files from being treated as Zoo archives.  The tag value is
+ * arbitrary, but seemed to be unlikely to occur in an executable file.  The
+ * same tag value is used to identify each directory entry.
+ *
+ * (c) A long pointer to where in the file the archive starts.  This pointer
+ * is stored along with its negation for consistency checking.  It is hoped
+ * that if the archive is damaged, both the pointer and its negation won't
+ * be damaged and at least one would still be usable to tell us where the
+ * data begins.
+ *
+ * (d) A two-byte value giving the major and minor version number of the
+ * minimum version of Zoo that is needed to fully manipulate the archive.
+ * As the archive structure is modified, this version number may increase.
+ * Currently version 1.71 of Zoo creates archives that may be fully manipulated
+ * by version 1.40 onwards.
+ *
+ * (e) With zoo 2.00 addtional fields have been added in the archive
+ * header to store information about the archive comment and generation
+ * limit.
+ *
+ * Version numbering:
+ * The directory entry of each file will contain the minimum version number of
+ * Zoo needed to extract that file.  As far as possible, version 1.00 of Zoo
+ * will be able to extract files from future version archives.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1986/11/14
+ */
+
 #ifndef ZOO_H
 #define ZOO_H
-/*
-The contents of this file are hereby released to the public domain.
 
-                           -- Rahul Dhesi 1986/11/14
-*/
-
-
-/* Global data structures and also some information about archive structure.
-
-Among other things, the archive header contains:  
-
-(a) A text message.  In the MS-DOS version this message is terminated by
-control Z.  This allows naive users to type the archive to the screen
-and see a brief but meaningful message instead of garbage.  The contents of
-the text message are however not used by Zoo and they may be anything.  
-In particular, the text message may identify the type or archive or the
-particular computer system it was created on.  When an archive is packed
-by any version of Zoo, the text message is changed to the text message
-used by that version.  For example, if Zoo 1.10 packs an archive created
-by Zoo 1.31, the text message changes to "Zoo 1.10 archive.".  This
-was once considered a shortcoming, but it is now an essential feature,
-because packing will also update an old archiver header structure
-into a new one.
-
-(b) A four-byte tag that identifies all Zoo archives.  This helps prevent
-arbitrary binary files from being treated as Zoo archives.  The tag value is
-arbitrary, but seemed to be unlikely to occur in an executable file.  The
-same tag value is used to identify each directory entry.  
-
-(c) A long pointer to where in the file the archive starts.  This pointer
-is stored along with its negation for consistency checking.  It is hoped
-that if the archive is damaged, both the pointer and its negation won't
-be damaged and at least one would still be usable to tell us where the 
-data begins.
-
-(d) A two-byte value giving the major and minor version number of the
-minimum version of Zoo that is needed to fully manipulate the archive.  
-As the archive structure is modified, this version number may increase.
-Currently version 1.71 of Zoo creates archives that may be fully manipulated
-by version 1.40 onwards.
-
-(e) With zoo 2.00 addtional fields have been added in the archive
-header to store information about the archive comment and generation
-limit.
-
-Version numbering:  
-The directory entry of each file will contain the minimum version number of
-Zoo needed to extract that file.  As far as possible, version 1.00 of Zoo
-will be able to extract files from future version archives.
-*/
-
-#define H_TYPE	1				/* archive header type */
+#define H_TYPE	1		/* archive header type */
 
 /* Define major and minor version numbers */
-#define MAJOR_VER 2        /* needed to manipulate archive */
+#define MAJOR_VER 2		/* needed to manipulate archive */
 #define MINOR_VER 0
 
 /* version needed to extract packing method 1 */

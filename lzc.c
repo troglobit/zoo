@@ -1,15 +1,11 @@
-#ifndef LINT
-static char sccsid[]="@(#) lzc.c 2.6 88/01/30 18:39:15";
-#endif /* LINT */
-
-/*
-Lempel-Ziv compression.  Mostly based on Tom Pfau's assembly language
-code.
-
-The contents of this file are hereby released to the public domain.
-
-                                    -- Rahul Dhesi  1986/12/31
-*/
+/* Lempel-Ziv compression.
+ *
+ * Mostly based on Tom Pfau's assembly language code.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi  1986/12/31
+ */
 
 #include "options.h"
 #include "zoo.h"

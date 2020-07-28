@@ -1,10 +1,8 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/io.c,v $*/
-/*$Id: io.c,v 1.14 91/07/09 01:39:54 dhesi Exp $*/
-/***********************************************************
-	io.c -- input/output
+/* input/output routines
+ *
+ * Adapted from "ar" archiver written by Haruhiko Okumura.
+ */
 
-Adapted from "ar" archiver written by Haruhiko Okumura.
-***********************************************************/
 #ifdef ANSI_HDRS
 # include <stdlib.h>
 # include <string.h>

@@ -1,11 +1,4 @@
-/* msdos.c */
-
 /* Highly system-dependent routines go here */
-
-/* settime() */
-
-/* Accepts a date/time in DOS format and sets the file time. Returns 1
-if OK, 0 if error */
 
 #include "options.h"
 #include "zoo.h"
@@ -20,6 +13,10 @@ union	REGS	{
 	struct { unsigned char al, ah, bl, bh, cl, ch, dl, dh; }  h;
 };
 
+/*
+Accepts a date/time in DOS format and sets the file time.
+Returns 1 if OK, 0 if error
+ */
 int settime (file,date,time)
 ZOOFILE file;
 unsigned date, time;

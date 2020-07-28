@@ -1,7 +1,9 @@
-#ifndef LINT
-/* derived from: zoo.c 2.24 88/01/29 00:55:09 */
-static char sccsid[]="$Id: zoo.c,v 1.21 91/07/09 02:36:40 dhesi Exp $";
-#endif /* LINT */
+/* Main entry point for zoo
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #if 0
 #define TRACEI(item)	printf("line %d: %s= %d\n", __LINE__, #item, item)
@@ -10,11 +12,6 @@ static char sccsid[]="$Id: zoo.c,v 1.21 91/07/09 02:36:40 dhesi Exp $";
 
 extern char version[];
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include <unistd.h>
 #include "options.h"
 #include "zooio.h"

@@ -1,8 +1,4 @@
 #pragma inline					/* tell turbo assemble to use inline assembly */
-#ifndef LINT
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/addbftcc.c,v $\n\
-$Id: addbftcc.c,v 1.1 91/07/07 18:40:11 dhesi Exp $";
-#endif /* LINT */
 
 extern unsigned int crccode;
 extern unsigned crctab[];

@@ -1,10 +1,8 @@
+; Derived from Tom Pfau's public domain assembly code.
+;
+; The contents of this file are hereby released to the public domain.
+;                               -- Rahul Dhesi 1988/08/24
 title	Lempel-Ziv Compressor
-; $Source: /usr/home/dhesi/zoo/RCS/lzc.asm,v $
-; $Id: lzc.asm,v 1.4 91/07/07 09:36:18 dhesi Exp $
-
-;Derived from Tom Pfau's public domain assembly code.
-;The contents of this file are hereby released to the public domain.
-;                                   -- Rahul Dhesi 1988/08/24
 
 UNBUF_IO	equ	1		;use unbuffered I/O
 

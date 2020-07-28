@@ -1,15 +1,11 @@
-#ifndef LINT
-static char sccsid[]="@(#) crcdefs.c 2.1 87/12/25 12:21:58";
-#endif /* LINT */
+/* Global definitions for CRC calculation.
+ *
+ * I claim no copyright over the contents of this file.
+ *
+ *                              -- Rahul Dhesi 1987/08/27
+ */
 
 #include "options.h"
-
-/*
-Global definitions for CRC calculation.  I claim no copyright over
-the contents of this file.
-
-                                  -- Rahul Dhesi 1987/08/27
-*/
 
 unsigned int crccode;
 unsigned int crctab[] = {

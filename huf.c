@@ -1,10 +1,8 @@
-/*$Source: /usr/home/dhesi/zoo/RCS/huf.c,v $*/
-/*$Id: huf.c,v 1.9 91/07/09 01:39:55 dhesi Exp $*/
-/***********************************************************
-	huf.c -- static Huffman
+/* Static Huffman encoding & decoding routines.
+ *
+ * Adapted from "ar" archiver written by Haruhiko Okumura.
+ */
 
-Adapted from "ar" archiver written by Haruhiko Okumura.
-***********************************************************/
 #include "options.h"
 #include "zoo.h"
 #include "ar.h"

@@ -1,16 +1,13 @@
-/* @(#) machine.h 2.1 87/12/25 12:22:43 */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 1986/11/14
-*/
-
-/* 
-This file holds definitions that usually do not change
-between different systems, except when using REALLY strange systems.  But
-options.h and machine.c hold stuff that does change quite a bit.
-*/
+/* Machine definitions
+ *
+ * This file holds definitions that usually do not change between
+ * different systems, except when using REALLY strange systems.  But
+ * options.h and machine.c hold stuff that does change quite a bit.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1986/11/14
+ */
 
 /* 
 MAXLONG is the maximum size of a long integer.  Right now it doesn't have to

@@ -1,13 +1,11 @@
-/* @(#) errors.i 2.4 88/01/31 12:32:46 */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 1986/11/14
-*/
-
-/* defines all the errors as externs.  Declarations must be
-equivalent to those in prterror.c */
+/* Defines all the errors as externs.
+ *
+ * Declarations must be equivalent to those in prterror.c
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1986/11/14
+ */
 
 /* These declarations must be equivalent to those in prterror.c */
 extern char no_match[];

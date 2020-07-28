@@ -1,18 +1,13 @@
-#ifndef LINT
-static char sccsid[]="@(#) fiz.c 2.6 88/01/31 23:23:50";
-#endif /* LINT */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                                   -- Rahul Dhesi 1987/02/06
-*/
-
-/*
-Searches for all directory entries in an archive and prints their
-offsets.  Zoo 1.41 and later may then be asked to extract a specific
-file by supplying the offset of the file.
-*/
+/* Main entry point for fiz
+ *
+ * Searches for all directory entries in an archive and prints their
+ * offsets.  Zoo 1.41 and later may then be asked to extract a specific
+ * file by supplying the offset of the file.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 1987/02/06
+ */
 
 #include "options.h"
 #include "zooio.h"

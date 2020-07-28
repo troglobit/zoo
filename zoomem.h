@@ -1,14 +1,9 @@
-/* derived from: zoomem.h 2.1 87/12/25 12:26:18 */
-/* $Path$ */
-/* $Id: zoomem.h,v 1.3 91/07/09 01:43:06 dhesi Exp $ */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-
-Defines parameters used for memory allocation.
-*/
+/* Defines parameters used for memory allocation.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 /* ZOOCOUNT is the number of archive names that may be matched by the
 archive filespec specified for a list.

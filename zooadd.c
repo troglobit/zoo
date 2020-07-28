@@ -1,19 +1,14 @@
-#ifndef LINT
-/* derived from: zooadd.c 2.34 88/08/15 10:53:11 */
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/zooadd.c,v $\n\
-$Id: zooadd.c,v 1.10 91/07/08 23:48:39 dhesi Exp $";
-#endif /* LINT */
+/* Adds files specified in parameter-list to archive zoo_path
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include <unistd.h>
 #include "options.h"
-/* Adds files specified in parameter-list to archive zoo_path. */
 
-#define LONGEST	20					/* assumed length of longest filename */
+#define LONGEST	20		/* assumed length of longest filename */
 #include "zoomem.h"             /* to define MAXADD */
 #undef PORTABLE
 #include "zoo.h"

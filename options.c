@@ -1,17 +1,12 @@
-#ifndef LINT
-static char sccsid[]="@(#) options.c 2.1 87/12/25 12:23:56";
-#endif /* LINT */
-
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
-/*
-Here we define routines specific to only a few systems.  Routines are
-selected based on defined symbols.  Routines specific to only one
-system are in machine.c for the appropriate system.
-*/
+/* Here we define routines specific to only a few systems.
+ *
+ * Routines are selected based on defined symbols.  Routines specific to
+ * only one system are in machine.c for the appropriate system.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
 #include "options.h"
 #include "zooio.h"

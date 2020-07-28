@@ -1,13 +1,10 @@
-#ifndef LINT
-/* derived from: zooadd2.c 2.14 88/01/27 10:40:32 */
-static char sccsid[]="$Id: zooadd2.c,v 1.5 91/07/04 13:33:55 dhesi Exp $";
-#endif /* LINT */
+/* Miscellaneous routines to support zooadd()
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include <unistd.h>
 #include "options.h"
 #undef PORTABLE
@@ -24,9 +21,6 @@ The contents of this file are hereby released to the public domain.
 #include "debug.h"
 #include "parse.h"
 int isfdir PARMS((char *));
-/*
-Miscellaneous routines to support zooadd().
-*/
 
 /****************
 This function is called with zoo_file positioned to the first

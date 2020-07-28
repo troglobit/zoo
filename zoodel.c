@@ -1,19 +1,14 @@
-#ifndef LINT
-/* @(#) zoodel.c 2.19 88/02/06 21:23:36 */
-/*$Source: /usr/home/dhesi/zoo/RCS/zoodel.c,v $*/
-/*$Id: zoodel.c,v 1.4 91/07/09 01:54:11 dhesi Exp $*/
-static char sccsid[]="$Source: /usr/home/dhesi/zoo/RCS/zoodel.c,v $\n\
-$Id: zoodel.c,v 1.4 91/07/09 01:54:11 dhesi Exp $";
-#endif /* LINT */
+/* Deletes or undeletes entries from an archive
+ *
+ * choice=1 requests deletion,
+ * choice=0 requests undeletion.
+ *
+ * The contents of this file are hereby released to the public domain.
+ *
+ *                              -- Rahul Dhesi 2004/06/19
+ */
 
-/*
-The contents of this file are hereby released to the public domain.
-
-                           -- Rahul Dhesi 2004/06/19
-*/
 #include "options.h"
-/* Deletes or undeletes entries from an archive.  choice=1 requests
-   deletion and choice=0 requests undeletion. */
 #include "zoo.h"
 #include "portable.h"
 #ifndef	OK_STDIO
