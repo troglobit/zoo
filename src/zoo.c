@@ -10,8 +10,7 @@
 #define TRACES(item)	printf("line %d: %s= [%s]\n", __LINE__, #item, item)
 #endif
 
-extern char version[];
-
+#include "config.h"
 #include <unistd.h>
 #include "options.h"
 #include "zooio.h"
@@ -274,7 +273,7 @@ zooexit (0);      /* don't fall through */
 
 /* usage list including Novice commands */
 show_usage:
-   fprintf (stderr, "%s\n\n%s%s%s", version, usage, nov_usage, nov_cmds);
+fprintf (stderr, "%s v%s\n\n%s%s%s", PACKAGE, VERSION, usage, nov_usage, nov_cmds);
 	zooexit (1);
 
 /* brief usage list */
@@ -283,7 +282,7 @@ give_list:
 
 /* help screen */
 bigusage:
-printf ("Zoo archiver, %s\n", version);
+printf ("Zoo archiver v%s\n", PACKAGE_VERSION);
 
 printf ("%s", usage);
 printf ("\nChoose a command from within {} and zero or more modifiers from within [].\n");

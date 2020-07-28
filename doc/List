@@ -79,7 +79,6 @@ sysv.c               @sysv
 turboc.c             @tcc
 turboc.cfg           @tcc
 various.h            @all
-version.c            @all
 vms.c                @vms
 doc/vmsbugs.txt      @doc
 vmsbuild.com         @vms
