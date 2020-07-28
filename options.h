@@ -1,4 +1,4 @@
-/* For documentation about this file, see options.doc
+/* For documentation about this file, see doc/options.txt
  *
  * The contents of this file are hereby released to the public domain.
  *

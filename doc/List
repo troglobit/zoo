@@ -17,8 +17,8 @@
 ##      egrep '@bsd|@all' list.master | grep -v '@doc' | grep -v '^##'
 ##
 UNLICENSE            @doc @all
-Install              @doc @all
-List                 @doc @all
+doc/Install          @doc @all
+doc/List             @doc @all
 addbfcrc.c           @all -@tcc
 addbftcc.c           @tcc
 addfname.c           @all
@@ -32,13 +32,13 @@ comment.c            @all
 crcdefs.c            @all
 debug.h              @all
 decode.c             @all
-descrip.mms          @vms
+doc/descrip.mms      @vms
 encode.c             @all
 errors.i             @all
-file.fix             @doc @bsd @sysv
+doc/file.fix         @doc @bsd @sysv
 fiz.1                @doc @all
 fiz.c                @all
-fiz.man              @doc @all
+doc/fiz.man          @doc @all
 generic.c            @gen
 getfile.c            @all
 huf.c                @all
@@ -67,7 +67,7 @@ nextfile.c           @all
 nixmode.i            @bsd @sysv
 nixtime.i            @bsd @sysv
 options.c            @all
-options.doc          @doc
+doc/options.txt      @doc
 options.h            @all
 options.opt          @vms
 parse.c              @all
@@ -81,13 +81,13 @@ turboc.cfg           @tcc
 various.h            @all
 version.c            @all
 vms.c                @vms
-vmsbugs.doc          @doc
+doc/vmsbugs.txt      @doc
 vmsbuild.com         @vms
 vmstime.c            @vms
 zoo.1                @doc
 zoo.c                @all
 zoo.h                @all
-zoo.man              @doc
+doc/zoo.man          @doc
 zooadd.c             @all
 zooadd2.c            @all
 zoodel.c             @all

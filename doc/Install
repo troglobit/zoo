@@ -13,7 +13,7 @@ systems, see the file vmsbugs.doc for VMS-specific information.
 The file ``options.h'' defines preprocessor symbols for the various sys-
 tems.  In most cases, given a reasonably powerful C compiler and
 library, you will be able to find a combination of options that will
-work.  Documentation for these options is in the file ``options.doc''.
+work.  Documentation for these options is in the file ``doc/options.txt''.
 
 Other machine-dependent code and definitions are in machine.h,
 machine.c, and portable.h.  Also, the amount of memory used for some
