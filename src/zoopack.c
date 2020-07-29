@@ -27,8 +27,6 @@
 #include <signal.h>
 #endif
 
-char *mktemp PARMS((char *));
-
 struct zoo_header zoo_header = {
 	TEXT,
 	ZOO_TAG,
