@@ -25,7 +25,9 @@ will be included by machine.c.
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdio.h>
 #include <time.h>
+#include "zooio.h"
 
 /* Function isadir() returns 1 if the supplied handle is a directory, 
 else it returns 0.  
@@ -34,16 +36,17 @@ else it returns 0.
 int isadir (file)
 ZOOFILE file;
 {
-   int handle = fileno(file);
-   struct stat buf;           /* buffer to hold file information */
-   if (fstat (handle, &buf) == -1) {
-      return (0);             /* inaccessible -- assume not dir */
-   } else {
-      if (buf.st_mode & S_IFDIR)
-         return (1);
-      else
-         return (0);
-   }
+	struct stat buf;		/* buffer to hold file information */
+	int handle;
+
+	handle = fileno(file);
+	if (handle < 0 || fstat(handle, &buf) == -1)
+		return 0;		/* inaccessible -- assume not dir */
+
+	if (buf.st_mode & S_IFDIR)
+		return 1;
+
+	return 0;
 }
 
 /****************
@@ -69,14 +72,17 @@ long gettz()
 {
 #define SEC_IN_DAY	(24L * 60L * 60L)
 #define INV_VALUE		(SEC_IN_DAY + 1L)
-	static long retval = INV_VALUE;	     /* cache, init to impossible value */
+	static long retval = INV_VALUE;		/* cache, init to impossible value */
 	struct tm *tm;
-	long clock;
-	if (retval != INV_VALUE)				 /* if have cached value, return it */
+	time_t clock;
+
+	if (retval != INV_VALUE)		/* if have cached value, return it */
 		return retval;
-	clock = time ((long *) 0);
+
+	clock = time (NULL);
 	tm = localtime (&clock);
 	retval = timezone - tm->tm_isdst*3600;
+
 	return retval;
 }
 #else
@@ -91,19 +97,21 @@ long gettz()
 #define NOONOFFSET 43200
 #define SEC_IN_DAY	(24L * 60L * 60L)
 #define INV_VALUE		(SEC_IN_DAY + 1L)
-	static long retval = INV_VALUE;	     /* cache, init to impossible value */
+	static long retval = INV_VALUE;		/* cache, init to impossible value */
 	extern long time();
 	extern struct tm *localtime();
-	long now;
+	time_t now;
 	long noon;
 	struct tm *noontm;
-	if (retval != INV_VALUE)				 /* if have cached value, return it */
+	if (retval != INV_VALUE)		/* if have cached value, return it */
 		return retval;
-   now = time((long *) 0);
-   /* Find local time for GMT noon today */
-   noon = now - now % SEC_IN_DAY + NOONOFFSET ;
-   noontm = localtime( &noon );
-   retval = NOONOFFSET - 60 * ( 60 * noontm->tm_hour - noontm->tm_min );
+
+	/* Find local time for GMT noon today */
+	now = time(NULL);
+	noon = now - now % SEC_IN_DAY + NOONOFFSET ;
+	noontm = localtime(&noon);
+	retval = NOONOFFSET - 60 * (60 * noontm->tm_hour - noontm->tm_min);
+
 	return retval;
 #undef NOONOFFSET
 }
@@ -127,6 +135,7 @@ int mkdir(dirname)
 char *dirname;
 {
    char cmd[PATHSIZE+11+1]; /* room for "/bin/mkdir " used below  + 1 spare */
+
    if (!exists(dirname)) {
       strcpy(cmd, "/bin/mkdir ");
       strcat(cmd, dirname);
