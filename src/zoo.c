@@ -274,7 +274,7 @@ zooexit (0);      /* don't fall through */
 /* usage list including Novice commands */
 show_usage:
 fprintf (stderr, "%s v%s\n\n%s%s%s", PACKAGE, VERSION, usage, nov_usage, nov_cmds);
-	zooexit (1);
+	zooexit (0);
 
 /* brief usage list */
 give_list:
@@ -328,8 +328,8 @@ printf ("  C     change archive cmnt     h     use high-compression method\n");
 
 /* NOTE:  if allowed to fall through and return without an exit() statement,
    it was printing garbage--corrupted stack?  Why--bug in Microsoft C? */
-zooexit (1);
-return 1;	/* keep lint & compilers happy */
+zooexit (0);
+return 0;	/* keep lint & compilers happy */
 }
 
 /* multi-screen help facility thanks to Bill Davidsen */
