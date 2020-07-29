@@ -359,8 +359,10 @@ while (1) {
                   printf ("Overwrite %s (Yes/No/All)? ", extfname);
 #endif
                   fflush (stdin);
-                  fgets (ans, sizeof(ans), stdin);
-                  str_lwr (ans);
+                  if (fgets (ans, sizeof(ans), stdin))
+			  str_lwr (ans);
+		  else
+			  *ans = 'n';
                } while (*ans != 'y' && *ans != 'n' && *ans != 'a');
    
                if (*ans == 'a')
