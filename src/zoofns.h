@@ -5,6 +5,9 @@
  *                              -- Rahul Dhesi 1986/11/14
  */
 
+#ifndef ZOOFNS_H_
+#define ZOOFNS_H_
+
 #ifndef PARMS
 #ifdef LINT_ARGS
 #define	PARMS(x)		x
@@ -105,3 +108,4 @@ void zoopack PARMS ((char *, char *));
 char *str_dup PARMS ((char *));
 char *str_lwr PARMS ((char *));
 
+#endif	/* ZOOFNS_H_ */

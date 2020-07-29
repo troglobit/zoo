@@ -5,6 +5,9 @@
  *				-- Rahul Dhesi 1988/01/24
  */
 
+#ifndef ZOOIO_H_
+#define ZOOIO_H_
+
 #include "zoo.h"
 #ifndef	OK_STDIO
 #include <stdio.h>
@@ -26,7 +29,7 @@ out yet, and there may be some remaining holes in the scheme.  On systems
 with limited memory, it might prove necessary to use unbuffered I/O
 only.
 */
-typedef FILE *ZOOFILE;
+typedef FILE *		ZOOFILE;
 #define NOFILE		((ZOOFILE) 0)
 #define NULLFILE	((ZOOFILE) -1)		/* or any unique value */
 #define STDOUT		stdout
@@ -64,3 +67,5 @@ int readdir PARMS((struct direntry *, ZOOFILE, int));
 void rwheader PARMS((struct zoo_header *, ZOOFILE, int));
 void newdir PARMS((struct direntry *));
 void writedir PARMS((struct direntry *, ZOOFILE));
+
+#endif	/* ZOOIO_H_ */
