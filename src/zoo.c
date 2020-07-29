@@ -40,9 +40,9 @@ int next_arg = FIRST_ARG; /* filenames start at this position */
 int arg_count;          /* count of arguments supplied to program */
 char **arg_vector;      /* vector of arguments supplied to program */
 
-main(argc,argv)
-register int argc;
-register char **argv;
+int main(argc,argv)
+	int argc;
+	char **argv;
 {
    char *zooname;          /* synonym for argv[2] -- to make life easier */
 #ifndef OOZ

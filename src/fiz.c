@@ -19,9 +19,9 @@
 void prtctrl ();
 void prtch ();
 
-main(argc,argv)
-register int argc;
-register char **argv;
+int main(argc,argv)
+	int argc;
+	char **argv;
 {
    char *zooname;          /* name of archive to be read */
    ZOOFILE zoo_file;       /* the archive being examined opened for read */
