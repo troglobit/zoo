@@ -50,6 +50,7 @@ long zootell PARMS((ZOOFILE));
 
 ZOOFILE zooopen PARMS((char *, char *));
 ZOOFILE zoocreate PARMS((char *));
+ZOOFILE zoofdcreate PARMS((int));
 int zooclose PARMS((ZOOFILE));
 int zootrunc PARMS((ZOOFILE));
 

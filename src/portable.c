@@ -79,6 +79,10 @@ ZOOFILE zoocreate (fname)
 char *fname;
 { return ((ZOOFILE) fopen (fname, Z_NEW)); }
 
+ZOOFILE zoofdcreate (fd)
+int fd;
+{ if (fd < 0) return NOFILE; return (ZOOFILE) fdopen (fd, Z_NEW); }
+
 #endif /* FIZ */
 
 #ifndef zooseek
