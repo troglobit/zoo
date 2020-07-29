@@ -269,67 +269,68 @@ zooexit (0);                  /* and exit normally                */
          default:
             goto give_list;
       }
-zooexit (0);      /* don't fall through */
+   zooexit (0);      /* don't fall through */
 
 /* usage list including Novice commands */
 show_usage:
-fprintf (stderr, "%s v%s\n\n%s%s%s", PACKAGE, VERSION, usage, nov_usage, nov_cmds);
-	zooexit (0);
+   fprintf (stderr, "%s v%s\n\n%s%s%s", PACKAGE, VERSION, usage, nov_usage, nov_cmds);
+   zooexit (0);
 
 /* brief usage list */
 give_list:
-	fprintf (stderr, "%s", usage); zooexit (1);
+   fprintf (stderr, "%s", usage); zooexit (1);
 
 /* help screen */
 bigusage:
-printf ("Zoo archiver v%s\n", PACKAGE_VERSION);
+   printf ("Zoo archiver v%s\n", PACKAGE_VERSION);
 
-printf ("%s", usage);
-printf ("\nChoose a command from within {} and zero or more modifiers from within [].\n");
+   printf ("%s", usage);
+   printf ("\nChoose a command from within {} and zero or more modifiers from within [].\n");
 
-printf ("E.g.:  `zoo a save /bin/*' will archive all files in /bin into save.zoo.\n");
-printf ("(Please see the user manual for a complete description of commands.)\n");
-printf ("%s", nov_usage);
-printf ("%s", nov_cmds);
-printf ("\n");
-wait_return();	/* print msg & wait for RETURN */
+   printf ("E.g.:  `zoo a save /bin/*' will archive all files in /bin into save.zoo.\n");
+   printf ("(Please see the user manual for a complete description of commands.)\n");
+   printf ("%s", nov_usage);
+   printf ("%s", nov_cmds);
+   printf ("\n");
+   wait_return();	/* print msg & wait for RETURN */
 
-printf ("\n");
-printf ("%s", usage);
+   printf ("\n");
+   printf ("%s", usage);
 
-printf (" Commands in {} mean:         |Modifiers in [] mean:\n");
+   printf (" Commands in {} mean:         |Modifiers in [] mean:\n");
 
-printf ("  a     add files             | a     show archive name(s) in listing\n");
-printf ("  c     update comments       | A     apply g or c to archive\n");
-printf ("  D     delete stored files   | c     add/list comments\n");
-printf ("  e,x   extract files         | d     extract/list deleted files too\n");
-printf ("  g     adj. gen. limit/count | dd    extract/list only deleted files\n");
-printf ("  l,L,v,V list filenames      | E     erase backup after packing\n");
-printf ("  P     pack archive          | f     fast add (no compression) or list\n");
-printf ("  T     fix archive datestamp | M     move when adding (erase original)\n");
-printf ("  u     add only newer files  | n     add only files not already in archive\n");
-printf ("  U     undelete stored files | N     send extracted data to Nowhere\n");
+   printf ("  a     add files             | a     show archive name(s) in listing\n");
+   printf ("  c     update comments       | A     apply g or c to archive\n");
+   printf ("  D     delete stored files   | c     add/list comments\n");
+   printf ("  e,x   extract files         | d     extract/list deleted files too\n");
+   printf ("  g     adj. gen. limit/count | dd    extract/list only deleted files\n");
+   printf ("  l,L,v,V list filenames      | E     erase backup after packing\n");
+   printf ("  P     pack archive          | f     fast add (no compression) or list\n");
+   printf ("  T     fix archive datestamp | M     move when adding (erase original)\n");
+   printf ("  u     add only newer files  | n     add only files not already in archive\n");
+   printf ("  U     undelete stored files | N     send extracted data to Nowhere\n");
 #ifdef FILTER
-printf ("  f     act as filter         | c/u   compress/uncompress as filter\n");
+   printf ("  f     act as filter         | c/u   compress/uncompress as filter\n");
 #endif /* FILTER */
-printf (" -----------------------------  O     don't ask \"Overwrite?\"\n");
-printf ("  q     be quiet                p     pipe extracted data to standard output\n");
-printf ("  :     don't store dir names   /,//  extract full pathnames\n");
-printf ("  .     pack to current dir     I     add filenames read from stdin\n");
-printf ("  C     show file CRC value     +/-   enable/disable generations\n");
-printf ("  S     overwrite newer files   g     list generation limits\n");
-printf ("  P     pack after adding       @n    start extract/list at position n\n");
+   printf (" -----------------------------  O     don't ask \"Overwrite?\"\n");
+   printf ("  q     be quiet                p     pipe extracted data to standard output\n");
+   printf ("  :     don't store dir names   /,//  extract full pathnames\n");
+   printf ("  .     pack to current dir     I     add filenames read from stdin\n");
+   printf ("  C     show file CRC value     +/-   enable/disable generations\n");
+   printf ("  S     overwrite newer files   g     list generation limits\n");
+   printf ("  P     pack after adding       @n    start extract/list at position n\n");
 
 #ifdef FATTR
-printf ("  m     list file modes         OO    overwrite read-only files\n");
+   printf ("  m     list file modes         OO    overwrite read-only files\n");
 #endif /* FATTR */
-printf ("  C     change archive cmnt     h     use high-compression method\n");
+   printf ("  C     change archive cmnt     h     use high-compression method\n");
 #endif /* end of not OOZ */
 
-/* NOTE:  if allowed to fall through and return without an exit() statement,
-   it was printing garbage--corrupted stack?  Why--bug in Microsoft C? */
-zooexit (0);
-return 0;	/* keep lint & compilers happy */
+   /* NOTE: if allowed to fall through and return without an exit() statement,
+    *       it was printing garbage--corrupted stack?  Why--bug in Microsoft C?
+    */
+   zooexit (0);
+   return 0;	/* keep lint & compilers happy */
 }
 
 /* multi-screen help facility thanks to Bill Davidsen */
