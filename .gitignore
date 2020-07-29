@@ -10,3 +10,7 @@ configure
 Makefile
 Makefile.in
 stamp-h1
+GPATH
+GRTAGS
+GTAGS
+ID
