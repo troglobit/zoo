@@ -235,9 +235,11 @@ while (1) {
       is not longer than FNAMESIZE.  
    */
    if (z_fmt) {
-      zooread (this_file, (char *) &tiny_header, sizeof(tiny_header));
+      ssize_t len;
+
+      len = zooread (this_file, &tiny_header, sizeof(tiny_header));
       if (tiny_header.tinytag == TINYTAG && tiny_header.type == 1 &&
-                        strlen (tiny_header.fname) <= FNAMESIZE)
+          len == sizeof(tiny_header) && strlen (tiny_header.fname) <= FNAMESIZE)
           /* ok */ ;
       else {
          zooclose (this_file);
