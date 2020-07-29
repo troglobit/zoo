@@ -1,0 +1,25 @@
+# Travis CI integration
+# Defaults to GNU GCC and autotools: ./configure && make && make test
+language: c
+
+# Test build with both GCC and Clang (LLVM)
+compiler:
+  - gcc
+  - clang
+
+# We don't store generated files (configure and Makefile) in GIT,
+# so we must customize the default build script to run ./autogen.sh
+# Try first to build without SSL to check for regressions, then run
+# all unit tests on a merecat with HTTPS enabled.
+# IPv6 not supported (yet) by Travis-CI
+#  - /tmp/tok/bin/uget -vv -I http://ipv6.test-ipv6.com/
+#  - /tmp/tok/bin/uget -vv -I https://ipv6.test-ipv6.com/
+script:
+  - ./autogen.sh
+  - ./configure --prefix=
+  - make V=1
+  - DESTDIR=/tmp/tok make install-strip
+  - tree /tmp/tok
+  - ldd /tmp/tok/bin/zoo /tmp/tok/bin/fiz
+  - /tmp/tok/bin/zoo h
+  - /tmp/tok/bin/zoo H
