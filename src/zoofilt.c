@@ -30,12 +30,10 @@ unsigned int filt_lzd_word;
 void zoofilt (option)
 char *option;
 {
-	int choice;											/* what to do -- [de]compress */
-	unsigned int filetag;							/* tag stored in input */
-	int stat1, stat2, stat3;						/* status codes */
-	int use_lzh = 0;									/* use lzh instead */
-	extern lzc(), lzh_encode();					/* possible encoders */
-	extern lzd(), lzh_decode();					/* and decoders */
+	int choice;			/* what to do -- [de]compress */
+	unsigned int filetag;		/* tag stored in input */
+	int stat1, stat2, stat3;	/* status codes */
+	int use_lzh = 0;		/* use lzh instead */
 
 	while (*++option) {
 		switch (*option) {
@@ -44,7 +42,7 @@ char *option;
 			case 'h':	use_lzh = 1; break;
 			default:
          	prterror ('f', inv_option, *option);	/* fatal error -- abort */
-      }
+		}
 	}
 
 	crccode = 0;	/* needed whether compressing or uncompressing */
