@@ -12,6 +12,7 @@
  */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "options.h"
 
 /* define this to make packing noisless */
@@ -168,8 +169,8 @@ if (!curr_dir) {
 } else {
    strcpy (temp_file, xes);
 }
-mkstemp (temp_file);                    /* ... and make unique */
-new_file = zoocreate (temp_file);
+
+new_file = zoofdcreate (mkstemp (temp_file));    /* ... and make unique */
 if (new_file == NOFILE)
    prterror ('f', "Could not create temporary file %s.\n", temp_file);
 
