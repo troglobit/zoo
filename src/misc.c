@@ -247,33 +247,34 @@ int fail;                              /* 0 -> return, 1 -> abort on error */
 instr (s, t)      /* return index of string t in string s, -1 if none */
 char s[], t[];    /*  .. from K&R page 67 */
 {
-   int i;
-   register int j, k;
+   int i,j, k;
+
    for (i = 0; s[i] != '\0'; i++) {
       for (j = i, k = 0; t[k] != '\0' && s[j]==t[k]; j++, k++)
          ;
       if (t[k] == '\0')
-         return (i);
+         return i;
    }
-   return (-1);
+
+   return -1;		/* NONE */
 }
 #endif /* COMMENT */
 
 /* instr() searches a string for a substring */
 /* from J. Brian Waters */
-int instr (s, t)   		/* return the position of t in s, -1 if none */
-char *s, *t;				/*  a pointer version of K&R index function p.67 */
+int instr (s, t)   	/* return the position of t in s, -1 if none */
+char *s, *t;		/*  a pointer version of K&R index function p.67 */
 {               /* renamed to instr() to avoid conflicts with C RTL - JBW */
-
-   register char *i, *j, *k;
+   char *i, *j, *k;
 
    for (i = s; *i; i++) {
       for (j = i, k = t; (*k) && (*j++ == *k); k++)
          ;
        if (!*k)
-         return ((int) (i - s));
+         return (int)(i - s);
    }
-   return(-1);
+
+   return -1;		/* NONE */
 }
 
 /* cfactor() calculates the compression factor given a directory entry */
