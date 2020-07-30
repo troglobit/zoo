@@ -36,7 +36,7 @@ newsgroup comp.sources.misc.  This version is based on v2.10 from
 
 zoo was placed in the [public domain][pd] in 2004.
 
-[pd]:      doc/copyright.eml
+[pd]:      doc/public-domain.eml
 [LZW]:     https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
 [Ibiblio]: http://www.ibiblio.org/pub/packages/ccic/software/unix/utils/
 [patches]: https://sources.debian.org/patches/zoo/2.10-28/
