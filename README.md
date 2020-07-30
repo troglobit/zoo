@@ -1,9 +1,9 @@
-Manipulate .zoo Archives
-========================
+Archiver for .zoo files
+=======================
 
 zoo is a file archiving utility for maintaining collections of files.
 It uses [Lempel-Ziv-Welch][LZW] compression to provide space savings in
-the range of 20 to 80 percent depending on the type of data.
+the range of 20% to 80%, depending on the files.
 
 Unlike other archiving tools, zoo can store and selectively extract
 multiple generations of the same file.  If files are added to an archive
@@ -15,6 +15,15 @@ previous versions (up to the version limit chosen) from one archive.
 
 This project exists as a service to all computer archaeologists and acts
 as a focal point for patches and maintenance for the long haul.
+
+
+Examples
+--------
+
+    zoo a  save /bin/*   # Create save.zoo from all files in /bin
+    zoo x  save          # Extract save.zoo with full paths in current directory
+    zoo x: save          # Extract files in save.zoo to current directory
+    zoo l  save          # List contents of save.zoo
 
 
 Origin & References
