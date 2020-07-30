@@ -61,7 +61,7 @@ int main(argc,argv)
 
       static char nov_cmds[] =
          /* ADD=0EXT=5    MOV=14TES=20PRI=26 DEL=33  LIS=41UPD=47  FRE=55   COMMENT=64 */
-           "-add -extract -move -test -print -delete -list -update -freshen -comment -help\n";
+           "-add -extract -move -test -print -delete -list -update -freshen -comment -help -version\n";
 
 #ifdef NOENUM
 #define NONE   -1
@@ -76,13 +76,14 @@ int main(argc,argv)
 #define FRESHEN   55
 #define COMMENT   64
 #define HELP      73
+#define VERS      79
 
 int cmd = NONE;
 
 #else
    enum choice {
       NONE = -1, ADD = 0, EXTRACT = 5, MOVE = 14, TEST = 20, PRINT = 26,
-      DELETE = 33, LIST = 41, UPDATE = 47, FRESHEN = 55, COMMENT = 64, HELP = 73
+      DELETE = 33, LIST = 41, UPDATE = 47, FRESHEN = 55, COMMENT = 64, HELP = 73, VERS = 79
    };
    enum choice cmd = NONE;          /* assume no Novice command */
 #endif
@@ -163,10 +164,12 @@ int cmd = NONE;
          goto show_usage;
       if (cmd == HELP)
 	 goto bigusage;
-      if (  ((cmd == ADD || cmd == MOVE || cmd == FRESHEN ||
-                  cmd == UPDATE || cmd == DELETE) && argc < 4) ||
+      if (cmd == VERS)
+	 goto show_version;
+      if (  ((cmd == ADD     || cmd == MOVE || cmd == FRESHEN ||
+	      cmd == UPDATE  || cmd == DELETE) && argc < 4) ||
             ((cmd == EXTRACT || cmd == TEST || cmd == LIST ||
-                     cmd == PRINT || cmd == COMMENT) && argc < 3)) {
+	      cmd == PRINT   || cmd == COMMENT) && argc < 3)) {
          fprintf (stderr, "%s", incorrect_args);
          goto show_usage;
       }
@@ -183,6 +186,9 @@ int cmd = NONE;
 	  || strchr("TP",*option)   && argc != 3
 	  || (*option == 'f' && argc != 2)
 	  || (*option == 'g' && (!wheresA && argc < 4 || wheresA && argc != 3))) {
+
+	 if (*option == 'v')
+	    goto show_version;
 
          fprintf (stderr, "%s", incorrect_args);
          goto show_usage;
@@ -274,6 +280,10 @@ show_usage:
 	  "Try 'zoo -h', 'zoo H', or the manual page zoo(1) for more information.\n");
    zooexit (0);
 
+show_version:
+   printf ("%s\n", PACKAGE_STRING);
+   zooexit (0);
+
 /* brief usage list */
 give_list:
    printf ("Usage: %s", usage);
@@ -281,15 +291,6 @@ give_list:
 
 /* help screen */
 bigusage:
-   printf ("Zoo archiver %s\n", PACKAGE_VERSION);
-   printf ("\n");
-//   printf ("%s", usage);
-
-//   printf ("%s", nov_usage);
-//   printf ("%s", nov_cmds);
-//   printf ("\n");
-   wait_return();	/* print msg & wait for RETURN */
-
    printf ("Usage:\n"
 	   "  zoo COMMAND[OPTION] archive [file(s)]\n"
 	   "  zoo -cmd archive [file(s)]\n"
@@ -328,6 +329,7 @@ bigusage:
    printf (" -update   add or freshen file    -move     move into archive from filesystem\n");
    printf (" -print    print files to stdout  -list     Show info about files in archive\n");
    printf (" -test     check archive          -comment  Add or modify archive comment\n");
+   printf (" -help     this help text         -version  show program version\n");
    printf ("\n");
    printf ("Examples:\n");
    printf ("  zoo a  save /bin/*   # Create save.zoo from all files in /bin\n");
