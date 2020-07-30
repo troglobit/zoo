@@ -1,0 +1,10 @@
+Somewhat ordered TODO list
+==========================
+
+- Support . as directory from command line
+- Document new novice commands -help and -version in zoo(1)
+- Add basic tests
+- Add tests to provoke integrity check 64/32-bit problems
+- Refactor 64/32-bit handling
+- Add more OS to configure to set -D flags
+- Import unzoo versions in to repo
