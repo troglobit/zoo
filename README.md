@@ -1,9 +1,10 @@
 Archiver for .zoo files
 =======================
 
-zoo is a file archiving utility for maintaining collections of files.
-It uses [Lempel-Ziv-Welch][LZW] compression to provide space savings in
-the range of 20% to 80%, depending on the files.
+zoo is a fully-free software ([public domain][pd]) file archiving tool
+for maintaining collections of files.  It uses [Lempel-Ziv-Welch][LZW]
+compression to provide space savings in the range of 20% to 80%,
+depending on the files.
 
 Unlike other archiving tools, zoo can store and selectively extract
 multiple generations of the same file.  If files are added to an archive
@@ -33,6 +34,9 @@ zoo was created by Rahul Dhesi, and originally posted to the USENET
 newsgroup comp.sources.misc.  This version is based on v2.10 from
 [Ibiblio][], with all [Debian patches][patches] applied.
 
+zoo was placed in the [public domain][pd] in 2004.
+
+[pd]:      doc/copyright.eml
 [LZW]:     https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
 [Ibiblio]: http://www.ibiblio.org/pub/packages/ccic/software/unix/utils/
 [patches]: https://sources.debian.org/patches/zoo/2.10-28/
