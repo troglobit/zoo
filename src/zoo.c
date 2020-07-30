@@ -171,26 +171,19 @@ int cmd = NONE;
          goto show_usage;
       }
    } else {
-		char *wheresI;		/* will be null if I option not supplied */
-		if	(
-				(
-					strchr("au",*option) &&
-					(
-						(((wheresI = strchr(option,'I')) != 0) &&
-							argc != 3) ||
-						wheresI==NULL && argc < 4
-					)
-				) ||
-				 strchr("DU",*option) && argc < 4 ||
-             strchr("cexlvVL",*option) && argc < 3 ||
-             strchr("TP",*option)   && argc != 3 ||
-				 (*option == 'f' && argc != 2) ||
-				 (*option == 'g' &&
-					(strchr(option,'A') == NULL && argc < 4 ||
-					 strchr(option,'A') != NULL && argc != 3
-					)
-				 )
-			) {
+      char *wheresI;		/* will be null if I option not supplied */
+      char *wheresA;		/* will be null if I option not supplied */
+
+      wheresI = strchr(option, 'I');
+      wheresA = strchr(option, 'A');
+
+      if ((  strchr("au", *option) && ((wheresI && argc != 3) || (!wheresI && argc < 4)) )
+	  || strchr("DU", *option) && argc < 4
+	  || strchr("cexlvVL", *option) && argc < 3
+	  || strchr("TP",*option)   && argc != 3
+	  || (*option == 'f' && argc != 2)
+	  || (*option == 'g' && (!wheresA && argc < 4 || wheresA && argc != 3))) {
+
          fprintf (stderr, "%s", incorrect_args);
          goto show_usage;
       }
