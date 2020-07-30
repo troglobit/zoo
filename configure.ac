@@ -5,7 +5,7 @@ AM_SILENT_RULES([yes])
 
 AC_CONFIG_SRCDIR([src/zoo.c])
 AC_CONFIG_HEADER([config.h])
-AC_CONFIG_FILES([Makefile man/Makefile src/Makefile])
+AC_CONFIG_FILES([Makefile man/Makefile src/Makefile test/Makefile])
 
 AC_PROG_CC
 AC_PROG_INSTALL

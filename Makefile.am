@@ -1,4 +1,4 @@
-SUBDIRS        = man src
+SUBDIRS        = man src test
 EXTRA_DIST     = README.md UNLICENSE
 doc_DATA       = README.md UNLICENSE
 
