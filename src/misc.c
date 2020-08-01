@@ -169,14 +169,9 @@ register struct zoo_header *header;
 ZOOFILE zoo_file;
 int preserve;
 {
-
    frd_zooh (header, zoo_file);
 
-#ifdef LONG64
-   if ((int)(header->zoo_start + header->zoo_minus) != 0)
-#else
    if ((header->zoo_start + header->zoo_minus) != 0L)
-#endif
       prterror ('f', failed_consistency);
    if (ver_too_high (header))
       prterror ('f', wrong_version, header->major_ver, header->minor_ver);

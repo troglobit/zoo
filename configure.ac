@@ -10,4 +10,7 @@ AC_CONFIG_FILES([Makefile man/Makefile src/Makefile test/Makefile])
 AC_PROG_CC
 AC_PROG_INSTALL
 
+AC_HEADER_STDC
+AC_CHECK_HEADERS
+
 AC_OUTPUT

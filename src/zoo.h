@@ -48,6 +48,7 @@
 
 #ifndef ZOO_H_
 #define ZOO_H_
+#include "config.h"
 
 #define H_TYPE  1               /* archive header type */
 
@@ -88,25 +89,34 @@
 #define FIRST_ARG    3        /* argument position of filename list */
 #endif
 
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#else /* Older system, assume 16/32 bit */
+typedef short          int16_t;
+typedef unsigned short uint16_t;
+typedef long           int32_t;
+typedef unsigned long  uint32_t;
+#endif
+
 typedef unsigned char uchar;
 
 /* WARNING:  Static initialization in zooadd.c or zooext.c depends on the 
    order of fields in struct zoo_header */
 struct zoo_header {
    char text[SIZ_TEXT];       /* archive header text */
-   unsigned long zoo_tag;     /* identifies archives */
-   long zoo_start;            /* where the archive's data starts */
-   long zoo_minus;            /* for consistency checking of zoo_start */
+   uint32_t zoo_tag;          /* identifies archives */
+   int32_t zoo_start;         /* where the archive's data starts */
+   int32_t zoo_minus;         /* for consistency checking of zoo_start */
    uchar major_ver;
    uchar minor_ver;           /* minimum version to extract all files   */
    uchar type;                /* type of archive header */
-   long acmt_pos;             /* position of archive comment */
-   unsigned int acmt_len;     /* length of archive comment */
-   unsigned int vdata;        /* byte in archive;  data about versions */
+   int32_t acmt_pos;          /* position of archive comment */
+   uint16_t acmt_len;         /* length of archive comment */
+   uint16_t vdata;            /* byte in archive;  data about versions */
 };
 
 struct direntry {
-   unsigned long zoo_tag;     /* tag -- redundancy check */
+   uint32_t zoo_tag;          /* tag -- redundancy check */
    uchar type;                /* type of directory entry.  always 1 for now */
    uchar packing_method;      /* 0 = no packing, 1 = normal LZW */
    long next;                 /* pos'n of next directory entry */

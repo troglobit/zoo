@@ -134,11 +134,8 @@ if (*option == 'g') {
    
    /* read archive header */
    frd_zooh (&zoo_header, zoo_file);
-#ifdef LONG64
-   if ((int)(zoo_header.zoo_start + zoo_header.zoo_minus) != 0)
-#else
+
    if ((zoo_header.zoo_start + zoo_header.zoo_minus) != 0L)
-#endif
       prterror ('f', failed_consistency);
    if (ver_too_high (&zoo_header))
       prterror ('f', wrong_version, zoo_header.major_ver, zoo_header.minor_ver);
