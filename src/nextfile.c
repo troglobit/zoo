@@ -57,7 +57,7 @@ register int fileset;            /* which set of files                  */
 #include <dos.h>
 #include "assert.h"     /* macro definition:  assert() macro            */
 
-void fcbpath PARMS((struct ffblk *, char *, char *));
+void fcbpath (struct ffblk *, char *, char *);
 
 
 /*******************/

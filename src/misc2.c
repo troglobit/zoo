@@ -18,7 +18,7 @@
 #include "zoo.h"
 #include "zoofns.h"     /* only for malloc */
 
-void makepath PARMS((char *));
+void makepath (char *);
 
 /**********************/
 /* memerr() */

@@ -45,19 +45,19 @@ static char *stack;
 static char *stack_pointer;
 static char *stack_lim;
 
-void init_dtab PARMS((void));
-unsigned rd_dcode PARMS((void));
+void init_dtab (void);
+unsigned rd_dcode (void);
 /* void wr_dchar (char); */		/* now a macro */
-void ad_dcode PARMS((void));
+void ad_dcode (void);
 
 #ifdef FILTER
 /* to send data back to zoofilt */
 extern unsigned int filt_lzd_word;
 #endif /* FILTER */
 
-void xwr_dchar PARMS ((char));
-static int firstchar PARMS ((int));
-static void cbfill PARMS ((void));
+void xwr_dchar (char);
+static int firstchar (int);
+static void cbfill (void);
 
 /* wr_dchar() is a macro for speed */
 #define wr_dchar(c) {                             \
@@ -125,9 +125,9 @@ static unsigned bit_offset;   /* note this only allows max 8K input buffer!!*/
 #define		BLOCKFILE		int
 #define		BLOCKREAD		read
 #define		BLOCKWRITE		blockwrite
-int read PARMS ((int, VOIDPTR, unsigned));
-int write PARMS ((int, VOIDPTR, unsigned));
-int blockwrite PARMS ((int, VOIDPTR, unsigned));
+int read (int, VOIDPTR, unsigned);
+int write (int, VOIDPTR, unsigned);
+int blockwrite (int, VOIDPTR, unsigned);
 #else
 #define		BLOCKFILE		ZOOFILE
 #define		BLOCKREAD		zooread
@@ -286,7 +286,7 @@ static void cb13fill ()
 
 /* vector of code buffer fill routines
 */
-void (*cbfillvec[])  PARMS ((void)) = { 0, 0, 0, 0, 0, 0, 0, 0, 0,
+void (*cbfillvec[]) (void) = { 0, 0, 0, 0, 0, 0, 0, 0, 0,
          cb9fill, cb10fill, cb11fill, cb12fill, cb13fill };
 
 /* cbfill -- main code buffer fill routine
@@ -604,10 +604,10 @@ struct tabentry {
    char z_ch;
 };
 
-void init_dtab PARMS((void));
-unsigned rd_dcode PARMS((void));
-void wr_dchar PARMS((int));
-void ad_dcode PARMS((void));
+void init_dtab (void);
+unsigned rd_dcode (void);
+void wr_dchar (int);
+void ad_dcode (void);
 
 #ifdef FILTER
 /* to send data back to zoofilt */
@@ -649,8 +649,8 @@ static unsigned output_offset;
 #define		BLOCKFILE		int
 #define		BLOCKREAD		read
 #define		BLOCKWRITE		blockwrite
-int read PARMS ((int, VOIDPTR, unsigned));
-int write PARMS ((int, VOIDPTR, unsigned));
+int read (int, VOIDPTR, unsigned);
+int write (int, VOIDPTR, unsigned);
 #else
 #define		BLOCKFILE		ZOOFILE
 #define		BLOCKREAD		zooread

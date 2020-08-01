@@ -16,7 +16,7 @@ descriptor.  4.3BSD on VAX-11/785 has an undocumented tell() function
 but it may not exist on all implementations, so we code one here
 to be on the safe side.  It is needed for unbuffered I/O only.
 */
-long lseek PARMS ((int, long, int));
+long lseek (int, long, int);
 long tell (fd)
 int fd;
 { return (lseek (fd, 0L, 1)); }

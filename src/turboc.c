@@ -5,11 +5,11 @@ void _setenvp() {}      /* don't initialize environment pointer etc. */
 /* following not needed any more since zoocreate() is fixed in portable.c */
 /* unsigned _fmode = O_BINARY; */
 
-void dosname PARMS((char *, char *));
+void dosname (char *, char *);
 #ifdef ANSI_HDRS
 # include <stdlib.h>
 #else
-char *strcpy PARMS((char *, char *));
+char *strcpy (char *, char *);
 #endif
 
 #include <signal.h>

@@ -20,7 +20,7 @@
 #include "assert.h"
 #include "debug.h"
 #include "parse.h"
-int isfdir PARMS((char *));
+int isfdir (char *);
 
 /****************
 This function is called with zoo_file positioned to the first

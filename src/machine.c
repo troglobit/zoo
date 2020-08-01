@@ -16,7 +16,7 @@
 /***********************************************************************/
 
 #ifdef UNBUF_IO
-int write PARMS ((int, VOIDPTR, unsigned));
+int write (int, VOIDPTR, unsigned);
 
 /*
 blockwrite() is like write() except that it ignores all

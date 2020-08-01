@@ -15,10 +15,10 @@
 #include "assert.h"
 #include "debug.h"
 
-char *nameptr PARMS((char *));
-void modpath PARMS((char *));
-int isadir PARMS((ZOOFILE));
-int isfdir PARMS((char *));
+char *nameptr (char *);
+void modpath (char *);
+int isadir (ZOOFILE);
+int isfdir (char *);
 
 /*******************/
 /*

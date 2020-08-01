@@ -12,7 +12,7 @@ descriptor.  Microport System V/AT has an undocumented tell()
 library function (why?) but the **IX PC doesn't, so we code
 one here.  It is needed for unbuffered I/O only.
 */
-long lseek PARMS ((int, long, int));
+long lseek (int, long, int);
 long tell (fd)
 int fd;
 { return (lseek (fd, 0L, 1)); }

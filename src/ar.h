@@ -64,45 +64,45 @@ extern ulong origsize, compsize;
 #endif /* ANSI_HDRS */
 
 /* AR.C */
-int get_line PARMS((char *s , int n ));
-void exitfunc PARMS((int code));
-void dlog PARMS((char *fmt, ...));
-void d1log PARMS((char *fmt, ...));
-void outcf PARMS((FILE *stream, char *buf, int n));
-void c1log PARMS((char *buf, int n));
+int get_line (char *s , int n );
+void exitfunc (int code);
+void dlog (char *fmt, ...);
+void d1log (char *fmt, ...);
+void outcf (FILE *stream, char *buf, int n);
+void c1log (char *buf, int n);
 
 /* DECODE.C */
-void decode_start PARMS((void ));
-int decode PARMS((uint count , uchar buffer []));
+void decode_start (void );
+int decode (uint count , uchar buffer []);
 
 /* ENCODE.C */
-void encode PARMS((FILE *, FILE *));
+void encode (FILE *, FILE *);
 
 /* HUF.C */
-void output PARMS((uint c , uint p ));
-void huf_encode_start PARMS((void ));
-void huf_encode_end PARMS((void ));
-uint decode_c PARMS((void ));
-uint decode_p PARMS((void ));
-void huf_decode_start PARMS((void ));
+void output (uint c , uint p );
+void huf_encode_start (void );
+void huf_encode_end (void );
+uint decode_c (void );
+uint decode_p (void );
+void huf_decode_start (void );
 
 /* IO.C */
-void make_crctable PARMS((void ));
-void fillbuf PARMS((int n ));
-uint getbits PARMS((int n ));
-void putbits PARMS((int n , uint x ));
-int fread_crc PARMS((uchar *p , int n , FILE *f ));
-void fwrite_crc PARMS((uchar *p , int n , FILE *f ));
-void init_getbits PARMS((void ));
-void init_putbits PARMS((void ));
+void make_crctable (void );
+void fillbuf (int n );
+uint getbits (int n );
+void putbits (int n , uint x );
+int fread_crc (uchar *p , int n , FILE *f );
+void fwrite_crc (uchar *p , int n , FILE *f );
+void init_getbits (void );
+void init_putbits (void );
 
 /* MAKETBL.C */
 void make_table
-	PARMS((int nchar, uchar bitlen[], int tablebits, ushort table[]));
+	(int nchar, uchar bitlen[], int tablebits, ushort table[]);
 
 /* MAKETREE.C */
 int make_tree
-	PARMS((int nparm, ushort freqparm [], uchar lenparm [], ushort codeparm []));
+	(int nparm, ushort freqparm [], uchar lenparm [], ushort codeparm []);
 
 /* delete */
 

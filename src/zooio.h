@@ -14,14 +14,6 @@
 #define	OK_STDIO
 #endif
 
-#ifndef PARMS
-#ifdef LINT_ARGS
-#define	PARMS(x)		x
-#else
-#define	PARMS(x)		()
-#endif
-#endif
-
 /*
 In theory, all I/O using buffered files could be replaced with unbuffered
 I/O simply by changing the following definitions.  This has not been tried
@@ -45,27 +37,27 @@ typedef FILE *		ZOOFILE;
 #define zooseek(file, offset, whence)		fseek (file, offset, whence)
 #define zootell(file)				ftell (file)
 #else
-int zooread PARMS((ZOOFILE, char *, int));
-int zoowrite PARMS((ZOOFILE, char *, int));
-long zooseek PARMS((ZOOFILE, long, int));
-long zootell PARMS((ZOOFILE));
+int zooread (ZOOFILE, char *, int);
+int zoowrite (ZOOFILE, char *, int);
+long zooseek (ZOOFILE, long, int);
+long zootell (ZOOFILE);
 #endif /* IO_MACROS */
 
-ZOOFILE zooopen PARMS((char *, char *));
-ZOOFILE zoocreate PARMS((char *));
-ZOOFILE zoofdcreate PARMS((int));
-int zooclose PARMS((ZOOFILE));
-int zootrunc PARMS((ZOOFILE));
+ZOOFILE zooopen (char *, char *);
+ZOOFILE zoocreate (char *);
+ZOOFILE zoofdcreate (int);
+int zooclose (ZOOFILE);
+int zootrunc (ZOOFILE);
 
-char *choosefname PARMS((struct direntry *));
-char *fullpath PARMS((struct direntry *));
-int frd_zooh PARMS((struct zoo_header *, ZOOFILE));
-int frd_dir PARMS((struct direntry *, ZOOFILE));
-int fwr_dir PARMS((struct direntry *, ZOOFILE));
-int fwr_zooh PARMS((struct zoo_header *, ZOOFILE));
-int readdir PARMS((struct direntry *, ZOOFILE, int));
-void rwheader PARMS((struct zoo_header *, ZOOFILE, int));
-void newdir PARMS((struct direntry *));
-void writedir PARMS((struct direntry *, ZOOFILE));
+char *choosefname (struct direntry *);
+char *fullpath (struct direntry *);
+int frd_zooh (struct zoo_header *, ZOOFILE);
+int frd_dir (struct direntry *, ZOOFILE);
+int fwr_dir (struct direntry *, ZOOFILE);
+int fwr_zooh (struct zoo_header *, ZOOFILE);
+int readdir (struct direntry *, ZOOFILE, int);
+void rwheader (struct zoo_header *, ZOOFILE, int);
+void newdir (struct direntry *);
+void writedir (struct direntry *, ZOOFILE);
 
 #endif	/* ZOOIO_H_ */

@@ -11,59 +11,55 @@
  *                              -- Rahul Dhesi 1986/11/14
  */
 
-#ifndef PARMS
-#ifdef ANSI_PROTO
-#define	PARMS(x)		x
-#else
-#define	PARMS(x)		()
-#endif
-#endif
+#ifndef ZOO_VARIOUS_H_
+#define ZOO_VARIOUS_H_
+#include "config.h"
 
-#ifdef ANSI_HDRS /* if not defined in stdio.h */
+#if defined(HAVE_STRING_H) && defined(HAVE_STDLIB_H)
 # include <string.h>
 # include <stdlib.h>
 #else
-FILE *fdopen PARMS ((int, char *));
-FILE *fopen PARMS ((char *, char *));
-char *fgets PARMS ((char *, int, FILE *));
-char *gets PARMS ((char *));
-VOIDPTR malloc PARMS ((unsigned int));
-VOIDPTR realloc PARMS ((char *, unsigned int));
-char *strcat PARMS ((char *, char *));
-char *strchr PARMS ((char *, int));
-char *strcpy PARMS ((char *, char *));
-char *strncat PARMS ((char *, char *, unsigned int));
-char *strncpy PARMS ((char *, char *, unsigned int));
-char *strrchr PARMS ((char *, int));
-int fclose PARMS ((FILE *));
-int fflush PARMS ((FILE *));
-int fgetc PARMS ((FILE *));
-int fgetchar PARMS (());
-int fprintf PARMS ((FILE *, char *, ...));
-int fputchar PARMS ((int));
-int fputs PARMS ((char *, FILE *));
+FILE *fdopen (int, char *);
+FILE *fopen (char *, char *);
+char *fgets (char *, int, FILE *);
+char *gets (char *);
+VOIDPTR malloc (unsigned int);
+VOIDPTR realloc (char *, unsigned int);
+char *strcat (char *, char *);
+char *strchr (char *, int);
+char *strcpy (char *, char *);
+char *strncat (char *, char *, unsigned int);
+char *strncpy (char *, char *, unsigned int);
+char *strrchr (char *, int);
+int fclose (FILE *);
+int fflush (FILE *);
+int fgetc (FILE *);
+int fgetchar ();
+int fprintf (FILE *, char *, ...);
+int fputchar (int);
+int fputs (char *, FILE *);
 
 #ifndef NO_STDIO_FN
 # ifdef ALWAYS_INT
-int fputc PARMS ((int, FILE *));
-int fread PARMS ((VOIDPTR, int, int, FILE *));
-int fwrite PARMS ((VOIDPTR, int, int, FILE *));
+int fputc (int, FILE *);
+int fread (VOIDPTR, int, int, FILE *);
+int fwrite (VOIDPTR, int, int, FILE *);
 # else
-int fputc PARMS ((char, FILE *));
-int fread PARMS ((VOIDPTR, unsigned, unsigned, FILE *));
-int fwrite PARMS ((VOIDPTR, unsigned, unsigned, FILE *));
+int fputc (char, FILE *);
+int fread (VOIDPTR, unsigned, unsigned, FILE *);
+int fwrite (VOIDPTR, unsigned, unsigned, FILE *);
 # endif /* ALWAYS_INT */
 #endif /* NO_STDIO_FN */
 
-int fseek PARMS ((FILE *, long, int));
-int printf PARMS ((char *, ...));
-int rename PARMS ((char *, char *));
-int setmode PARMS ((int, int));
-int strcmp PARMS ((char *, char *));
-int strncmp PARMS ((char *, char *, unsigned int));
-int unlink PARMS ((char *));
-long ftell PARMS ((FILE *));
-unsigned int strlen PARMS ((char *));
+int fseek (FILE *, long, int);
+int printf (char *, ...);
+int rename (char *, char *);
+int setmode (int, int);
+int strcmp (char *, char *);
+int strncmp (char *, char *, unsigned int);
+int unlink (char *);
+long ftell (FILE *);
+unsigned int strlen (char *);
 
-#endif /* ! ANSI_HDRS */
-
+#endif
+#endif /* ZOO_VARIOUS_H_ */

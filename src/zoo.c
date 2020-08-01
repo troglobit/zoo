@@ -29,7 +29,7 @@ static void wait_return();
 int verbose = 0;
 #endif
 
-int instr PARMS ((char *, char *));
+int instr (char *, char *);
 
 char *out_buf_adr;      /* points to memory allocated for output buffer(s) */
 char *in_buf_adr;       /* points to memory allocated for input buffer */
@@ -91,7 +91,7 @@ int cmd = NONE;
 #endif /* end of not OOZ */
 
 #ifdef SPECINIT
-	void spec_init PARMS ((void));
+	void spec_init (void);
 	spec_init();							/* system-specific startup code */
 #endif
 

@@ -21,8 +21,8 @@
 
 extern unsigned int crccode;
 
-int rdint PARMS((unsigned int *));	/* read an unsigned int */
-int wrint PARMS((unsigned int));	/* write an unsigned int */
+int rdint (unsigned int *);	/* read an unsigned int */
+int wrint (unsigned int);	/* write an unsigned int */
 
 /* global variable used to pass two bytes (CRC value) back from lzd to here */
 unsigned int filt_lzd_word;

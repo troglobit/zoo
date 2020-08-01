@@ -23,9 +23,9 @@
 #include "zoofns.h"
 #include "errors.i"
 
-void show_comment PARMS ((struct direntry *, ZOOFILE, int, char *));
-void get_comment PARMS ((struct direntry *, ZOOFILE, char *));
-int needed PARMS ((char *, struct direntry *, struct zoo_header *));
+void show_comment (struct direntry *, ZOOFILE, int, char *);
+void get_comment (struct direntry *, ZOOFILE, char *);
+int needed (char *, struct direntry *, struct zoo_header *);
 
 void comment(zoo_path, option)
 char *zoo_path, *option;
@@ -84,7 +84,7 @@ rwheader (&zoo_header, zoo_file, 1);
 #ifdef ZOOCOMMENT
 /* if archive comment being added, handle it and return */
 if (acmt) {
-	void do_acmt PARMS ((struct zoo_header *, ZOOFILE, char *));
+	void do_acmt (struct zoo_header *, ZOOFILE, char *);
 	do_acmt (&zoo_header, zoo_file, zoo_path);
 #ifdef NIXTIME
 	zooclose (zoo_file);
@@ -237,7 +237,7 @@ ZOOFILE zoo_file;
 char *zoo_path;
 {
    unsigned int line_count = 0;        /* count of new comment lines */
-	void show_acmt PARMS ((struct zoo_header *, ZOOFILE, int));
+	void show_acmt (struct zoo_header *, ZOOFILE, int);
 
 	show_acmt (zoo_header, zoo_file, 1);	/* show current archive comment */
    zooseek (zoo_file, 0L, 2);            /* ready to append new comment */

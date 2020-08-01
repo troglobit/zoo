@@ -19,13 +19,13 @@
 /* lzconst.h contains constants for lzd() and lzc() */
 #include "lzconst.h"
 
-void init_ctab PARMS((void));
-void wr_ccode PARMS((int));
-int rd_cch PARMS((void));
-int lukup_ccode PARMS((int, int, int *));
-void ad_ccode PARMS((int, int, int));
-void check_ratio PARMS((void));
-void flush_c PARMS((int));
+void init_ctab (void);
+void wr_ccode (int);
+int rd_cch (void);
+int lukup_ccode (int, int, int *);
+void ad_ccode (int, int, int);
+void check_ratio (void);
+void flush_c (int);
 
 /* interval at which to check ratio */
 #define CHECKGAP 4000
@@ -56,8 +56,8 @@ static unsigned int bit_offset;
 #define		BLOCKFILE		int
 #define		BLOCKREAD		read
 #define		BLOCKWRITE		write
-int read PARMS ((int, VOIDPTR, unsigned));
-int write PARMS ((int, VOIDPTR, unsigned));
+int read (int, VOIDPTR, unsigned);
+int write (int, VOIDPTR, unsigned);
 #else
 #define		BLOCKFILE		ZOOFILE
 #define		BLOCKREAD		zooread

@@ -32,7 +32,7 @@
 #define  zputc(c, f)	putc(c, f)
 #define	 zputchar(c)	putchar(c)
 #define  MKDIR(x)       mkdir(x)
-int mkdir PARMS((char *));
+int mkdir (char *);
 #endif
 
 /* Microsoft C 3.0 */

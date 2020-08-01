@@ -35,18 +35,18 @@ extern int verbose;
 #endif
 
 /* Functions defined for use within this file only.  */
-long to_long PARMS((BYTE[]));
-int to_int PARMS((BYTE[]));
-void b_to_zooh PARMS((struct zoo_header *, BYTE[]));
-void b_to_dir PARMS((struct direntry *, BYTE[]));
-int dir_to_b PARMS((BYTE[], struct direntry *));
-void zooh_to_b PARMS((BYTE[], struct zoo_header *));
-void splitlong PARMS((BYTE[], long));
-void splitint PARMS((BYTE[], int));
+long to_long (BYTE[]);
+int to_int (BYTE[]);
+void b_to_zooh (struct zoo_header *, BYTE[]);
+void b_to_dir (struct direntry *, BYTE[]);
+int dir_to_b (BYTE[], struct direntry *);
+void zooh_to_b (BYTE[], struct zoo_header *);
+void splitlong (BYTE[], long);
+void splitint (BYTE[], int);
 
 #ifdef TRACE_IO
-void show_h PARMS ((struct zoo_header *));
-void show_dir PARMS ((struct direntry *));
+void show_h (struct zoo_header *);
+void show_dir (struct direntry *);
 #endif /* TRACE_IO */
 
 extern unsigned int crccode;
