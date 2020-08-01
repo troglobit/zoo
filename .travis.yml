@@ -24,6 +24,7 @@ script:
   - ./configure --prefix=
   - make V=1
   - DESTDIR=/tmp/tok make install-strip
+  - PATH=/tmp/tok/bin:$PATH make check
   - tree /tmp/tok
   - ldd /tmp/tok/bin/zoo /tmp/tok/bin/fiz
   - /tmp/tok/bin/zoo h
