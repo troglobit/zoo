@@ -6,7 +6,7 @@ if [ -z "$srcdir" ]; then
     srcdir=.
 fi
 
-ark=`mktemp -u`
+ark=`mktemp`
 dst=`mktemp -d -p .`
 
 zoo a $ark ${srcdir}/../doc/*
