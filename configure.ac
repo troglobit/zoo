@@ -4,7 +4,7 @@ AM_INIT_AUTOMAKE([1.11 foreign])
 AM_SILENT_RULES([yes])
 
 AC_CONFIG_SRCDIR([src/zoo.c])
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADER([src/config.h])
 AC_CONFIG_FILES([Makefile man/Makefile src/Makefile test/Makefile])
 
 AC_PROG_CC
