@@ -42,39 +42,44 @@ Date and time functions are standard UNIX-style functions.
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <stdio.h>
+#include "zooio.h"
 
-/* Function isadir() returns 1 if the supplied handle is a directory, 
-else it returns 0.  
+/*
+** Function isadir() returns 1 if the supplied handle is a directory,
+** else it returns 0.
 */
-
 int isadir (f)
 ZOOFILE f;
 {
-   struct stat buf;           /* buffer to hold file information */
-   if (fstat (fileno (f), &buf) == -1) {
-      return (0);             /* inaccessible -- assume not dir */
-   } else {
-      if (buf.st_mode & S_IFDIR)
-         return (1);
-      else
-         return (0);
-   }
+	struct stat buf;	/* buffer to hold file information */
+
+	if (fstat (fileno (f), &buf) == -1)
+		return 0;	/* inaccessible -- assume not dir */
+
+	if (buf.st_mode & S_IFDIR)
+		return 1;
+
+	return 0;
 }
 
 /* Function gettz() returns the offset from GMT in seconds */
 long gettz()
 {
 #define SEC_IN_DAY	(24L * 60L * 60L)
-#define INV_VALUE		(SEC_IN_DAY + 1L)
+#define INV_VALUE	(SEC_IN_DAY + 1L)
 	static long retval = INV_VALUE;	     /* cache, init to impossible value */
-   struct timeval tp;
-   struct timezone tzp;
-	if (retval != INV_VALUE)				 /* if have cached value, return it */
+	struct timeval tp;
+	struct timezone tzp;
+
+	if (retval != INV_VALUE)		/* if have cached value, return it */
 		return retval;
-   gettimeofday (&tp, &tzp);              /* specific to 4.3BSD */
-   /* return (tzp.tz_minuteswest * 60); */ /* old incorrect code */
+
+	gettimeofday (&tp, &tzp);		/* specific to 4.3BSD */
+	/* return (tzp.tz_minuteswest * 60); */ /* old incorrect code */
 	/* Timezone fix thanks to Bill Davidsen <wedu@ge-crd.ARPA> */
 	retval = tzp.tz_minuteswest * 60 - tzp.tz_dsttime * 3600L;
+
 	return retval;
 }
 
@@ -89,12 +94,16 @@ long gettz()
 #endif
 
 /* Truncate a file. */
-int zootrunc(f) FILE *f;
+int zootrunc(f)
+FILE *f;
 {
 	extern long lseek();
 	long seekpos;
 	int fd = fileno(f);
+
 	seekpos = lseek(fd, 0L, SEEK_CUR);
 	if (seekpos >= 0)
 		return ftruncate(fd, seekpos);
+
+	return 0;
 }

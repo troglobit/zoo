@@ -12,7 +12,7 @@
 #include "zooio.h"
 #include "various.h"
 
-#include "errors.i"
+#include "errors.h"
 #include "zoofns.h"
 #ifndef NOSIGNAL
 #include <signal.h>

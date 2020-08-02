@@ -10,7 +10,7 @@
 #ifdef FILTER
 
 #include "zooio.h"
-#include "errors.i"
+#include "errors.h"
 #include "zoofns.h"
 
 /* action */

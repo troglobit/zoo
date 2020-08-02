@@ -17,7 +17,7 @@
 
 extern void prterror();
 
-#include "errors.i"
+#include "errors.h"
 
 #define JUST_LZH		/* for stand-alone compression */
 

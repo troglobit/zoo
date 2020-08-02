@@ -19,7 +19,7 @@
 #include "zoo.h"
 #include "zoofns.h"
 
-#include "errors.i"
+#include "errors.h"
 #include "zoomem.h"
 
 static void ms_help();

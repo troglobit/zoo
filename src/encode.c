@@ -15,7 +15,7 @@ extern char *out_buf_adr;
 # include <string.h>
 #endif
 
-#include "errors.i"
+#include "errors.h"
 
 FILE *lzh_infile;
 FILE *lzh_outfile;

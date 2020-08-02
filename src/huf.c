@@ -7,7 +7,7 @@
 #include "zoo.h"
 #include "ar.h"
 #include "lzh.h"
-#include "errors.i"
+#include "errors.h"
 
 extern void prterror();
 

@@ -3,23 +3,23 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <stdio.h>
+#include "zooio.h"
 
 /* Function isadir() returns 1 if the supplied handle is a directory,
  * else it returns 0. */
 
 int isadir (ZOOFILE f)
 {
-  struct stat buffer;           /* buffer to hold file information */
+	struct stat buffer;             /* buffer to hold file information */
 
-  if (fstat (fileno (f), &buffer) == -1)
-    return (0);                 /* inaccessible -- assume not dir */
-  else
-    {
-      if (buffer.st_mode & S_IFDIR)
-	return (1);
-      else
-	return (0);
-    }
+	if (fstat (fileno (f), &buffer) == -1)
+		return 0;               /* inaccessible -- assume not dir */
+
+	if (buffer.st_mode & S_IFDIR)
+		return 1;
+
+	return 0;
 }
 
 
@@ -35,17 +35,17 @@ long gettz()
 #define SEC_IN_DAY      (24L * 60L * 60L)
 #define INV_VALUE       (SEC_IN_DAY + 1L)
 
-  static long retval = INV_VALUE;    /* cache, init to impossible value */
-  struct timeval tp;
-  struct timezone tzp;
+	static long retval = INV_VALUE;    /* cache, init to impossible value */
+	struct timeval tp;
+	struct timezone tzp;
 
-  if (retval != INV_VALUE)           /* if have cached value, return it */
-    return retval;
+	if (retval != INV_VALUE)           /* if have cached value, return it */
+		return retval;
 
-   gettimeofday (&tp, &tzp);
+	gettimeofday (&tp, &tzp);
+	retval = tzp.tz_minuteswest * 60 - tzp.tz_dsttime * 3600L;
 
-   retval = tzp.tz_minuteswest * 60 - tzp.tz_dsttime * 3600L;
-   return retval;
+	return retval;
 }
 
 /* Function fixfname() converts the supplied filename to a syntax
@@ -54,7 +54,7 @@ long gettz()
 
 char *fixfname(char *fname)
 {
-  return fname; /* default is no-op */
+	return fname; /* default is no-op */
 }
 
 /* Function zootrunc() truncates the file passed to it.
@@ -62,10 +62,12 @@ char *fixfname(char *fname)
 
 int zootrunc(FILE *f)
 {
-  long seekpos;
-  int fd = fileno(f);
+	long seekpos;
+	int fd = fileno(f);
 
-  seekpos = lseek(fd, 0L, SEEK_CUR);
-  if (seekpos >= 0)
-    return ftruncate(fd, seekpos);
+	seekpos = lseek(fd, 0L, SEEK_CUR);
+	if (seekpos >= 0)
+		return ftruncate(fd, seekpos);
+
+	return 0;
 }

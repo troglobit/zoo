@@ -23,7 +23,7 @@
 #include "various.h"
 #include "zoo.h"
 #include "zoofns.h"
-#include "errors.i"
+#include "errors.h"
 #ifndef NOSIGNAL
 #include <signal.h>
 #endif

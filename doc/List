@@ -34,7 +34,7 @@ debug.h              @all
 decode.c             @all
 doc/descrip.mms      @vms
 encode.c             @all
-errors.i             @all
+errors.h             @all
 doc/file.fix         @doc @bsd @sysv
 fiz.1                @doc @all
 fiz.c                @all

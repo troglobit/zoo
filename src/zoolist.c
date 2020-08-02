@@ -20,7 +20,7 @@ duplicate information will be dumped.
 #include "zoomem.h"  /* to get ZOOCOUNT */
 
 #include "zoo.h"
-#include "errors.i"
+#include "errors.h"
 #include "zooio.h"
 #include "various.h"
 #include "zoofns.h"

@@ -72,49 +72,49 @@ clean :
 addfname.obj: options.h various.h zoo.h zoofns.h zooio.h zoomem.h
 basename.obj: assert.h debug.h options.h parse.h various.h
 basename.obj: zoo.h zoofns.h zooio.h
-comment.obj: errors.i options.h portable.h various.h zoo.h zoofns.h zooio.h
+comment.obj: errors.h options.h portable.h various.h zoo.h zoofns.h zooio.h
 crcdefs.obj: options.h
 decode.obj: ar.h lzh.h options.h zoo.h
-encode.obj: ar.h errors.i lzh.h options.h zoo.h
+encode.obj: ar.h errors.h lzh.h options.h zoo.h
 fiz.obj: options.h portable.h various.h zoo.h zoofns.h zooio.h
 generic.obj: nixmode.i nixtime.i
 getfile.obj: options.h various.h zoo.h zoofns.h zooio.h zoomem.h
-huf.obj: ar.h errors.i lzh.h options.h zoo.h
-io.obj: ar.h errors.i lzh.h options.h portable.h zoo.h zooio.h
+huf.obj: ar.h errors.h lzh.h options.h zoo.h
+io.obj: ar.h errors.h lzh.h options.h portable.h zoo.h zooio.h
 lzc.obj: assert.h debug.h lzconst.h options.h various.h
 lzc.obj: zoo.h zoofns.h zooio.h zoomem.h
 lzd.obj: assert.h debug.h lzconst.h options.h various.h
 lzd.obj: zoo.h zoofns.h zooio.h zoomem.h
-lzh.obj: ar.h errors.i options.h zoo.h
+lzh.obj: ar.h errors.h options.h zoo.h
 machine.obj: options.h various.h zoo.h zoofns.h zooio.h
-makelist.obj: assert.h debug.h errors.i options.h
+makelist.obj: assert.h debug.h errors.h options.h
 makelist.obj: portable.h various.h zoo.h zoofns.h zooio.h
 maketbl.obj: ar.h lzh.h options.h zoo.h
 maketree.obj: ar.h lzh.h options.h zoo.h
-misc.obj: errors.i options.h portable.h various.h zoo.h zoofns.h zooio.h
-misc2.obj: errors.i options.h portable.h various.h zoo.h
+misc.obj: errors.h options.h portable.h various.h zoo.h zoofns.h zooio.h
+misc2.obj: errors.h options.h portable.h various.h zoo.h
 misc2.obj: zoofns.h zooio.h zoomem.h
-msdos.obj: errors.i options.h zoo.h zoofns.h zooio.h
+msdos.obj: errors.h options.h zoo.h zoofns.h zooio.h
 needed.obj: debug.h options.h portable.h various.h zoo.h
 needed.obj: zoofns.h zooio.h
 nextfile.obj: options.h various.h zoo.h
-options.obj: errors.i options.h various.h zoo.h zoofns.h zooio.h
+options.obj: errors.h options.h various.h zoo.h zoofns.h zooio.h
 parse.obj: assert.h options.h parse.h various.h zoo.h
 parse.obj: zoofns.h zooio.h
 portable.obj: assert.h debug.h machine.h options.h
 portable.obj: portable.h various.h zoo.h zoofns.h zooio.h
 prterror.obj: options.h various.h zoofns.h zooio.h
-zoo.obj: errors.i options.h various.h zoo.h zoofns.h
+zoo.obj: errors.h options.h various.h zoo.h zoofns.h
 zoo.obj: zooio.h zoomem.h
-zooadd.obj: debug.h errors.i options.h parse.h portable.h
+zooadd.obj: debug.h errors.h options.h parse.h portable.h
 zooadd.obj: various.h zoo.h zoofns.h zooio.h zoomem.h
-zooadd2.obj: assert.h debug.h errors.i options.h parse.h
+zooadd2.obj: assert.h debug.h errors.h options.h parse.h
 zooadd2.obj: various.h zoo.h zoofns.h zooio.h
-zoodel.obj: errors.i options.h portable.h various.h zoo.h zoofns.h zooio.h
-zooext.obj: errors.i machine.h options.h parse.h portable.h various.h zoo.h
+zoodel.obj: errors.h options.h portable.h various.h zoo.h zoofns.h zooio.h
+zooext.obj: errors.h machine.h options.h parse.h portable.h various.h zoo.h
 zooext.obj: zoofns.h zooio.h
 zoofilt.obj: options.h
-zoolist.obj: errors.i options.h portable.h various.h zoo.h
+zoolist.obj: errors.h options.h portable.h various.h zoo.h
 zoolist.obj: zoofns.h zooio.h zoomem.h
-zoopack.obj: errors.i options.h portable.h various.h
+zoopack.obj: errors.h options.h portable.h various.h
 zoopack.obj: zoo.h zoofns.h zooio.h

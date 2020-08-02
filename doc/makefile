@@ -161,38 +161,38 @@ addfname.o: zoomem.h
 basename.o: assert.h debug.h options.h parse.h various.h
 basename.o: zoo.h zoofns.h zooio.h
 bsd.o: nixmode.i nixtime.i
-comment.o: errors.i options.h portable.h various.h
+comment.o: errors.h options.h portable.h various.h
 comment.o: zoo.h zoofns.h zooio.h
 crcdefs.o: options.h
 decode.o: ar.h lzh.h options.h zoo.h
-encode.o: ar.h errors.i lzh.h
+encode.o: ar.h errors.h lzh.h
 encode.o: options.h zoo.h
 fiz.o: options.h portable.h various.h zoo.h zoofns.h
 fiz.o: zooio.h
 generic.o: nixmode.i nixtime.i
 getfile.o: options.h various.h zoo.h zoofns.h zooio.h
 getfile.o: zoomem.h
-huf.o: ar.h errors.i lzh.h options.h zoo.h
-io.o: ar.h errors.i lzh.h options.h portable.h zoo.h
+huf.o: ar.h errors.h lzh.h options.h zoo.h
+io.o: ar.h errors.h lzh.h options.h portable.h zoo.h
 io.o: zooio.h
 lzc.o: assert.h debug.h lzconst.h options.h various.h
 lzc.o: zoo.h zoofns.h zooio.h zoomem.h
 lzd.o: assert.h debug.h lzconst.h options.h various.h
 lzd.o: zoo.h zoofns.h zooio.h zoomem.h
-lzh.o: ar.h errors.i options.h zoo.h
+lzh.o: ar.h errors.h options.h zoo.h
 machine.o: options.h various.h zoo.h zoofns.h zooio.h
-makelist.o: assert.h debug.h errors.i options.h
+makelist.o: assert.h debug.h errors.h options.h
 makelist.o: portable.h various.h zoo.h zoofns.h zooio.h
 maketbl.o: ar.h lzh.h options.h zoo.h
 maketree.o: ar.h lzh.h options.h zoo.h
-misc.o: errors.i options.h portable.h various.h zoo.h zoofns.h zooio.h
-misc2.o: errors.i options.h portable.h various.h zoo.h
+misc.o: errors.h options.h portable.h various.h zoo.h zoofns.h zooio.h
+misc2.o: errors.h options.h portable.h various.h zoo.h
 misc2.o: zoofns.h zooio.h zoomem.h
-msdos.o: errors.i options.h zoo.h zoofns.h zooio.h
+msdos.o: errors.h options.h zoo.h zoofns.h zooio.h
 needed.o: debug.h options.h portable.h various.h zoo.h
 needed.o: zoofns.h zooio.h
 nextfile.o: options.h various.h zoo.h
-options.o: errors.i options.h various.h zoo.h zoofns.h
+options.o: errors.h options.h various.h zoo.h zoofns.h
 options.o: zooio.h
 parse.o: assert.h options.h parse.h various.h zoo.h
 parse.o: zoofns.h zooio.h
@@ -205,17 +205,17 @@ portable.o: portable.h various.h zoo.h zoofns.h zooio.h
 prterror.o: options.h various.h
 prterror.o: zoofns.h zooio.h
 sysv.o: nixmode.i nixtime.i
-turboc.o: errors.i options.h various.h zoo.h zoofns.h
+turboc.o: errors.h options.h various.h zoo.h zoofns.h
 zoo.o: zooio.h zoomem.h
-zooadd.o: debug.h errors.i options.h parse.h portable.h
+zooadd.o: debug.h errors.h options.h parse.h portable.h
 zooadd.o: various.h zoo.h zoofns.h zooio.h zoomem.h
-zooadd2.o: assert.h debug.h errors.i options.h parse.h
+zooadd2.o: assert.h debug.h errors.h options.h parse.h
 zooadd2.o: various.h zoo.h zoofns.h zooio.h
-zoodel.o: errors.i options.h portable.h various.h zoo.h zoofns.h zooio.h
-zooext.o: errors.i machine.h options.h parse.h portable.h various.h zoo.h
+zoodel.o: errors.h options.h portable.h various.h zoo.h zoofns.h zooio.h
+zooext.o: errors.h machine.h options.h parse.h portable.h various.h zoo.h
 zooext.o: zoofns.h zooio.h
 zoofilt.o: options.h
-zoolist.o: errors.i options.h portable.h various.h zoo.h
+zoolist.o: errors.h options.h portable.h various.h zoo.h
 zoolist.o: zoofns.h zooio.h zoomem.h
-zoopack.o: errors.i options.h portable.h various.h
+zoopack.o: errors.h options.h portable.h various.h
 zoopack.o: zoo.h zoofns.h zooio.h

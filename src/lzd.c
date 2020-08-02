@@ -199,8 +199,7 @@ void init_dtab()
 ** full condition, we save a lot of function call overhead.
 ** We also use pointers instead of counters for efficiency (in the macro).
 */
-void xwr_dchar (ch)
-char ch;
+void xwr_dchar (char ch)
 {
    if (outbufp >= outbuflim) {      /* if buffer full */
       if (BLOCKWRITE (out_f, out_buf_adr, outbufp - out_buf_adr)
@@ -211,7 +210,7 @@ char ch;
    }
    assert(outbufp - out_buf_adr < OUTBUFSIZ);
    *outbufp++ = ch;
-} /* wr_dchar() */
+}
 
 
 /* Code buffer fill routines

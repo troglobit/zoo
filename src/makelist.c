@@ -6,7 +6,7 @@
 
 #include "options.h"
 #include "portable.h"
-#include "errors.i"
+#include "errors.h"
 #include "zoo.h"
 #include "zooio.h"
 #include "various.h"

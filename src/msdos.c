@@ -4,7 +4,7 @@
 #include "zoo.h"
 #include "zooio.h"		/* to satisfy declarations in zoofns.h */
 #include "zoofns.h"
-#include "errors.i"
+#include "errors.h"
 #include <stdio.h>		/* to get fileno() */
 
 /* register definitions specific for Turbo C */

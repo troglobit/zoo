@@ -13,7 +13,7 @@
 #include "various.h"
 #include "zoo.h"
 #include "zoofns.h"
-#include "errors.i"
+#include "errors.h"
 
 #ifdef REN_LINK         
 /* rename using link() followed by unlink() */

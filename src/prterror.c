@@ -80,7 +80,7 @@ static int zvfprintf();
 
 extern int quiet;
 
-/* These declarations must be equivalent to those in errors.i */
+/* These declarations must be equivalent to those in errors.h */
 char no_match[] = "No files matched.\n";
 char failed_consistency[] = "Archive header failed consistency check.\n";
 char invalid_header[] = "Invalid or corrupted archive.\n";

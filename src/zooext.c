@@ -40,7 +40,7 @@ int setfattr (char *, unsigned long);
 
 extern int quiet;
 
-#include "errors.i"
+#include "errors.h"
 
 /* Following two are used by ctrl_c() also, hence declared here */
 char extfname[LFNAMESIZE];             /* filename of extracted file */

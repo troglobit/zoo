@@ -20,7 +20,7 @@
 #include "portable.h"
 
 #include "zoofns.h"
-#include "errors.i"
+#include "errors.h"
 extern int break_hit;
 extern int quiet;
 

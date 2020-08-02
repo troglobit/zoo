@@ -3,7 +3,7 @@
 #include "options.h"
 #include "zoo.h"
 #include "ar.h"
-#include "errors.i"
+#include "errors.h"
 
 FILE *arcfile;
 

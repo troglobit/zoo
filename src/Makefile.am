@@ -7,7 +7,7 @@ zoo_SOURCES = addbfcrc.c addfname.c ar.h assert.h basename.c comment.c	\
 		portable.c portable.h prterror.c zoo.c zoo.h zooadd.c	\
 		zooadd2.c zoodel.c zooext.c zoofilt.c zoolist.c		\
 		zoopack.c zoofns.h io.c zooio.h zoomem.h maketbl.c	\
-		maketree.c huf.c encode.c decode.c various.h errors.i	\
+		maketree.c huf.c encode.c decode.c various.h errors.h	\
 		nixmode.i nixtime.i
 zoo_CFLAGS = -DLINUX -DANSI_HDRS -DBIG_MEM -DNDEBUG
 
