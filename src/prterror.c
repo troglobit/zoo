@@ -52,16 +52,16 @@
  */
 
 #include "options.h"
-#ifndef	OK_STDIO
-#include <stdio.h>
-#define	OK_STDIO
+#ifndef OK_STDIO
+# include <stdio.h>
+# define OK_STDIO
 #endif
 #include "various.h"
 #include "zooio.h"
 #include "zoofns.h"
 
 #ifdef NEEDCTYP
-# include <ctype.h>	/* for isdigit() */
+# include <ctype.h>		/* for isdigit() */
 #endif
 
 #ifdef STDARG
@@ -81,44 +81,41 @@ static int zvfprintf();
 extern int quiet;
 
 /* These declarations must be equivalent to those in errors.h */
-char no_match[] = "No files matched.\n";
+char no_match[]           = "No files matched.\n";
 char failed_consistency[] = "Archive header failed consistency check.\n";
-char invalid_header[] = "Invalid or corrupted archive.\n";
-char internal_error[]="Internal error.\n";
-char disk_full[]      = "I/O error or disk full.\n";
-char bad_directory[]  = "Directory entry in archive is invalid.\n";
-char no_memory[] = "Ran out of memory.\n";
-char too_many_files[] = "Some filenames ignored -- can only handle %d.\n";
-char packfirst[] = "Old format archive -- please pack first with P command.\n";
-char garbled[] = "Command is garbled.\n";
-char start_ofs[] = "Starting at %ld (offset %ld)\n";
+char invalid_header[]     = "Invalid or corrupted archive.\n";
+char internal_error[]     = "Internal error.\n";
+char disk_full[]          = "I/O error or disk full.\n";
+char bad_directory[]      = "Directory entry in archive is invalid.\n";
+char no_memory[]          = "Ran out of memory.\n";
+char too_many_files[]     = "Some filenames ignored -- can only handle %d.\n";
+char packfirst[]          = "Old format archive -- please pack first with P command.\n";
+char garbled[]            = "Command is garbled.\n";
+char start_ofs[]          = "Starting at %ld (offset %ld)\n";
 
 #ifndef OOZ
-char wrong_version[]=
-   "Zoo %d.%d or later is needed to fully manipulate this archive.\n";
-char cant_process[] =
-   "The rest of the archive (%lu bytes) cannot be processed.\n";
-char option_ignored[] = "Ignoring option %c.\n";
-char inv_option[] = "Option %c is invalid.\n";
-char bad_crc[] = "\007Bad CRC, %s probably corrupted\n";
+char wrong_version[]      = "Zoo %d.%d or later is needed to fully manipulate this archive.\n";
+char cant_process[]       = "The rest of the archive (%lu bytes) cannot be processed.\n";
+char option_ignored[]     = "Ignoring option %c.\n";
+char inv_option[]         = "Option %c is invalid.\n";
+char bad_crc[]            = "\007Bad CRC, %s probably corrupted\n";
 #endif
 
 #ifdef OOZ
-char could_not_open[] = "Could not open ";
+char could_not_open[]     = "Could not open ";
 #else
-char could_not_open[] = "Could not open %s.\n";
+char could_not_open[]     = "Could not open %s.\n";
 #endif
 
 #ifdef STDARG
 void prterror(int level, char *format, ...)
-#else
-/*VARARGS*/
+#else /*VARARGS*/
 void prterror(va_alist)
 va_dcl
 #endif
 {
 	va_list args;
-   char string[120];       /* local format string */
+	char string[120];	       /* local format string */
 #ifdef VARARGS
 	int level;
 	char *format;
@@ -132,42 +129,52 @@ va_dcl
 	format = va_arg(args, char *);
 #endif
 
-   *string = '\0';         /* get a null string to begin with */
+	*string = '\0';		       /* get a null string to begin with */
 
 #ifdef OOZ
-   strcpy (string, "Ooz:  ");
+	strcpy(string, "Ooz:  ");
 #else
-   strcpy (string, "Zoo:  ");
+	strcpy(string, "Zoo:  ");
 #endif
 
-   switch (level) {
-      case 'M': *string = '\0';                    /* fall through to 'm' */
-      case 'm': if (quiet) return; break;
-      case 'w': 
-			if (quiet > 1) return;
-			strcat (string, "WARNING:  "); break;
-      case 'e': 
-			if (quiet > 2) return;
-			strcat (string, "ERROR:  ");   break;
-      case 'F':
-      case 'f': strcat (string, "FATAL:  ");   break;
-      default: prterror ('f', internal_error);  /* slick recursive call */
-   }
+	switch (level) {
+	case 'M':
+		*string = '\0';	       /* fall through to 'm' */
+	case 'm':
+		if (quiet)
+			return;
+		break;
+	case 'w':
+		if (quiet > 1)
+			return;
+		strcat(string, "WARNING:  ");
+		break;
+	case 'e':
+		if (quiet > 2)
+			return;
+		strcat(string, "ERROR:  ");
+		break;
+	case 'F':
+	case 'f':
+		strcat(string, "FATAL:  ");
+		break;
+	default:
+		prterror('f', internal_error);	/* slick recursive call */
+	}
 
-   strcat (string, format);      /* just append supplied format string */
+	strcat(string, format);	       /* just append supplied format string */
 
-	/* and print the whole thing */
+/* and print the whole thing */
 #ifdef NEED_VPRINTF
-	(void) zvfprintf(stdout, string, args);
+	(void)zvfprintf(stdout, string, args);
 #else
-   (void) vprintf(string, args);
+	(void)vprintf(string, args);
 #endif
-	fflush (stdout);
+	fflush(stdout);
 
-   if (level == 'f')       /* and abort on fatal error 'f' but not 'F' */
-      zooexit (1);
+	if (level == 'f')	       /* and abort on fatal error 'f' but not 'F' */
+		zooexit(1);
 }
-
 
 #ifdef NEED_VPRINTF
 /* Some systems don't have vprintf;  if so, we roll our own.  The following
@@ -195,23 +202,24 @@ va_list args;
 	char *ep;
 	char fchar;
 	char tformat[512];
-	int do_long;		/* whether to print as long (l format suffix) */
-	int do_star;		/* * used in format => get width from argument */
-	int star_size;		/* size arg corresponding to "*" format */
+	int do_long;            /* whether to print as long (l format suffix) */
+	int do_star;            /* * used in format => get width from argument */
+	int star_size;          /* size arg corresponding to "*" format */
 	int i;
 	long l;
 	unsigned u;
 	unsigned long ul;
 	char *s;
+
 #ifdef NEED_DOUBLE
 	double d;
 #endif
 
 	while (*format != '\0') {
-		if (*format != '%') { /* Not special, just write out the char. */
+		if (*format != '%') {  /* Not special, just write out the char. */
 			putc(*format, stream);
 			++format;
-	   } else {
+		} else {
 			do_star = 0;
 			do_long = 0;
 			ep = format + 1;
@@ -223,7 +231,7 @@ va_list args;
 				++ep;
 			while (isdigit(*ep))
 				++ep;
-	      if (*ep == '.') {
+			if (*ep == '.') {
 				++ep;
 				while (isdigit(*ep))
 					++ep;
@@ -233,6 +241,7 @@ va_list args;
 			if (*ep == '*') {
 				do_star = 1;
 				star_size = va_arg(args, int);	/* get * argument */
+
 				++ep;
 			}
 			if (*ep == 'l') {
@@ -240,86 +249,97 @@ va_list args;
 				++ep;
 			}
 
-	      /* Here's the field type.  Extract it, and copy this format
-	      ** specifier to a temp string so we can add an end-of-string.
-	      */
-	      fchar = *ep;
-	      (void) strncpy(tformat, format, ep - format + 1);
-	      tformat[ep - format + 1] = '\0';
+			/* 
+			 * Here's the field type.  Extract it, and copy
+			 * this format ** specifier to a temp string so
+			 * we can add an end-of-string.
+			 */
+			fchar = *ep;
+			(void)strncpy(tformat, format, ep - format + 1);
+			tformat[ep - format + 1] = '\0';
 
-	      /* Now do a one-argument printf with the format string we have 
-			isolated.  If the * format was used, we will also supply the 
-			additional parameter star_size, which we have already obtained 
-			from the variable argument list.  */
-
-	      switch (fchar) {
-			 case 'd':
+			/*
+			 * Now do a one-argument printf with the format
+			 * string we have isolated.  If the * format was
+			 * used, we will also supply the additional
+			 * parameter star_size, which we have already
+			 * obtained from the variable argument list.
+			 */
+			switch (fchar) {
+			case 'd':
 				if (do_long) {
 					l = va_arg(args, long);
+
 					if (do_star)
-						(void) fprintf(stream, tformat, star_size, l);
+						(void)fprintf(stream, tformat, star_size, l);
 					else
-						(void) fprintf(stream, tformat, l);
+						(void)fprintf(stream, tformat, l);
 				} else {
 					i = va_arg(args, int);
+
 					if (do_star)
-						(void) fprintf(stream, tformat, star_size, i);
+						(void)fprintf(stream, tformat, star_size, i);
 					else
-						(void) fprintf(stream, tformat, i);
+						(void)fprintf(stream, tformat, i);
 				}
 				break;
 
-	       case 'o':
-	       case 'x':
-	       case 'u':
-		      if (do_long) {
+			case 'o':
+			case 'x':
+			case 'u':
+				if (do_long) {
 					ul = va_arg(args, unsigned long);
-					if (do_star)
-						(void) fprintf(stream, tformat, star_size, ul);
-					else
-						(void) fprintf(stream, tformat, ul);
-		      } else {
-			      u = va_arg(args, unsigned);
-					if (do_star)
-						(void) fprintf(stream, tformat, star_size, u);
-					else
-						(void) fprintf(stream, tformat, u);
-		      }
-			   break;
 
-			 case 'c':
-				i = (char) va_arg(args, int);
-				if (do_star)
-					(void) fprintf(stream, tformat, star_size, i);
-				else
-					(void) fprintf(stream, tformat, i);
+					if (do_star)
+						(void)fprintf(stream, tformat, star_size, ul);
+					else
+						(void)fprintf(stream, tformat, ul);
+				} else {
+					u = va_arg(args, unsigned);
+
+					if (do_star)
+						(void)fprintf(stream, tformat, star_size, u);
+					else
+						(void)fprintf(stream, tformat, u);
+				}
 				break;
 
-			 case 's':
-				s = va_arg(args, char *);
+			case 'c':
+				i = (char)va_arg(args, int);
+
 				if (do_star)
-					(void) fprintf(stream, tformat, star_size, s);
+					(void)fprintf(stream, tformat, star_size, i);
 				else
-					(void) fprintf(stream, tformat, s);
+					(void)fprintf(stream, tformat, i);
+				break;
+
+			case 's':
+				s = va_arg(args, char *);
+
+				if (do_star)
+					(void)fprintf(stream, tformat, star_size, s);
+				else
+					(void)fprintf(stream, tformat, s);
 				break;
 
 #ifdef NEED_DOUBLE
-	       case 'e':
-	       case 'f':
-	       case 'g':
+			case 'e':
+			case 'f':
+			case 'g':
 				d = va_arg(args, double);
+
 				if (do_star)
-					(void) fprintf(stream, tformat, star_size, d);
+					(void)fprintf(stream, tformat, star_size, d);
 				else
-					(void) fprintf(stream, tformat, d);
+					(void)fprintf(stream, tformat, d);
 				break;
 #endif
 
-	       case '%':
+			case '%':
 				putc('%', stream);
 				break;
 
-			 default:
+			default:
 				return -1;
 			}
 
@@ -328,6 +348,7 @@ va_list args;
 		}
 	}
 	va_end(args);
+
 	return 0;
 }
-#endif /*NEED_VPRINTF*/
+#endif /* NEED_VPRINTF */
