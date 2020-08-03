@@ -585,8 +585,8 @@ FILE *          WritBinr;
 #ifdef  SYS_HAS_MKDIR
 #define MAKE_DIRE(patl)         mkdir( (patl), 0777L )
 #else
-char            Cmd [256];
-#define MAKE_DIRE(patl)    (sprintf(Cmd,"/bin/mkdir %s",(patl)),!system(Cmd))
+char            Cmd [1048];
+#define MAKE_DIRE(patl)    (snprintf(Cmd, sizeof(Cmd) ,"/bin/mkdir %s",(patl)),!system(Cmd))
 #endif
 #endif
 #ifdef  SYS_IS_DOS_DJGPP
