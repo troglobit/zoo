@@ -13,4 +13,19 @@ AC_PROG_INSTALL
 AC_HEADER_STDC
 AC_CHECK_HEADERS
 
+AC_CANONICAL_HOST
+case $host in
+  *-linux*)
+    MACHINE=-DLINUX
+    ;;
+  *-freebsd* | *-openbsd* | *-netbsd* | *-dragonfly* | *-solaris* | *-apple*)
+    MACHINE=-DBSD4_3
+    ;;
+  *)
+    AC_MSG_WARN(Your operating system is not officially supported yet by zoo.)
+    AC_MSG_WARN(Set MACHINE=foo manually to one of: ULTRIX, SYS_V, or GENERIC)
+    ;;
+esac
+AC_SUBST(MACHINE)
+
 AC_OUTPUT

@@ -5,10 +5,18 @@
  *                              -- Rahul Dhesi 1991/07/06
  */
 
+#ifndef ZOO_OPTIONS_H_
+#define ZOO_OPTIONS_H_
+
+#include "config.h"
+
 #define ZOO		/* always defined */
 #define PORTABLE	/* always defined */
 #define ZOOCOMMENT	/* always defined */
 
+#ifdef STDC_HEADERS
+#define ANSI_HDRS 1
+#endif
 
 /***********************************************************************/
 /* Linux                                                               */
@@ -357,3 +365,5 @@ value is critical, so we compile in a runtime check. */
 # define T_UINT16	unsigned short
 # define CHECK_TUINT	/* will do runtime check for correct size */
 #endif
+
+#endif /* ZOO_OPTIONS_H_ */
