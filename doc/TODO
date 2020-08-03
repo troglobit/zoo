@@ -2,9 +2,13 @@ Somewhat ordered TODO list
 ==========================
 
 - Support . as directory from command line
+- Investigate recursive support
 - Document new novice commands -help and -version in zoo(1)
 - Add basic tests
 - Add tests to provoke integrity check 64/32-bit problems
-- Refactor 64/32-bit handling
-- Add more OS to configure to set -D flags
-- Import unzoo versions in to repo
+- Reindent (gently) to KNF.  Today code is a mix of 3 spaces and tabs.
+- Replace hard-coded STDARG et al defines with configure checks
+- Break out vfprintf() et all replacement functions to a lib/ directory
+- Trace any unzoo.c changes that may include code fixes to zoo
+- Break apart unzoo.c into the original pieces, increase code sharing
+- debian/ build files, NOTE: changes to copyright file -> public-domain
