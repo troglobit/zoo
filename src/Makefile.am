@@ -1,5 +1,7 @@
-bin_PROGRAMS = zoo fiz
+bin_PROGRAMS = fiz zoo
 AM_CPPFLAGS  = @MACHINE@ -DBIG_MEM -DNDEBUG
+
+fiz_SOURCES = fiz.c addbfcrc.c portable.c crcdefs.c
 
 zoo_SOURCES = addbfcrc.c addfname.c ar.h assert.h basename.c comment.c	\
 		crcdefs.c debug.h getfile.c lzc.c lzconst.h lzd.c lzh.c	\
@@ -10,5 +12,3 @@ zoo_SOURCES = addbfcrc.c addfname.c ar.h assert.h basename.c comment.c	\
 		zoopack.c zoofns.h io.c zooio.h zoomem.h maketbl.c	\
 		maketree.c huf.c encode.c decode.c various.h errors.h	\
 		nixmode.i nixtime.i
-
-fiz_SOURCES = fiz.c addbfcrc.c portable.c crcdefs.c
