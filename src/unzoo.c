@@ -947,8 +947,9 @@ int             MacOpenWritBinr ( patl )
     if ( PBGetFInfo( (ParmBlkPtr)&fndrInfo, 0 ) ) {
         return 0;
     }
-    fndrInfo.ioFlFndrInfo.fdType    = 'BINA';
-	fndrInfo.ioFlFndrInfo.fdCreator = '????';
+
+    fndrInfo.ioFlFndrInfo.fdType    = "BINA";
+	fndrInfo.ioFlFndrInfo.fdCreator = "????";
      if ( PBSetFInfo( (ParmBlkPtr)&fndrInfo, 0 ) ) {
         return 0;
     }
