@@ -17,9 +17,11 @@ AC_CANONICAL_HOST
 case $host in
   *-linux*)
     MACHINE=-DLINUX
+    SYS=-DSYS_IS_UNIX
     ;;
   *-freebsd* | *-openbsd* | *-netbsd* | *-dragonfly* | *-solaris* | *-apple*)
     MACHINE=-DBSD4_3
+    SYS=-DSYS_IS_UNIX
     ;;
   *)
     AC_MSG_WARN(Your operating system is not officially supported yet by zoo.)
@@ -27,5 +29,6 @@ case $host in
     ;;
 esac
 AC_SUBST(MACHINE)
+AC_SUBST(SYS)
 
 AC_OUTPUT
