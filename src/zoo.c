@@ -410,7 +410,7 @@ static char *scrn2[] = {
 #else
 	"    O - overwrite without asking",
 #endif
-	"    S - overwrite superceded (newer) files",
+	"    S - overwrite superseded (newer) files",
 	NULL
 };
 
