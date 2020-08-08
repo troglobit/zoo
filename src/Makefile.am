@@ -1,5 +1,8 @@
 AM_CPPFLAGS   = @MACHINE@ -DBIG_MEM -DNDEBUG
-bin_PROGRAMS  = fiz zoo unzoo
+bin_PROGRAMS  = zoo unzoo
+if ENABLE_FIZ
+bin_PROGRAMS += fiz
+endif
 if ENABLE_OOZ
 bin_PROGRAMS += ooz
 endif

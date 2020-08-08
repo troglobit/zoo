@@ -13,8 +13,11 @@ AC_PROG_INSTALL
 AC_HEADER_STDC
 AC_CHECK_HEADERS
 
+AC_ARG_ENABLE([fiz],
+	AS_HELP_STRING([--enable-fiz], [zoo archive repair utility tool]))
 AC_ARG_ENABLE([ooz],
 	AS_HELP_STRING([--enable-ooz], [legacy ooz unarchiver, same as unzoo/booz]))
+AM_CONDITIONAL([ENABLE_FIZ], [test "x$enable_fiz" = "xyes"])
 AM_CONDITIONAL([ENABLE_OOZ], [test "x$enable_ooz" = "xyes"])
 
 AC_CANONICAL_HOST
