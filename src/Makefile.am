@@ -1,10 +1,13 @@
 AM_CPPFLAGS   = @MACHINE@ -DBIG_MEM -DNDEBUG
-bin_PROGRAMS  = zoo unzoo
+bin_PROGRAMS  = zoo
 if ENABLE_FIZ
 bin_PROGRAMS += fiz
 endif
 if ENABLE_OOZ
 bin_PROGRAMS += ooz
+endif
+if ENABLE_UNZOO
+bin_PROGRAMS += unzoo
 endif
 
 fiz_SOURCES   = fiz.c addbfcrc.c portable.c crcdefs.c

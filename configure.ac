@@ -14,11 +14,17 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS
 
 AC_ARG_ENABLE([fiz],
-	AS_HELP_STRING([--enable-fiz], [zoo archive repair utility tool]))
+	AS_HELP_STRING([--enable-fiz], [enable zoo archive repair utility tool]),,
+	enable_fiz=no)
 AC_ARG_ENABLE([ooz],
-	AS_HELP_STRING([--enable-ooz], [legacy ooz unarchiver, same as unzoo/booz]))
-AM_CONDITIONAL([ENABLE_FIZ], [test "x$enable_fiz" = "xyes"])
-AM_CONDITIONAL([ENABLE_OOZ], [test "x$enable_ooz" = "xyes"])
+	AS_HELP_STRING([--enable-ooz], [enable legacy ooz unarchiver, same as unzoo/booz]),,
+	enable_ooz=no)
+AC_ARG_ENABLE([unzoo],
+	AS_HELP_STRING([--disable-unzoo], [disable unzoo, standard zoo unarchiver tool]),,
+	enable_unzoo=yes)
+AM_CONDITIONAL([ENABLE_FIZ],   [test "x$enable_fiz"    = "xyes"])
+AM_CONDITIONAL([ENABLE_OOZ],   [test "x$enable_ooz"    = "xyes"])
+AM_CONDITIONAL([ENABLE_UNZOO], [test "x$enable_unzoo" != "xno"])
 
 AC_CANONICAL_HOST
 case $host in
@@ -50,7 +56,9 @@ cat <<EOF
   C Compiler............: $CC $CFLAGS $CPPFLAGS $LDFLAGS $LIBS
 
 Optional features:
-  None.
+  fiz...................: $enable_fiz
+  ooz...................: $enable_ooz
+  unzoo.................: $enable_unzoo
 
 ------------- Compiler version --------------
 $($CC --version || true)
