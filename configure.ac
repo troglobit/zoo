@@ -32,3 +32,24 @@ AC_SUBST(MACHINE)
 AC_SUBST(SYS)
 
 AC_OUTPUT
+
+cat <<EOF
+
+------------------ Summary ------------------
+ $PACKAGE_NAME version $PACKAGE_VERSION
+  Prefix................: $prefix
+  Sysconfdir............: `eval echo $sysconfdir`
+  Localstatedir.........: `eval echo $localstatedir`
+  C Compiler............: $CC $CFLAGS $CPPFLAGS $LDFLAGS $LIBS
+
+Optional features:
+  None.
+
+------------- Compiler version --------------
+$($CC --version || true)
+---------------------------------------------
+
+Check the above options and compile with:
+ ${MAKE-make}
+
+EOF
