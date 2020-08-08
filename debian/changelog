@@ -1,3 +1,15 @@
+zoo (2.11-beta1) stable; urgency=medium
+
+  * New maintainer.
+  * Import debian patches
+  * Import Martin Schoenert's unzoo and John. W. Linville's patches
+  * Add unzoo.1 man page
+  * Redo debian patch for 32/64-bit zoo header with proper fix
+  * Redo help and usage
+  * Set proper copyright to public-domain for whole zoo package
+
+ -- Joachim Nilsson <troglobit@gmail.com>  Sat, 08 Aug 2020 23:36:39 +0200
+
 zoo (2.10-28) unstable; urgency=low
 
   * QA upload.

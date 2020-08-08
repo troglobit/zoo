@@ -3,6 +3,29 @@ Change Log
 
 All notable changes to the project are documented in this file.
 
+[v2.11][UNRELEASED]
+-------------------
+
+### Changes
+
+- Import v2.10 (v2.1) from Ibiblio
+  http://www.ibiblio.org/pub/packages/ccic/software/unix/utils/
+- Import Debian patches
+- Massive code cleanup, incl. reindentation to Linux KNF
+- Import Martin Schoenert's unzoo and John. W. Linville's patches
+- Add unzoo.1 man page
+- Make ooz and fiz optional in build, see configure script
+- Make unzoo possible to disable from build
+- Add basic unit test
+- Use configure script to detect and build for correct host
+
+### Fixes
+
+- Proper fix to Debian 03-fix-manage-archive-under-AMD64.patch;
+  use proper 32-bit data types for zoo file header in RAM. The
+  disk format is marshalled, so not affected.
+- Make ooz build again
+
 
 v2.1 - Date Unknown
 -------------------
