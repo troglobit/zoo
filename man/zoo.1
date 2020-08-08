@@ -1353,90 +1353,6 @@ even if undeleted, will no longer appear in an archive listing
 unless generation 5 (or every generation) is specifically requested.
 This behavior will likely be improved in future releases of
 .I zoo.
-.SH FILES
-xXXXXXX \- temporary file used during packing
-.sp 0
-.RB archive_name. bak
-\- backup of archive
-.SH "SEE ALSO"
-compress(1), fiz(1)
-.SH BUGS
-When files are being added to an archive on a non-MS-DOS system, it
-is possible for
-.I zoo
-to fail to detect a full disk and hence create an invalid archive.
-This bug will be fixed in a future release.
-.PP
-Files with generation counts that wrap around from 65535 to 1
-are not currently handled correctly.  If a file's generation
-count reaches a value close to 65535, it should be manually
-set back down to a low number.  This may be easily done
-with a command such as
-.BR gc\-65000 ,
-which subtracts 65000 from the generation count of each
-specified file.  This problem will be fixed in a
-future release.
-.PP
-Although
-.I zoo
-on **IX systems preserves the lowest nine mode bits of
-regular files, it does not currently do the same for directories.
-.PP
-Currently
-.I "zoo's"
-handling of the characters
-.B :
-and 
-.B ;
-in filenames is not robust, because it interprets these
-to separate a filename from a generation number.  A
-quoting mechanism will eventually be implemented.
-.PP
-Standard input cannot be archived nor can a created archive be sent
-to standard output.  Spurious error messages may appear if the 
-filename of an archive is too long.
-.PP
-Since
-.I zoo
-never archives any file with the same name as the archive or its
-backup (regardless of any path prefixes), care should be taken 
-to make sure that a file to be archived does not coincidentally have 
-the same name as the archive it is being added to.
-It usually suffices 
-to make sure that no file being archived is itself a 
-.I zoo
-archive.  (Previous versions of
-.I zoo
-sometimes tried to add an
-archive to itself. This bug now seems to be fixed.)
-.PP
-Only regular files are archived; devices and empty directories are not.
-Support for archiving empty directories and for preserving directory
-attributes is planned for the near future.
-.PP
-Early versions of MS-DOS have a bug that prevents "." from referring
-to the root directory;  this leads to anomalous results if the
-extraction of paths beginning with a dot is attempted.
-.PP
-VAX/VMS destroys case information unless arguments are enclosed
-in double quotes.  For this reason if a command given to
-.I zoo
-on a VAX/VMS system includes any uppercase characters, it must be 
-enclosed in double quotes.  Under VAX/VMS,
-.I zoo
-does not currently restore file timestamps;  this will be fixed
-as soon as I figure out RMS extended attribute blocks, or DEC supplies
-a utime() function, whichever occurs first.  Other VMS bugs, related to
-file structures, can often be overcome by using the program 
-.I bilf.c
-that is supplied with
-.I zoo.
-.PP
-It is not currently possible to create a
-.I zoo
-archive containing all
-.I zoo
-archives that do not contain themselves.
 .SH DIAGNOSTICS
 Error messages are intended to be self-explanatory and are divided into
 three categories.  WARNINGS are intended to inform the user of an
@@ -1656,5 +1572,89 @@ Greg Yachuk and Andre Van Dalen, who independently modified MS-DOS
 zoo 
 to support multivolume archives.  (This support is not yet in
 this official release.)
+.SH FILES
+xXXXXXX \- temporary file used during packing
+.sp 0
+.RB archive_name. bak
+\- backup of archive
+.SH BUGS
+When files are being added to an archive on a non-MS-DOS system, it
+is possible for
+.I zoo
+to fail to detect a full disk and hence create an invalid archive.
+This bug will be fixed in a future release.
+.PP
+Files with generation counts that wrap around from 65535 to 1
+are not currently handled correctly.  If a file's generation
+count reaches a value close to 65535, it should be manually
+set back down to a low number.  This may be easily done
+with a command such as
+.BR gc\-65000 ,
+which subtracts 65000 from the generation count of each
+specified file.  This problem will be fixed in a
+future release.
+.PP
+Although
+.I zoo
+on **IX systems preserves the lowest nine mode bits of
+regular files, it does not currently do the same for directories.
+.PP
+Currently
+.I "zoo's"
+handling of the characters
+.B :
+and 
+.B ;
+in filenames is not robust, because it interprets these
+to separate a filename from a generation number.  A
+quoting mechanism will eventually be implemented.
+.PP
+Standard input cannot be archived nor can a created archive be sent
+to standard output.  Spurious error messages may appear if the 
+filename of an archive is too long.
+.PP
+Since
+.I zoo
+never archives any file with the same name as the archive or its
+backup (regardless of any path prefixes), care should be taken 
+to make sure that a file to be archived does not coincidentally have 
+the same name as the archive it is being added to.
+It usually suffices 
+to make sure that no file being archived is itself a 
+.I zoo
+archive.  (Previous versions of
+.I zoo
+sometimes tried to add an
+archive to itself. This bug now seems to be fixed.)
+.PP
+Only regular files are archived; devices and empty directories are not.
+Support for archiving empty directories and for preserving directory
+attributes is planned for the near future.
+.PP
+Early versions of MS-DOS have a bug that prevents "." from referring
+to the root directory;  this leads to anomalous results if the
+extraction of paths beginning with a dot is attempted.
+.PP
+VAX/VMS destroys case information unless arguments are enclosed
+in double quotes.  For this reason if a command given to
+.I zoo
+on a VAX/VMS system includes any uppercase characters, it must be 
+enclosed in double quotes.  Under VAX/VMS,
+.I zoo
+does not currently restore file timestamps;  this will be fixed
+as soon as I figure out RMS extended attribute blocks, or DEC supplies
+a utime() function, whichever occurs first.  Other VMS bugs, related to
+file structures, can often be overcome by using the program 
+.I bilf.c
+that is supplied with
+.I zoo.
+.PP
+It is not currently possible to create a
+.I zoo
+archive containing all
+.I zoo
+archives that do not contain themselves.
+.SH "SEE ALSO"
+compress(1), fiz(1), ooz(1), unzoo(1)
 .SH AUTHOR
 Rahul Dhesi
