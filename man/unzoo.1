@@ -1,0 +1,233 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.Dd May 29, 2000
+.\" Please adjust this date whenever revising the manpage.
+.Dt UNZOO 1 URM
+.Os
+.Sh NAME
+.Nm unzoo
+.Nd ZOO archive extractor
+.Sh SYNOPSIS
+.Nm
+.Op Fl lv
+.Ar archive[.zoo]
+.Op file ..
+.Nm
+.Fl x
+.Op Fl abnpo
+.Ar archive[.zoo]
+.Op file ..
+.Sh DESCRIPTION
+.Nm
+is a zoo archive extractor.  A zoo archive is a file that contains
+several files, called its members, usually in compressed form to save
+space.
+.Nm
+can list all or selected members or extract all or selected members,
+i.e., uncompress them and write them to files.  It cannot add new
+members or delete members.  For this you need the
+.Xr zoo 1
+archiver.
+.Pp
+If you call
+.Nm
+with no arguments, it will first print a summary of the commands and
+then prompt for command lines interactively, until you enter an empty
+line.  This is useful on systems that do not support the notion of
+command line arguments such as the Macintosh.
+.Sh OPTIONS
+.Pp
+.Bl -tag -width Ds
+.It Fl l
+lists members in the
+.Ar archive .
+For each member 'unzoo' prints the size that the extracted file would
+have, the compression factor, the size that the member occupies in the
+archive (not counting the space needed to store the attributes such as
+the path name of the file), the date and time when the files were last
+modified, and finally the path name itself.  Finally,
+.Nm
+prints a grand total for the file sizes, the compression factor, and the
+member sizes.
+.It Fl v
+verbose mode appends to each path name, separated by a ';', the
+generation number of the member, where higher numbers mean later
+generations.  Members for which generations are disabled are listed
+with ';0'.  Also 'unzoo' will print the comments associated with the
+archive itself or the members, preceeded by the string '# '.
+.It Fl x
+extract members from the
+.Ar archive .
+Members are stored with a full path name in the archive and if the
+operating system supports this, they will be extracted into appropriate
+subdirectories, which will be created on demand.  The members are
+usually extracted as binary files, with no translation.  However, if a
+member has a comment that starts with the string '!TEXT!', it is
+extracted as a text file, i.e., it will be translated from the universal
+text file format (with <lf> as line separator as under UNIX) to the
+local text file format (e.g., with <cr>/<lf> as separator under DOS).
+If the archive itself has a comment that starts with '!TEXT!' then all
+members will be extracted as text files, even those that have no
+comment.  For each member the name is printed followed by '-- extracted
+as binary' or '-- extracted as text' when the member has been completely
+extracted.
+.It Fl a 
+extract all members as text files, even if they have no comment starting
+with '!TEXT!'.
+.It Fl b
+extract all members as binary files, even if they have a comment
+starting with '!TEXT!'.
+.It Fl n
+suppress writing the files.  You use this suboption to test the
+integrity of the archive without extracting the members.  For each
+member the name is printed followed by '-- tested' if the member is
+intact or by '-- error, CRC failed' if it is not.
+.It p
+print the files to stdout instead of writing them to files.
+.It o
+overwrite existing files without asking you for confirmation.  The
+default is to ask for confirmation for each file.
+.Nm
+will never overwrite existing read-only files.
+.It Fl j Ar prefix
+prepend the string
+.Ar prefix
+to all path names for the members before they are extracted.  So for
+example if an archive contains absolute path names under UNIX,
+.Fl j Ar ./
+can be used to convert them to relative pathnames.  This option is also
+useful on the Macintosh where you start
+.Nm
+by clicking, because then the current directory will be the one
+where 'unzoo' is, not the one where the archive is.  Note that the
+directory
+.Ar prefix
+must exist,
+.Nm
+will not create it on demand.
+.El
+.Pp
+If no
+.Ar file
+argument is given all members are listed or extracted.  If one or more
+.Ar file
+arguments are given, only members whose names match at least one of the
+.Ar file
+patterns are listed or extracted.
+.Ar file
+can contain the wildcard '?', which matches any character in names,
+and '*', which matches any number of characters in names.  When you pass
+the
+.Ar file
+arguments on the command line you will usually have to quote them to
+keep the shell from trying to expand them.
+.Pp
+Usually
+.Nm
+will only list or extract the latest generation of each member.  But if
+you append ';<nr>' to a path name pattern the generation with the number
+<nr> is listed or extracted.  <nr> itself can contain the wildcard
+characters '?' and '*', so appending ';*' to a path name pattern causes
+all generations to be listed or extracted.
+.Sh COMPATIBILITY
+.Nm
+is based heavily on the
+.Nm booz
+archive extractor by Rahul Dhesi, with some cleanup (so that it is now
+more portable and a little bit faster), and support for long file names,
+directories, and comments.
+.Pp
+.Nm
+differs in some details from
+.Nm booz
+and the
+.Nm zoo
+archiver tool.
+.Pp
+.Nm
+can only list and extract members from archives, like
+.Nm booz .
+.Nm zoo
+can also add members, delete members, etc.
+.Pp
+.Nm
+can extract members as text files, converting from universal text format
+to the local text format, if the
+.Fl a
+option is given, or the
+.Fl b
+option is not given, and the member has a comment starting
+with '!TEXT!'.  So in the absence of the
+.Fl a
+option and comments starting with '!TEXT!',
+.Nm
+behaves like
+.Nm zoo
+and
+.Nm booz ,
+which always extract as binary.  But
+.Nm
+can correctly extract text files from archives that were created under
+UNIX (or other systems using the universal text format) and extended
+with '!TEXT!' comments on systems such as DOS, VMS, Macintosh.
+.P
+.Nm
+can handle long names, which it converts in a system dependent manner to
+local names, like
+.Nm zoo
+(this may not be available on all systems).
+.Nm booz
+always uses the short DOS format names.
+.Pp
+.Nm
+extracts members into subdirectories, which it automatically creates,
+like
+.Nm zoo
+(this may not be available on all systems).
+.Nm booz
+always extracts all members into the current directory.
+.Pp
+.Nm
+can handle comments and generations in the archive, like
+.Nm zoo .
+.Nm booz
+ignores all comments and generations.
+.Pp
+.Nm
+cannot handle members compressed with the old method, only with the new
+high method or not compressed at all.
+.Nm zoo
+and
+.Nm booz
+also handle members compress with the old method.  This shall be fixed
+soon.
+.Nm
+can handle archives in binary format under VMS, i.e., it is not
+necessary to convert them to stream linefeed format with 'bilf' first.
+.Nm zoo
+and
+.Nm booz
+require this conversion.
+.Pp
+.Nm
+is somewhat faster than
+.Nm zoo
+and
+.Nm booz .
+.Pp
+.Nm
+should be much easier to port than both
+.Nm zoo
+and
+.Nm booz .
+.Sh SEE ALSO
+.Xr booz 1
+.Xr ooz 1
+.Xr zoo 1
+.Sh AUTHOR
+.Nm
+was made by Martin Schoenert, based on
+.Nm booz
+by Rahul Dhesi.
