@@ -1,6 +1,6 @@
 SUBDIRS        = man src test
-EXTRA_DIST     = README.md UNLICENSE
-doc_DATA       = README.md UNLICENSE
+EXTRA_DIST     = README.md UNLICENSE ChangeLog.md
+doc_DATA       = README.md UNLICENSE ChangeLog.md
 
 ## Check if tagged in git
 release-hook:
