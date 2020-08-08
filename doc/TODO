@@ -4,8 +4,10 @@ Somewhat ordered TODO list
 - Support . as directory from command line
 - Investigate recursive support
 - Add basic tests
-- Add tests to provoke integrity check 64/32-bit problems
 - Reindent (gently) to KNF.  Today code is a mix of 3 spaces and tabs.
+  The included indent.sh script helps, but does not handle comments,
+  so be careful to maintain formatting/indentation since it sometimes
+  refers to positions in code next to it.
 - Replace hard-coded STDARG et al defines with configure checks
 - Break out vfprintf() et all replacement functions to a lib/ directory
 - Trace any unzoo.c changes that may include code fixes to zoo
