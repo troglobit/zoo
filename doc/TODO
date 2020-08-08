@@ -3,7 +3,6 @@ Somewhat ordered TODO list
 
 - Support . as directory from command line
 - Investigate recursive support
-- Document new novice commands -help and -version in zoo(1)
 - Add basic tests
 - Add tests to provoke integrity check 64/32-bit problems
 - Reindent (gently) to KNF.  Today code is a mix of 3 spaces and tabs.
