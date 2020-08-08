@@ -1,4 +1,6 @@
 AM_CPPFLAGS   = @MACHINE@ -DBIG_MEM -DNDEBUG
+EXTRA_DIST    = bilf.c bsd.c linux.c msdos.c vms.c sysv.c turbo.c
+
 bin_PROGRAMS  = zoo
 if ENABLE_FIZ
 bin_PROGRAMS += fiz
@@ -21,7 +23,7 @@ zoo_SOURCES   = addbfcrc.c addfname.c ar.h assert.h basename.c comment.c\
 		zooadd2.c zoodel.c zooext.c zoofilt.c zoolist.c		\
 		zoopack.c zoofns.h io.c zooio.h zoomem.h maketbl.c	\
 		maketree.c huf.c encode.c decode.c various.h errors.h	\
-		nixmode.i nixtime.i
+		nixmode.i nixtime.i mstime.i
 
 ooz_CPPFLAGS  = -DOOZ $(AM_CPPFLAGS)
 ooz_SOURCES   = addbfcrc.c addfname.c ar.h assert.h basename.c comment.c\
@@ -32,7 +34,7 @@ ooz_SOURCES   = addbfcrc.c addfname.c ar.h assert.h basename.c comment.c\
 		zooext.c zoofilt.c zoolist.c		\
 		zoopack.c zoofns.h io.c zooio.h zoomem.h maketbl.c	\
 		maketree.c huf.c encode.c decode.c various.h errors.h	\
-		nixmode.i nixtime.i
+		nixmode.i nixtime.i mstime.i
 
 unzoo_CPPFLAGS = @SYS@
 unzoo_SOURCES = unzoo.c
