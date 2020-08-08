@@ -41,6 +41,21 @@ char **arg_vector;      /* vector of arguments supplied to program */
 void spec_init (void);
 int instr (char *, char *);
 
+/* usage list including Novice commands */
+static int usage(int rc)
+{
+   printf("zoo: invalid or missing command, please use: 'acDeglLPTuUvx' or '-cmd' syntax\n"
+	  "Try 'zoo -h', 'zoo H', or the manual page zoo(1) for more information.\n");
+
+   return rc;
+}
+
+static int version(void)
+{
+   printf ("%s\n", PACKAGE_STRING);
+   return 0;
+}
+
 int main(argc,argv)
 	int argc;
 	char **argv;
@@ -49,19 +64,9 @@ int main(argc,argv)
 #ifndef OOZ
    static char incorrect_args[] = "Incorrect number of arguments.\n";
    int filecount;          /* how many filespecs supplied */
-#endif /* OOZ */
 
-#ifdef OOZ
-#else
-/* else not OOZ */
-      static char usage[] =
-	 "zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive [file(s)]\n";
-      static char nov_usage[] =
-	 "zoo -cmd archive[.zoo] [file(s)]  where -cmd is one of:\n";
-      char *option;
-
-      static char nov_cmds[] =
-         /* ADD=0EXT=5    MOV=14TES=20PRI=26 DEL=33  LIS=41UPD=47  FRE=55   COMMENT=64 */
+   /* ADD=0 EXT=5 MOV=14 TES=20 PRI=26 DEL=33 LIS=41 UPD=47 FRE=55 COMMENT=64 HELP=73 VER=79*/
+   static char nov_cmds[] =
            "-add -extract -move -test -print -delete -list -update -freshen -comment -help -version\n";
 
 #ifdef NOENUM
@@ -124,9 +129,9 @@ int main(argc,argv)
       zooexit (1);
    }
 #else
-/* else not OOZ */
    if (argc < 2)
-      goto show_usage;
+      return usage(0);
+
    filecount = argc - 3;
    option = str_dup(argv[1]);
 
@@ -146,12 +151,11 @@ int main(argc,argv)
 
    if (*option == 'H') ms_help(option);
    if (*option == 'h' || *option == 'H')
-       goto bigusage;
+      goto bigusage;
    if (strchr("-acDegflLPTuUvVx", *option) == NULL)
-       goto give_list;
+      return usage(1);
 
    if (*option == '-') {
-
 #ifdef NOENUM
       cmd = instr (nov_cmds, str_lwr(option));
 #else
@@ -159,17 +163,17 @@ int main(argc,argv)
 #endif
 
       if (strlen(option) < 2 || cmd == NONE)
-         goto show_usage;
+	 return usage(1);
       if (cmd == HELP)
 	 goto bigusage;
       if (cmd == VERS)
-	 goto show_version;
+	 return version();
       if (  ((cmd == ADD     || cmd == MOVE || cmd == FRESHEN ||
 	      cmd == UPDATE  || cmd == DELETE) && argc < 4) ||
             ((cmd == EXTRACT || cmd == TEST || cmd == LIST ||
 	      cmd == PRINT   || cmd == COMMENT) && argc < 3)) {
          fprintf (stderr, "%s", incorrect_args);
-         goto show_usage;
+	 return usage(1);
       }
    } else {
       char *wheresI;		/* will be null if I option not supplied */
@@ -186,10 +190,10 @@ int main(argc,argv)
 	  || (*option == 'g' && (!wheresA && argc < 4 || wheresA && argc != 3))) {
 
 	 if (*option == 'v')
-	    goto show_version;
+	    return version();
 
          fprintf (stderr, "%s", incorrect_args);
-         goto show_usage;
+	 return usage(0);
       }
    }
 #endif /* end of not OOZ */
@@ -235,9 +239,10 @@ encode() will use all of it. */
          case DELETE:   zoodel (zooname, "DP",1); break;
          case LIST:     zoolist (&argv[2], "VC", argc-2); break;
          case COMMENT:  comment (zooname, "c"); break;
-         default: goto show_usage;
+         default:
+	    return usage(0);
       }
-   } else
+   } else {
       switch (*option) {
 
          case 'a':
@@ -268,24 +273,10 @@ encode() will use all of it. */
          case 'c':
             comment (zooname, option); break;
          default:
-            goto give_list;
+	    return usage(1);
       }
+   }
    zooexit (0);      /* don't fall through */
-
-/* usage list including Novice commands */
-show_usage:
-   printf("zoo: missing command, please specify one of 'acDeglLPTuUvx' or '-cmd' syntax\n"
-	  "Try 'zoo -h', 'zoo H', or the manual page zoo(1) for more information.\n");
-   zooexit (0);
-
-show_version:
-   printf ("%s\n", PACKAGE_STRING);
-   zooexit (0);
-
-/* brief usage list */
-give_list:
-   printf ("Usage: %s", usage);
-   zooexit (1);
 
 /* help screen */
 bigusage:
