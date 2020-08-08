@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# See dpkg-buildflags(1) manpage
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --with autoreconf
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -f debian/zoo/usr/share/doc/zoo/UNLICENSE
+
+override_dh_installchangelogs:
+	dh_installchangelogs ChangeLog.md

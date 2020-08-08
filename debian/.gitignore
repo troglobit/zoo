@@ -1,0 +1,12 @@
+*.substvars
+*.log
+.debhelper/*
+*.debhelper
+debhelper-build-stamp
+zoo/*
+unzoo/*
+ooz/*
+fiz/*
+tmp/*
+files
+autoreconf.*

@@ -1,0 +1,29 @@
+Source: zoo
+Section: utils
+Priority: optional
+Maintainer: Joachim Nilsson <troglobit@gmail.com>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.3.0
+Homepage: https://github.com/troglobit/zoo
+Vcs-Browser: https://github.com/troglobit/zoo
+Vcs-Git: https://github.com/troglobit/zoo.git
+
+Package: zoo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: manipulate zoo archives
+ zoo is used to create and maintain collections of files in compressed
+ form.  It uses a Lempel-Ziv-Welch compression algorithm that gives
+ space savings in the range of 20% to 80% depending on the type of file
+ data.  Unlike most other archivers, zoo can store and selectively
+ extract multiple generations of the same file.
+
+Package: unzoo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: zoo archive extractor
+ unzoo is a zoo archive extractor.  A zoo archive can contain several
+ files, called its members, usually in compressed form to save space.
+ unzoo can list all or selected members or extract all or selected
+ members, i.e., uncompress them and write them to files.  It cannot add
+ new members or delete members.  For this you need the zoo(1) archiver.

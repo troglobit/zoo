@@ -12,4 +12,3 @@ Somewhat ordered TODO list
 - Break out vfprintf() et all replacement functions to a lib/ directory
 - Trace any unzoo.c changes that may include code fixes to zoo
 - Break apart unzoo.c into the original pieces, increase code sharing
-- debian/ build files, NOTE: changes to copyright file -> public-domain

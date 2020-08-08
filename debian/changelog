@@ -1,0 +1,292 @@
+zoo (2.10-28) unstable; urgency=low
+
+  * QA upload.
+  * Set Maintainer field to QA Group.
+  * Bump Standards-Version to 3.9.6.
+  * Update Homepage field.
+
+ -- Emanuele Rocca <ema@debian.org>  Wed, 16 Dec 2015 16:22:21 +0100
+
+zoo (2.10-27) unstable; urgency=low
+
+  * debian/rules
+    - Check for DEB_BUILD_ARCH_BITS and enable makefile target
+      "linux64" needed for AMD64 03 patch. See LP#892788 and Debian
+      bug #335114. Thanks ultrapeer <ultrapeer@lavabit.com> and
+      original patch 03 fixes by Carl Johnson <carlj@peak.org>.
+  * debian/patches
+    - Canonicalize all file names to use dash(-) between words.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Wed, 13 Jun 2012 10:18:22 +0300
+
+zoo (2.10-26) unstable; urgency=low
+
+  * debian/clean
+    - New file.
+  * debian/compat
+    - Update to 9
+  * debian/control
+    - (Build-Depends): update to debhelper 9.
+  * debian/copyright
+    - Update to format 1.0.
+  * debian/patches
+    - (From, Subject): Add DEP3 patch headers.
+    - (03): Correct typo in patch. Corrects corruption problem in AMD64.
+      See LP#892788 discussion for details.
+  * debian/rules
+    - Use hardened CFLAGS; enable all hardening.
+      http://wiki.debian.org/ReleaseGoals/SecurityHardeningBuildFlags
+    - Move cleaning to debian/clean.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Sat, 24 Mar 2012 03:43:51 -0400
+
+zoo (2.10-25) unstable; urgency=low
+
+  * debian/patches:
+    - (10, 12, 14, 20): Enable hardened build flags through dpkg-buildflags.
+      Patches thanks to Moritz Muehlenhoff <jmm@debian.org>.
+      (Closes: #655499).
+
+ -- Jari Aalto <jari.aalto@cante.net>  Wed, 11 Jan 2012 21:54:22 +0200
+
+zoo (2.10-24) unstable; urgency=low
+
+  * debian/control
+    - (Uploaders): Remove field. Previous maintainer.
+  * debian/copyright
+    - (Format): Use versioned URL (Lintian).
+  * debian/rules
+    - (override_dh_auto_build): Restore makefile after makedepend.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Sun, 06 Nov 2011 21:30:33 +0200
+
+zoo (2.10-23) unstable; urgency=low
+
+  [ Jari Aalto ]
+  * debian/control
+    (Build-Depends): Add xutils-dev due to makedepend program.
+  * debian/rules
+    (override_dh_auto_build): Call makedepend which rewrites
+    section '# DO NOT DELETE THIS LINE' in makefile. (FTBFS; Closes: #640569).
+
+  [ Ricardo Mones ]
+  * debian/control
+    - (Standards-Version): update to 3.9.2.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Tue, 06 Sep 2011 08:28:26 +0300
+
+zoo (2.10-22) unstable; urgency=low
+
+  * New maintainer (Close: #581034).
+  * debian/chnagelog
+    - Delete EOL whitespaces.
+  * debian/compat
+    - Update to 8.
+  * debian/control
+    - (Build-Depends): Remove cdbs, quilt. Use debhelper 8.
+    - (Standards-Version): update to 3.9.1.
+    - (Vcs-*): New fields.
+  * debian/copyright
+    - Use DEP5.
+  * debian/zoo.install
+    - New file.
+  * debian/zoo.manpages
+    - New file.
+  * debian/rules
+    - Move to dh(1).
+
+ -- Jari Aalto <jari.aalto@cante.net>  Sat, 05 Mar 2011 15:26:59 +0200
+
+zoo (2.10-21.1) unstable; urgency=low
+
+  [ Jari Aalto ]
+  * Non-maintainer upload.
+    - Move to packaging format "3.0 (quilt)" due to patch
+      (FTBFS; Closes: #484969).
+      Patch thanks to Vincent Legout <vincent@legout.info>.
+  * debian/control
+    - (Build-Depends): Update to debhelper 7.1.
+    - (Depends): Add ${misc:Depends}.
+    - (Standards-Version): Update to 3.8.4.
+  * debian/rules
+    - Remove simple-patchsys.mk obsoleted by new package format.
+  * debian/source/format
+   - New file
+
+ -- Jari Aalto <jari.aalto@cante.net>  Wed, 05 May 2010 20:27:34 +0300
+
+zoo (2.10-21) unstable; urgency=low
+
+  * Converted package to CDBS with quilt.
+    - Added Build-Depends: cdbs, quilt
+    - Removed Build-Depends: dpatch
+  * debian/control:
+    - Bump Standards-Version: 3.7.3.
+    - Changed Homepage to header.
+  * debian/copyright:
+    - Reorganized this file.
+    - Encoded to UTF-8.
+  * Added patch to Reduce outputted newlines in help screens, thanks to Jari
+    Aalto <jari.aalto@cante.net>. (Closes: #466060)
+  * Added patch to Disable 'hit return to continue' screens, thanks to Jari
+    Aalto <jari.aalto@cante.net>. (Closes: #466059)
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Sat, 22 Mar 2008 15:25:01 -0300
+
+zoo (2.10-20) unstable; urgency=low
+
+  * Solved lintian "debian-rules-ignores-make-clean-error"
+  * rules: removed -s option from install to complain with nostrip build
+    option (policy 10.1). (Closes: #438366)
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Fri, 21 Sep 2007 20:48:04 -0300
+
+zoo (2.10-19) unstable; urgency=low
+
+  * Bump Standards-Version: 3.7.2.
+  * Added Homepage in debian/control.
+  * Added patch to solve "CVE-2007-1673: denial of service (infinite loop)",
+    thanks to Jean-Sébastien Guay-Lerou <jean-sebastie@nguay-leroux.com>.
+    (Closes: #424686)
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Fri, 18 May 2007 14:32:12 -0300
+
+zoo (2.10-18) unstable; urgency=low
+
+  * Added patch to solve "CVE-2006-1269: local arbitrary code execution",
+    thanks to Alec Berryman <alec@thened.net> (closes: #367858)
+  * Updated to DH_COMPAT 5
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Fri, 19 May 2006 19:23:24 -0300
+
+zoo (2.10-17) unstable; urgency=low
+
+  * Added 04_fix_fullpath_buffer_overflow patch to fix a Buffer Overflow,
+    CAN-2006-0855. Thanks to Jean-SébastienGuay-Leroux
+    <jean-sebastien_at_guay-leroux.com>, (closes: #354461)
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Fri,  3 Mar 2006 18:56:02 -0300
+
+zoo (2.10-16) unstable; urgency=low
+
+  * Added 03_fix_manage_archive_under_AMD64 patch, thanks to carlj
+    <Carl.Johnson.carlj@peak.org>. (closes: #335114)
+  * Updated debian/rules to test and compile to AMD64.
+  * Updated to Standards-Version 3.6.2.
+  * Changed 01_old_fixes dpatch to solve problem "missing \?" in zoo.1.
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Wed, 16 Nov 2005 16:48:24 -0200
+
+zoo (2.10-15) unstable; urgency=low
+
+  * Added dpatch as Build-Depends in debian/control.
+  * Added debian/watch file. (closes: #322246)
+  * Updated linux.c in 01_old_fixes. (closes: #322194)
+    Thanks to Robert Millan <rmh@aybabtu.com>
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Tue,  9 Aug 2005 15:07:48 -0300
+
+zoo (2.10-14) unstable; urgency=low
+
+  * Changed call from "mktemp" to "mkstemp" in zoopack.c file.
+  * Added debian/patches/00options, debian/patches/00list and
+    debian/patches/00template files.
+  * Updated rules and control to use dpatch.
+  * Added 01_old_fixes.dpatch file with old changes.
+  * Added 02_traversal_directory.dpatch to solve problem with "directory
+    traversal security bug - CVE id CAN-2005-2349". Thanks to
+    Jorge Ventura <jorge.ventura@fusemail.com> (closes: #309594)
+  * Changed upstream source link in copyright file.
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Fri, 22 Jul 2005 12:59:07 -0300
+
+zoo (2.10-13) unstable; urgency=low
+
+  * Updated zoo.1 file (thanks to A Costa <agcosta@gis.net>). (closes: #302817)
+  * Changed email of Mantainer in control file.
+  * Updated fiz.1 file (thanks to A Costa <agcosta@gis.net>). (closes: #309874)
+
+ -- Jose Carlos Medeiros <debian@psabs.com.br>  Tue,  7 Jun 2005 20:47:51 -0300
+
+zoo (2.10-12) unstable; urgency=low
+
+  * New maintainer (closes: #302895)
+  * Created compat file.
+  * Deleted debian/docs unused file.
+  * Changed rules to complain debhelper > 4.0.
+  * Changed README.compilers to README.debian.
+
+ -- Jose Carlos Medeiros <jose@psabs.com.br>  Wed, 13 Apr 2005 18:39:14 -0300
+
+zoo (2.10-11) unstable; urgency=low
+
+  * New maintainer (closes: #258470)
+  * Move to main from non-free (zoo is now in public domain).
+  * Updated copyright file
+  * Updated zoo.1 file
+  * Removed unnecessary, compile related files from the binary package.
+  * Standards-Version: 3.6.1.0
+
+ -- Niklas Vainio <nvainio+deb@iki.fi>  Sat, 10 Jul 2004 21:29:26 +0300
+
+zoo (2.10-10) unstable; urgency=low
+
+  * Recompile to allow prelinking (closes: #231547).
+
+ -- Petr Cech <cech@debian.org>  Mon,  9 Feb 2004 12:02:32 +0100
+
+zoo (2.10-9) unstable; urgency=low
+
+  * Fix build with new glibc-2.2 (closes: #94865)
+
+ -- Petr Cech <cech@debian.org>  Sun, 22 Apr 2001 22:17:14 +0200
+
+zoo (2.10-8) unstable; urgency=low
+
+  * Added README.compilers.
+  * Standards-version: 3.2.1.
+  * Glibc-2.2 build.
+  * Fix long utibuf[2] to struct utimbuf.
+
+ -- Petr Cech <cech@debian.org>  Tue, 17 Oct 2000 15:07:50 +0200
+
+zoo (2.10-7) unstable; urgency=low
+
+  * Don't know how, but the copyright was gone
+  * Added documentation from source package
+
+ -- Petr Cech <cech@debian.org>  Sat, 16 May 1998 11:32:30 +0200
+
+zoo (2.10-6) frozen unstable; urgency=low
+
+  * Use debhelper.
+  * Added some includes and prototypes to have less warnings
+  * New maintainer.
+  * updated to 2.4.1
+
+ -- Petr CECH <Petr.Cech@st.mff.cuni.cz>  Fri,  8 May 1998 01:06:39 +0200
+
+zoo (2.10-5) unstable; urgency=low
+
+  * Orphaned the package.
+  * debian/control (Standards-Version): updated to 2.4.0.0 [#16772].
+  * debian/control (Section): changed to non-free/utils [fails #3 of DFSG].
+  * debian/control (Maintainer): set to debian-qa list.
+  * debian/rules: rewritten.
+
+ -- James Troup <jjtroup@comp.brad.ac.uk>  Wed,  4 Mar 1998 02:17:57 +0000
+
+zoo (2.10-4) unstable; urgency=low
+
+  * Rebuilt for libc6.
+
+ -- James Troup <jjtroup@comp.brad.ac.uk>  Wed, 25 Jun 1997 17:04:23 +0000
+
+zoo (2.10-3) unstable; urgency=low
+
+  * New maintainer.
+  * Updated package to standards version 2.1.1.2.
+  * Removed executables from source package.
+  * Added better linux support, fixes bug #3961 and #4904.
+
+ -- James Troup <jjtroup@comp.brad.ac.uk>  Wed, 22 Jan 1997 02:18:51 +0000
