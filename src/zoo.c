@@ -29,8 +29,6 @@ static void wait_return();
 int verbose = 0;
 #endif
 
-int instr (char *, char *);
-
 char *out_buf_adr;      /* points to memory allocated for output buffer(s) */
 char *in_buf_adr;       /* points to memory allocated for input buffer */
 
@@ -39,6 +37,9 @@ int quiet = 0;             /* whether to be quiet */
 int next_arg = FIRST_ARG; /* filenames start at this position */
 int arg_count;          /* count of arguments supplied to program */
 char **arg_vector;      /* vector of arguments supplied to program */
+
+void spec_init (void);
+int instr (char *, char *);
 
 int main(argc,argv)
 	int argc;
@@ -77,22 +78,19 @@ int main(argc,argv)
 #define COMMENT   64
 #define HELP      73
 #define VERS      79
-
-int cmd = NONE;
-
+   int cmd = NONE;
 #else
    enum choice {
       NONE = -1, ADD = 0, EXTRACT = 5, MOVE = 14, TEST = 20, PRINT = 26,
       DELETE = 33, LIST = 41, UPDATE = 47, FRESHEN = 55, COMMENT = 64, HELP = 73, VERS = 79
    };
-   enum choice cmd = NONE;          /* assume no Novice command */
-#endif
+   enum choice cmd = NONE;	/* assume no Novice command */
+#endif /* NOENUM */
 
-#endif /* end of not OOZ */
+#endif /* !OOZ */
 
 #ifdef SPECINIT
-	void spec_init (void);
-	spec_init();							/* system-specific startup code */
+   spec_init();			/* system-specific startup code */
 #endif
 
 	/* make sure T_UINT16 is an unsigned 16-bit type, exactly.  This
