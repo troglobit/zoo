@@ -13,6 +13,10 @@ AC_PROG_INSTALL
 AC_HEADER_STDC
 AC_CHECK_HEADERS
 
+AC_ARG_ENABLE([ooz],
+	AS_HELP_STRING([--enable-ooz], [legacy ooz unarchiver, same as unzoo/booz]))
+AM_CONDITIONAL([ENABLE_OOZ], [test "x$enable_ooz" = "xyes"])
+
 AC_CANONICAL_HOST
 case $host in
   *-linux*)
