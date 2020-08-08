@@ -120,7 +120,7 @@ while (*option) {
 			}
       default:
          prterror ('f', inv_option, *option);
-         /* break; */
+         break;
    }
    option++;
 }

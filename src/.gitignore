@@ -1,5 +1,6 @@
 *.o
 .deps/
 fiz
+ooz
 zoo
 unzoo

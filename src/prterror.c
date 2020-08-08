@@ -92,14 +92,11 @@ char too_many_files[]     = "Some filenames ignored -- can only handle %d.\n";
 char packfirst[]          = "Old format archive -- please pack first with P command.\n";
 char garbled[]            = "Command is garbled.\n";
 char start_ofs[]          = "Starting at %ld (offset %ld)\n";
-
-#ifndef OOZ
 char wrong_version[]      = "Zoo %d.%d or later is needed to fully manipulate this archive.\n";
 char cant_process[]       = "The rest of the archive (%lu bytes) cannot be processed.\n";
 char option_ignored[]     = "Ignoring option %c.\n";
 char inv_option[]         = "Option %c is invalid.\n";
 char bad_crc[]            = "\007Bad CRC, %s probably corrupted\n";
-#endif
 
 #ifdef OOZ
 char could_not_open[]     = "Could not open ";

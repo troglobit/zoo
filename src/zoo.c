@@ -40,6 +40,7 @@ char **arg_vector;			 /* vector of arguments supplied to program */
 
 void spec_init(void);
 int instr(char *, char *);
+void putstr (char *);
 
 static int help(void)
 {
@@ -143,7 +144,9 @@ char **argv;
 	};
 	enum choice cmd = NONE;		 /* assume no Novice command */
 #endif /* NOENUM */
-
+#else
+	static char usage1[] = "Ooz 2.11 (2004/06/19) public domain Zoo unarchiver utility by Rahul Dhesi\n";
+	static char usage2[] = "Usage:  ooz archive[.zoo]  (\"ooz -h\" for help)\n";
 #endif /* !OOZ */
 
 #ifdef SPECINIT

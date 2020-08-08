@@ -10,7 +10,6 @@
 
 #include "config.h"
 
-#define ZOO		/* always defined */
 #define PORTABLE	/* always defined */
 #define ZOOCOMMENT	/* always defined */
 

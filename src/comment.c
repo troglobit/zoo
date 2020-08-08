@@ -74,6 +74,7 @@ char *zoo_path, *option;
 	gettime(zoo_file, &zoo_date, &zoo_time);
 #endif
 
+#ifndef OOZ
 	/*
 	 * read header and rewrite with updated version numbers, but ask
 	 * user to pack archive first if archive comment is to be added
@@ -87,6 +88,7 @@ char *zoo_path, *option;
 #else
 	rwheader(&zoo_header, zoo_file, 1);
 #endif
+#endif /* !OOZ */
 
 #ifdef ZOOCOMMENT
 	/* if archive comment being added, handle it and return */

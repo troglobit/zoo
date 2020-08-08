@@ -19,14 +19,11 @@ extern char too_many_files[];
 extern char packfirst[];
 extern char garbled[];
 extern char start_ofs[];
-
-#ifndef OOZ
 extern char wrong_version[];
 extern char cant_process[];
 extern char option_ignored[];
 extern char inv_option[];
 extern char bad_crc[];
-#endif
 
 extern char could_not_open[];
 
