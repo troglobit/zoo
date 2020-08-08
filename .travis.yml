@@ -26,6 +26,6 @@ script:
   - DESTDIR=/tmp/tok make install-strip
   - PATH=/tmp/tok/bin:$PATH make check
   - tree /tmp/tok
-  - ldd /tmp/tok/bin/zoo /tmp/tok/bin/fiz
+  - ldd /tmp/tok/bin/zoo /tmp/tok/bin/unzoo
   - /tmp/tok/bin/zoo h
   - /tmp/tok/bin/zoo H
