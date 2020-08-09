@@ -32,7 +32,6 @@ int isfdir(char *);
  * However, if ignore1 is NULL, both these tests are skipped and all
  * files will be added to the list.
  */
-
 void makelist(argc, argv, flist, flistsize, ignore1, ignore2, ignore3, longest)
 int argc;				 /* number of filespec supplied */
 char *argv[];				 /* array of pointers to supplied filespecs */
@@ -122,17 +121,16 @@ int *longest;				 /* length of longest name in list */
 				if (samefile(this_name, ignore1) ||	/* exclude ignored files */
 				    samefile(this_name, ignore2) || samefile(this_name, ignore3))
 					continue;
-
 #ifdef CHEKUDIR
 				if (isuadir(this_path))
 					continue;
-#else					 /* CHEKUDIR */
+#else
 #ifdef CHEKDIR
 				if (isfdir(this_path))
 					continue;
-#endif					 /* CHEKDIR */
-#endif					 /* CHEKUDIR */
-			}		 /* end if ignore1 ! = NULL */
+#endif
+#endif
+			}
 
 			/* 
 			 * If WILDCARD is defined (e.g. AmigaDOS, MS-DOS, VAX/VMS), then nextfile()

@@ -122,11 +122,11 @@ char *option;				 /* option string */
 
 	int use_lzh = 0;		 /* whether to use lzh compression */
 
-/* on entry option points to first letter */
+	/* on entry option points to first letter */
 	opts_add(option, &zootime, &quiet, &suppress, &move, &new, &pack,
 		 &update, &add_comment, &z_fmt, &need_dir, &inargs, &genson, &use_lzh, &add_global_comment);
 
-/* POSSIBLE RACE CONDITION BETWEEN TESTING EXISTENCE AND CREATING FILE */
+	/* POSSIBLE RACE CONDITION BETWEEN TESTING EXISTENCE AND CREATING FILE */
 	if (exists(zoo_path)) {
 		zoo_file = zooopen(zoo_path, Z_RDWR);
 		zoo_status = OLD_ZOO;

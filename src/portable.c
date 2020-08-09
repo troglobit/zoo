@@ -310,7 +310,7 @@ struct zoo_header *zoo_header;
 ZOOFILE zoo_file;
 {
    int status;
-   BYTE bytes[SIZ_ZOOH];         /* canonical header representation */
+   BYTE bytes[SIZ_ZOOH] = { 0 }; /* canonical header representation */
 #ifdef TRACE_IO
    if (verbose) {
       printf("At file position [%8lx] ", ftell(zoo_file));
@@ -400,29 +400,31 @@ ZOOFILE zoo_file;
 
 #ifndef FIZ
 /***********************
-Function fwr_dir() writes a directory entry in a machine-independent manner
-to a ZOOFILE.  Return value is -1 on error, else 0.
-*/
+ * Function fwr_dir() writes a directory entry in a machine-independent
+ * manner to a ZOOFILE.  Return value is -1 on error, else 0.
+ */
 int fwr_dir(direntry, zoo_file)
 struct direntry *direntry;
 ZOOFILE zoo_file;
 {
-   int size;
-   BYTE bytes[MAXDIRSIZE];
-   assert (direntry->type <= 2);
-   size = dir_to_b (bytes, direntry);
+	int size;
+	BYTE bytes[MAXDIRSIZE] = { 0 };
+
+	assert(direntry->type <= 2);
+	size = dir_to_b(bytes, direntry);
+
 #ifdef TRACE_IO
-   if (verbose) {
-      printf("At file position [%8lx] ", ftell(zoo_file));
-      printf("fwr_dir: writing\n");
-      show_dir(direntry);
-   }
+	if (verbose) {
+		printf("At file position [%8lx] ", ftell(zoo_file));
+		printf("fwr_dir: writing\n");
+		show_dir(direntry);
+	}
 #endif
 
-   if (zoowrite (zoo_file, (char *) bytes, size) != size)
-      return (-1);
-   else
-      return (0);
+	if (zoowrite(zoo_file, (char *)bytes, size) != size)
+		return -1;
+
+	return 0;
 }
 
 /***********************
@@ -433,68 +435,80 @@ int fwr_zooh(zoo_header, zoo_file)
 struct zoo_header *zoo_header;
 ZOOFILE zoo_file;
 {
-   BYTE bytes[SIZ_ZOOH];	/* was SIZ_DIR -- probably a typo */
-	int hsize;					/* how much to write -- depends on header type */
-	hsize = MINZOOHSIZ;				/* in case it's an old type 0 header */
+	BYTE bytes[SIZ_ZOOH] = { 0 };		/* was SIZ_DIR -- probably a typo */
+	int hsize;				/* how much to write -- depends on header type */
+
+	hsize = MINZOOHSIZ;			/* in case it's an old type 0 header */
 	if (zoo_header->type > 0)		/* but if it's a newer header... */
-		hsize = SIZ_ZOOH;				/* ...size of new type 1 header */
-   zooh_to_b (bytes, zoo_header);
-   if (zoowrite (zoo_file, (char *) bytes, hsize) != hsize)
-      return (-1);
-   else
-      return (0);
+		hsize = SIZ_ZOOH;		/* ...size of new type 1 header */
+
+	zooh_to_b(bytes, zoo_header);
+	if (zoowrite(zoo_file, (char *)bytes, hsize) != hsize)
+		return -1;
+
+	return 0;
 }
 
 /***********************
-b_to_zooh() converts an array of BYTE to a zoo_header structure.
-*/
+ * b_to_zooh() converts an array of BYTE to a zoo_header structure.
+ */
 void b_to_zooh (zoo_header, bytes)
 struct zoo_header *zoo_header;
 BYTE bytes[];
 {
-   int i;
-   for (i = 0; i < SIZ_TEXT; i++)                     /* copy text */
-      zoo_header->text[i] = bytes[TEXT_I + i];
-   zoo_header->zoo_tag = to_long(&bytes[ZTAG_I]);     /* copy zoo_tag */
-   zoo_header->zoo_start = to_long(&bytes[ZST_I]);    /* copy zoo_start */
-   zoo_header->zoo_minus = to_long(&bytes[ZSTM_I]);
-   zoo_header->major_ver = bytes[MAJV_I];          /* copy versions */
-   zoo_header->minor_ver = bytes[MINV_I];
+	int i;
+
+	for (i = 0; i < SIZ_TEXT; i++)                    /* copy text */
+		zoo_header->text[i] = bytes[TEXT_I + i];
+
+	zoo_header->zoo_tag = to_long(&bytes[ZTAG_I]);    /* copy zoo_tag */
+	zoo_header->zoo_start = to_long(&bytes[ZST_I]);   /* copy zoo_start */
+	zoo_header->zoo_minus = to_long(&bytes[ZSTM_I]);
+
+	zoo_header->major_ver = bytes[MAJV_I];		  /* copy versions */
+	zoo_header->minor_ver = bytes[MINV_I];
+
 	/* default is no archive comment and a header type of 0 */
 	zoo_header->type = 0;
+
 	zoo_header->acmt_pos = 0L;
 	zoo_header->acmt_len = 0;
-	zoo_header->vdata		= 0;
-	if (zoo_header->zoo_start != FIXED_OFFSET) {			/* if newer header */
+	zoo_header->vdata    = 0;
+
+	if (zoo_header->zoo_start != FIXED_OFFSET) {	/* if newer header */
 		zoo_header->type = bytes[HTYPE_I];
 		zoo_header->acmt_pos = to_long(&bytes[ACMTPOS_I]);
 		zoo_header->acmt_len = to_int(&bytes[ACMTLEN_I]);
-		zoo_header->vdata		= bytes[HVDATA_I];
+		zoo_header->vdata    = bytes[HVDATA_I];
 	}
 }
 
 /***********************
-zooh_to_b() converts a zoo_header structure to an array of BYTE.
-*/
+ * zooh_to_b() converts a zoo_header structure to an array of BYTE.
+ */
 void zooh_to_b (bytes, zoo_header)
 struct zoo_header *zoo_header;
 BYTE bytes[];
 {
-   int i;
-   for (i = 0; i < SIZ_TEXT; i++)                     /* copy text */
-      bytes[TEXT_I + i] = zoo_header->text[i];
-   splitlong (&bytes[ZTAG_I], zoo_header->zoo_tag);
-   splitlong (&bytes[ZST_I], zoo_header->zoo_start);
-   splitlong (&bytes[ZSTM_I], zoo_header->zoo_minus);
-   bytes[MAJV_I] =   zoo_header->major_ver;           /* copy versions */ 
-   bytes[MINV_I] =   zoo_header->minor_ver;
-	bytes[HTYPE_I] =	zoo_header->type;						/* header type */
+	int i;
+
+	for (i = 0; i < SIZ_TEXT; i++)
+		bytes[TEXT_I + i] = zoo_header->text[i];
+
+	splitlong(&bytes[ZTAG_I], zoo_header->zoo_tag);
+	splitlong(&bytes[ZST_I],  zoo_header->zoo_start);
+	splitlong(&bytes[ZSTM_I], zoo_header->zoo_minus);
+
+	bytes[MAJV_I]  = zoo_header->major_ver;         /* copy versions */ 
+	bytes[MINV_I]  = zoo_header->minor_ver;
+
+	bytes[HTYPE_I] = zoo_header->type;		/* header type */
 	if (zoo_header->type > 0) {
 		splitlong (&bytes[ACMTPOS_I], zoo_header->acmt_pos);	/* comment posn */
 		splitint (&bytes[ACMTLEN_I], zoo_header->acmt_len);	/* comment len */
-		bytes[HVDATA_I] = zoo_header->vdata;					/* version data */
+		bytes[HVDATA_I] = zoo_header->vdata;			/* version data */
 	}
-} /* zooh_to_b() */
+}
 
 /************************
 dir_to_b() converts a directory entry structure to an array of BYTE.
@@ -577,7 +591,7 @@ BYTE bytes[];
    splitint(&bytes[DCRC_I], 0);           /* fill with zeroes */
    crccode = 0;
    /* avoid mixing pointers to signed and unsigned char */
-   addbfcrc((char *) bytes, totalsize); 		/* update CRC */
+   addbfcrc((char *)bytes, totalsize); 		/* update CRC */
    splitint(&bytes[DCRC_I], crccode);
 
    /* return total length of directory entry */

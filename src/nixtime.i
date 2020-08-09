@@ -25,19 +25,19 @@ int gettime (file, date, time)
 ZOOFILE file;
 unsigned *date, *time;
 {
-	struct stat buf;           /* buffer to hold file information */
+	struct stat st;            /* buffer to hold file information */
 	struct tm *tm;             /* will hold year/month/day etc. */
 	int handle;
 
 	handle = fileno(file);
-	if (handle < 0 || fstat(handle, &buf) == -1) {
+	if (handle < 0 || fstat(handle, &st) == -1) {
 		prterror('w', "Could not get file time\n");
 		*date = *time = 0;
 
 		return -1;
 	}
 
-	tm = localtime(&buf.st_mtime); /* get info about file mod time */
+	tm = localtime(&st.st_mtime); /* get info about file mod time */
 	*date = tm->tm_mday + ((tm->tm_mon + 1) << 5) +
 		((tm->tm_year - 80) << 9);
 	*time = tm->tm_sec / 2 + (tm->tm_min << 5) +

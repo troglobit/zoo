@@ -18,14 +18,13 @@ extern unsigned int crccode;
 extern unsigned crctab[];
 
 void addbfcrc(buffer,count)
-register char *buffer;
-register int count;
-
+char *buffer;
+int count;
 {
-   register unsigned int localcrc;
-   localcrc = crccode;
+	unsigned int localcrc;
+	localcrc = crccode;
 
-   for (; count--; )
-      localcrc = (localcrc>>8) ^ crctab[(localcrc ^ (*buffer++)) & 0x00ff];
-   crccode = localcrc;
+	while (count--)
+		localcrc = (localcrc >> 8) ^ crctab[(localcrc ^ (*buffer++)) & 0x00ff];
+	crccode = localcrc;
 }
