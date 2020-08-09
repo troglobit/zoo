@@ -197,7 +197,7 @@ char *option;				 /* option string */
 
 	/* make list of files, excluding archive and its backup */
 	longest = LONGEST;
-	flist = ealloc(MAXADD);
+	flist = ealloc(MAXADD * sizeof(VOIDPTR));
 	if (!inargs) {
 		makelist(argc, argv, flist, MAXADD - 2, zoo_fname, zoo_bak, ".", &longest);
 		/*                                      ^^         ^^       ^^ exclude */
