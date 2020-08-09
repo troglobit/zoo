@@ -422,7 +422,7 @@ char *option;				 /* option string */
 			if (zoo_status == NEW_ZOO) {
 				writedir(&direntry, zoo_file);	/* write null dir entry */
 			} else {
-				struct direntry tmpentry;
+				struct direntry tmpentry = { 0 };
 				long tmppos;
 				int oldlen, newlen;
 
