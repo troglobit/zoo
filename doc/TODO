@@ -3,6 +3,7 @@ Somewhat ordered TODO list
 
 - Support . as directory from command line
 - Investigate recursive support
+- Handle UNIX symlinks
 - Add basic tests
 - Reindent (gently) to KNF.  Today code is a mix of 3 spaces and tabs.
   The included indent.sh script helps, but does not handle comments,
