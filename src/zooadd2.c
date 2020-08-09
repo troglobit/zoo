@@ -287,6 +287,8 @@ struct direntry *direntry;
 #ifdef GETTZ
 	long gettz();
 #endif
+	memset(direntry, 0, sizeof(*direntry));
+
 	direntry->zoo_tag = ZOO_TAG;
 	direntry->type = 2;		     /* type is now 2 */
 #ifdef GETTZ
