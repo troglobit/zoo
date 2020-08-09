@@ -29,7 +29,7 @@ void show_comment(struct direntry *, ZOOFILE, int, char *);
 void get_comment(struct direntry *, ZOOFILE, char *);
 int needed(char *, struct direntry *, struct zoo_header *);
 
-void comment(zoo_path, option)
+int comment(zoo_path, option)
 char *zoo_path, *option;
 {
 #ifndef NOSIGNAL
@@ -103,9 +103,9 @@ char *zoo_path, *option;
 		settime(zoo_file, zoo_date, zoo_time);	/* restore timestamp */
 		zooclose(zoo_file);
 #endif
-		return;
+		return 0;
 	}
-#endif					 /* ZOOCOMMENT */
+#endif
 
 	/* Loop through and add comments for matching files */
 	while (1) {
@@ -147,6 +147,8 @@ char *zoo_path, *option;
 
 	if (!matched)
 		printf("Zoo:  %s", no_match);
+
+	return 0;
 }
 
 /********

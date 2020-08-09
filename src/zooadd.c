@@ -53,7 +53,7 @@ extern struct zoo_header zoo_header;
 extern char file_leader[];
 extern unsigned int crccode;
 
-void zooadd(zoo_path, argc, argv, option)
+int zooadd(zoo_path, argc, argv, option)
 char *zoo_path;				 /* pathname of zoo archive to add to */
 int argc;				 /* how many filespecs supplied */
 char **argv;				 /* array of pointers to filespecs */
@@ -285,7 +285,6 @@ char *option;				 /* option string */
 			direntry.dirlen = direntry.namlen = 0;
 		} else {
 #endif
-
 			/* Get timstamp of file being added */
 #ifdef GETUTIME
 			getutime(this_path, &direntry.date, &direntry.time);
@@ -748,6 +747,9 @@ char *option;				 /* option string */
 		add_global_comment = 0;
 	}
 
+
 	if (exit_status)
-		zooexit(1);
+		return 1;
+
+	return 0;
 }

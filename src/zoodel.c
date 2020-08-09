@@ -29,7 +29,7 @@ int ver_too_high (struct zoo_header *);
 
 extern int quiet;
 
-void zoodel (zoo_path, option, choice)
+int zoodel (zoo_path, option, choice)
 char *zoo_path;
 char *option;
 int choice;
@@ -176,7 +176,7 @@ if (*option == 'g') {
 		settime (zoo_file, zoo_date, zoo_time);
 		zooclose (zoo_file);
 #endif
-		return;
+		return 0;
 	}
 
    zooseek (zoo_file, zoo_header.zoo_start, 0); /* seek to where data begins */
@@ -300,4 +300,5 @@ if (file_deleted && pack) {   /* pack if files were deleted and user asked */
    prterror ('M', "done\n");
 }
 
+return !delcount;
 }

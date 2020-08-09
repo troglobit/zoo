@@ -112,7 +112,7 @@ int argc;
 char **argv;
 {
 	char *zooname;			 /* synonym for argv[2] -- to make life easier */
-
+	int rc;
 #ifndef OOZ
 	static char incorrect_args[] = "Incorrect number of arguments.\n";
 	int filecount;			 /* how many filespecs supplied */
@@ -282,88 +282,90 @@ char **argv;
 #else
 	if (cmd != NONE) {
 		switch (cmd) {
-
 		case ADD:
-			zooadd(zooname, filecount, &argv[3], "aP:");
+			rc = zooadd(zooname, filecount, &argv[3], "aP:");
 			break;
 		case FRESHEN:
-			zooadd(zooname, filecount, &argv[3], "auP:");
+			rc = zooadd(zooname, filecount, &argv[3], "auP:");
 			break;
 		case UPDATE:
-			zooadd(zooname, filecount, &argv[3], "aunP:");
+			rc = zooadd(zooname, filecount, &argv[3], "aunP:");
 			break;
 		case MOVE:
-			zooadd(zooname, filecount, &argv[3], "aMP:");
+			rc = zooadd(zooname, filecount, &argv[3], "aMP:");
 			break;
 
 		case EXTRACT:
-			zooext(zooname, "x");
+			rc = zooext(zooname, "x");
 			break;
 		case TEST:
-			zooext(zooname, "xNd");
+			rc = zooext(zooname, "xNd");
 			break;
 		case PRINT:
-			zooext(zooname, "xp");
+			rc = zooext(zooname, "xp");
 			break;
 
 		case DELETE:
-			zoodel(zooname, "DP", 1);
+			rc = zoodel(zooname, "DP", 1);
 			break;
 		case LIST:
-			zoolist(&argv[2], "VC", argc - 2);
+			rc = zoolist(&argv[2], "VC", argc - 2);
 			break;
 		case COMMENT:
-			comment(zooname, "c");
+			rc = comment(zooname, "c");
 			break;
 		default:
-			return usage(0);
+			rc = usage(0);
+			break;
 		}
 	} else {
 		switch (*option) {
 		case 'a':
 		case 'u':
 		case 'T':
-			zooadd(zooname, filecount, &argv[3], option);
+			rc = zooadd(zooname, filecount, &argv[3], option);
 			break;
 #ifdef FILTER
 		case 'f':
-			zoofilt(option);
+			rc = zoofilt(option);
 			break;
 #endif
 		case 'D':
-			zoodel(zooname, option, 1);
+			rc = zoodel(zooname, option, 1);
 			break;
 		case 'U':
-			zoodel(zooname, option, 0);
+			rc = zoodel(zooname, option, 0);
 			break;
 		case 'g':
-			zoodel(zooname, option, 2);
+			rc = zoodel(zooname, option, 2);
 			break;
 		case 'v':
 		case 'V':
 		case 'l':
-			zoolist(&argv[2], option, 1);
+			rc = zoolist(&argv[2], option, 1);
 			break;
 		case 'L':
-			zoolist(&argv[2], option, argc - 2);
+			rc = zoolist(&argv[2], option, argc - 2);
 			break;
 		case 'e':
 		case 'x':
-			zooext(zooname, option);
+			rc = zooext(zooname, option);
 			break;
 		case 'P':
 			zoopack(zooname, option);
 			break;
 		case 'c':
-			comment(zooname, option);
+			rc = comment(zooname, option);
 			break;
 		default:
-			return usage(1);
+			rc = usage(1);
+			break;
 		}
 	}
 
+	free(out_buf_adr);
 #endif /* OOZ */
-	return 0;			 /* keep lint & compilers happy */
+	return rc;			 /* keep lint & compilers happy */
 }
 
 /* multi-screen help facility thanks to Bill Davidsen */

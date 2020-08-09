@@ -27,7 +27,7 @@ int wrint (unsigned int);	/* write an unsigned int */
 /* global variable used to pass two bytes (CRC value) back from lzd to here */
 unsigned int filt_lzd_word;
 
-void zoofilt (option)
+int zoofilt(option)
 char *option;
 {
 	int choice;			/* what to do -- [de]compress */
@@ -53,25 +53,23 @@ char *option;
 			stat2 = (use_lzh ? lzh_encode : lzc) (STDIN, STDOUT);
 			stat3 = wrint (crccode);
 			if (stat1 == 0 && stat2 == 0 && stat3 == 0)
-				zooexit (0);
-			else {
-				fprintf (stderr, "Zoo: FATAL: Compression error.\n");
-				zooexit (1);
-			}
-			break;
+				return 0;
+
+			fprintf (stderr, "Zoo: FATAL: Compression error.\n");
+			return 1;
 		case UNCOMPRESS:
 			stat1 = rdint (&filetag);
 			if (stat1 != 0 || filetag != FTAG)
 				zooexit (1);
 			stat2 = (use_lzh ? lzh_decode : lzd) (STDIN, STDOUT);
 			if (stat2 == 0 && filt_lzd_word == crccode)
-				zooexit (0);
-			else {
-				fprintf (stderr, "Zoo: FATAL: Uncompression error.\n");
-				zooexit (1);
-			}
-			break;
+				return 0;
+
+			fprintf (stderr, "Zoo: FATAL: Uncompression error.\n");
+			return 1;
 	}
-} /* zoofilt */
+
+	return 0;
+}
 
 #endif /* FILTER */

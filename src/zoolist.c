@@ -45,7 +45,7 @@ int needed (char *, struct direntry *, struct zoo_header *);
 void printtz (int);
 int fputchar (int);
 
-void zoolist (argv, option, argc)
+int zoolist(argv, option, argc)
 char **argv, *option;
 int argc;
 {
@@ -536,8 +536,10 @@ if (talking && show_name) {
 	
 
 if (!file_count)
-   zooexit (1);            /* Consider it an error if there were no files */
-} /* zoolist() */
+   return 1;            /* Consider it an error if there were no files */
+
+return 0;
+}
 
 #ifdef GETTZ
 void printtz (file_tz)

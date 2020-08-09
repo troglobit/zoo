@@ -51,7 +51,7 @@ static int tofile;                     /* true if not pipe or null device */
 extern unsigned int crccode;
 extern char *out_buf_adr;              /* address of output buffer */
 
-void zooext(zoo_path, option)
+int zooext(zoo_path, option)
 char *zoo_path, *option;
 {
 char *whichname;                          /* which name to extract */
@@ -619,8 +619,7 @@ if (badcrc_count) {
 } else if (null_device)
    prterror ('m', "Archive seems OK.\n");
 
-zooexit (exit_status);
-
+return exit_status;
 } /* end zooext */
 
 /* close_file() */

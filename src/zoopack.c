@@ -46,7 +46,7 @@ int break_hit;
 
 int ver_too_high (struct zoo_header *);
 
-void zoopack(zoo_path, option)
+int zoopack(zoo_path, option)
 char *zoo_path, *option;
 {
 char temp_file[PATHSIZE];
@@ -222,7 +222,8 @@ while (1) {
                if ((zoolength = ftell (zoo_file)) != -1L)
                   printf (cant_process, zoolength - currpos);
       }
-      zooexit (1);
+
+      return 1;
    }
    if (direntry.next == 0L) {                /* END OF CHAIN */
       break;                                 /* EXIT on end of chain */
@@ -278,7 +279,7 @@ while (1) {
                if (status == 2 || status == 3) {
                   prterror ('F', disk_full);
                   printf (partial_msg, temp_file);
-                  zooexit (1);
+		  return 1;
                } else
                   prterror ('f', internal_error);
          } else {
@@ -313,7 +314,7 @@ while (1) {
          signal (SIGINT, oldsignal);
 #endif
          if (break_hit)
-            zooexit (1);
+            return 1;
          zooseek (new_file, direntry.next, 0);  /* back to end of new archive */
       }  /* end if (lseek ... */
    } /* end if (!direntry.deleted) */
@@ -365,7 +366,7 @@ if (extcount == 0) {
 
    if (chname (zoo_path, temp_file)) {
       prterror ('w', "Renaming error.  Packed archive is now in %s.\n", temp_file);
-      zooexit (1);
+      return 1;
    }
 
 /*
@@ -378,6 +379,7 @@ OSs might not allow renaming of read-only files
 
 } /* end if */
 
+return 0;
 } /* end zoopack() */
 
 /* handle_break() */
