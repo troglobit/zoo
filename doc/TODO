@@ -2,7 +2,6 @@ Somewhat ordered TODO list
 ==========================
 
 - Handle UNIX symlinks
-- Creation time (or mtime) of new archives are way back in 1970?
 - Add basic tests
 - Reindent (gently) to KNF.  Today code is a mix of 3 spaces and tabs.
   The included indent.sh script helps, but does not handle comments,

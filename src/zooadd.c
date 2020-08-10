@@ -352,7 +352,12 @@ char *option;				 /* option string */
 		}
 #endif
 
-	/* get file time;  also fix name */
+		/* Create directory entry for new file (but don't add just yet) */
+		/* NOTE:  we already got file date and time above for update option */
+		/* add tag, type, timezone, struc, system_id, and var_dir_len */
+		newdir(&direntry);
+
+		/* get file time;  also fix name */
 #ifndef PORTABLE
 		if (z_fmt) {
 			direntry.date = tiny_header.date;
@@ -411,11 +416,6 @@ char *option;				 /* option string */
 
 		   add = U' (N' + I') + U (IR  + I'N)
 		*/
-
-		/* Create directory entry for new file (but don't add just yet) */
-		/* NOTE:  we already got file date and time above for update option */
-		/* add tag, type, timezone, struc, system_id, and var_dir_len */
-		newdir(&direntry);
 
 		/* Get the filename to use for this addition.  */
 		whichname = choosefname(&direntry);
