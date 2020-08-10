@@ -823,6 +823,9 @@ char *option;				 /* option string */
 		add_global_comment = 0;
 	}
 
+	for (fptr = 0; flist[fptr]; fptr++)
+		free(flist[fptr]);
+	free(flist);
 
 	if (exit_status)
 		return 1;
