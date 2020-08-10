@@ -70,12 +70,13 @@ unsigned version_no;
 
 	/* allocate memory for empty entry at end */
 	fentry[lastname] = (struct item *)ealloc(sizeof(struct item));
+	fentry[lastname]->fname = NULL;
 }
 
 void fname_free(void)
 {
-	while (lastname) {
-		free(fentry[lastname]->fname);
+	while (lastname >= 0) {
+		efree(fentry[lastname]->fname);
 		free(fentry[lastname--]);
 	}
 	if (fentry)
@@ -112,7 +113,9 @@ int justname;
 	*high_version_no = 0;
 	if (justname)
 		fname = nameptr(fname);	 /* if directory wanted */
-	fentry[lastname]->fname = fname; /* sentinel */
+	if (fentry[lastname]->fname)
+		efree(fentry[lastname]->fname);
+	fentry[lastname]->fname = str_dup(fname); /* sentinel */
 	fentry[lastname]->version_no = 0;
 
 	while (COMPARE(fname, FN(i)) != 0)

@@ -364,6 +364,7 @@ char **argv;
 	}
 
 	free(out_buf_adr);
+	efree_all();
 #endif /* OOZ */
 	return rc;			 /* keep lint & compilers happy */
 }

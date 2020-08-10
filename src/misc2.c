@@ -20,6 +20,12 @@
 
 #define  BLOCK_SIZE  512		 /* memory allocation granularity */
 
+/* Array of emalloc()'ed ptrs for efree() */
+#ifndef USE_MALLOC
+static size_t    num;
+static VOIDPTR  *arr;
+#endif
+
 void makepath(char *);
 
 /***********
@@ -35,6 +41,50 @@ unsigned int i;
 		prterror('f', no_memory);
 	else
 		prterror('f', "needed %u bytes: %s", no_memory);
+#endif
+}
+
+/**********
+ * efree() handles free() only of memory allocated with emalloc()
+ */
+void efree(VOIDPTR ptr)
+{
+#ifdef USE_MALLOC
+	free(ptr);
+#else
+	size_t i;
+
+	if (!ptr)
+		return;
+
+	for (i = 0; i < num; i++) {
+		if (arr[i] != ptr)
+			continue;
+
+		free(ptr);
+		arr[i] = NULL;
+		return;
+	}
+
+	free(ptr);
+#endif
+}
+
+/***********
+ * efree_all() used by zoo at the end of all processing to free memory
+ * on no-MMU systmes.
+ */
+void efree_all(void)
+{
+#ifndef USE_MALLOC
+	size_t i;
+
+	for (i = 0; i < num; i++) {
+		if (arr[i] == NULL)
+			continue;
+
+		free(arr[i]);
+	}
 #endif
 }
 
@@ -75,12 +125,20 @@ unsigned int size;
 
 	/* if not enough space avail get some more */
 	if (avail < size) {
+		VOIDPTR **ptr;
+
 		malloc_incr = BLOCK_SIZE;
 		if (malloc_incr < size)
 			malloc_incr = size;
 		while (malloc_incr >= size && (memptr = malloc(malloc_incr)) == NULL)
 			malloc_incr = (malloc_incr / 6) * 5;
 		avail = malloc_incr;
+
+		ptr = realloc(arr, (num + 1) * sizeof(char *));
+		if (!ptr)
+			prterror('f', no_memory);
+		arr = ptr;
+		arr[num++] = (VOIDPTR)memptr;
 	}
 
 	if (avail < size)

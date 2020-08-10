@@ -17,6 +17,8 @@ char *memset (char *, int, unsigned);
 long calc_ofs (char *);
 char *addext (char *, char *);
 char *combine (char[], char *, char *);
+void efree(VOIDPTR);
+void efree_all(void);
 VOIDPTR emalloc (unsigned int);
 VOIDPTR ealloc (unsigned int);
 VOIDPTR erealloc (VOIDPTR, unsigned int);
