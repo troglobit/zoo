@@ -1,8 +1,6 @@
 Somewhat ordered TODO list
 ==========================
 
-- Support . as directory from command line
-- Investigate recursive support
 - Handle UNIX symlinks
 - Creation time (or mtime) of new archives are way back in 1970?
 - Add basic tests

@@ -5,11 +5,17 @@
  *                              -- Rahul Dhesi 2004/06/19
  */
 
-#include <unistd.h>
 #include "options.h"
 
-#define LONGEST	20			 /* assumed length of longest filename */
-#include "zoomem.h"			 /* to define MAXADD */
+#ifdef HAVE_NFTW
+#define _XOPEN_SOURCE 500	/* Rrequired on GLIBC */
+#define _GNU_SOURCE		/* -- " -- " -- " --  */
+#include <ftw.h>
+#endif
+
+#include <unistd.h>
+#define LONGEST	20		/* assumed length of longest filename */
+#include "zoomem.h"		/* to define MAXADD */
 #undef PORTABLE
 #include "zoo.h"
 #include "zooio.h"
@@ -26,6 +32,11 @@
 
 extern int break_hit;
 extern int quiet;
+
+#ifdef HAVE_NFTW
+static int num;
+static char **arr;
+#endif
 
 void show_comment(struct direntry *, ZOOFILE, int, char *);
 void dosname(char *, char *);
@@ -52,6 +63,40 @@ extern struct zoo_header zoo_header;
 
 extern char file_leader[];
 extern unsigned int crccode;
+
+#ifdef HAVE_NFTW
+static int scanfiles(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)
+{
+	char **ptr;
+
+	switch (tflag) {
+	case FTW_DP:
+	case FTW_D:
+#if 0 // Future exclude file handling
+		if (!strcmp(&fpath[ftwbuf->base], ".git"))
+			return FTW_SKIP_SUBTREE;
+#endif
+		break;
+	default:
+		if (num + 2 >= MAXADD) {
+			prterror('w', too_many_files, MAXADD - 1);
+			return FTW_STOP;
+		}
+
+		ptr = realloc(arr, (num + 1) * sizeof(char *));
+		if (!ptr) {
+    			free(arr);
+			prterror('f', no_memory);
+		}
+		arr = ptr;
+		arr[num++] = strdup(fpath);
+		break;
+	}
+
+	return 0;
+}
+#endif
+
 
 int zooadd(zoo_path, argc, argv, option)
 char *zoo_path;				 /* pathname of zoo archive to add to */
@@ -199,8 +244,39 @@ char *option;				 /* option string */
 	longest = LONGEST;
 	flist = ealloc(MAXADD * sizeof(VOIDPTR));
 	if (!inargs) {
+#ifdef HAVE_NFTW
+		struct stat st;
+
+		if (argc == 1 && !stat(argv[0], &st) && S_ISDIR(st.st_mode)) {
+			char *ptr;
+			int i, j;
+
+			nftw(argv[0], scanfiles, 20, FTW_ACTIONRETVAL | FTW_PHYS | FTW_MOUNT);
+			for (i = 0, j = 0; i < num; i++) {
+				if ((int)strlen(arr[i]) > longest)
+					longest = strlen(arr[i]);
+
+				ptr = strrchr(arr[i], '/');
+				if (ptr)
+					ptr++;
+				else
+					ptr = arr[i];
+
+				if (!strcmp(ptr, zoo_fname) || !strcmp(ptr, zoo_bak)) {
+					free(arr[i]);
+					continue;
+				}
+
+				flist[j++] = arr[i];
+			}
+			flist[j++] = NULL;
+			free(arr);
+		} else
+			makelist(argc, argv, flist, MAXADD - 2, zoo_fname, zoo_bak, ".", &longest);
+#else
 		makelist(argc, argv, flist, MAXADD - 2, zoo_fname, zoo_bak, ".", &longest);
 		/*                                      ^^         ^^       ^^ exclude */
+#endif
 	}
 
 	fptr = 0;			 /* ready to get filename (if makelist() was called) or to

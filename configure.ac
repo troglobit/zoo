@@ -12,6 +12,8 @@ AC_PROG_INSTALL
 
 AC_HEADER_STDC
 AC_CHECK_HEADERS
+AC_CHECK_FUNC([nftw],
+	AC_DEFINE([HAVE_NFTW], [1], [System has nftw(), we can add recursively.]))
 
 AC_ARG_ENABLE([fiz],
 	AS_HELP_STRING([--enable-fiz], [enable zoo archive repair utility tool]),,
