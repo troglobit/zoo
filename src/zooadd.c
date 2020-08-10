@@ -827,6 +827,7 @@ char *option;				 /* option string */
 		free(flist[fptr]);
 	free(flist);
 
+	fname_free();
 	lzc_free();
 
 	if (exit_status)

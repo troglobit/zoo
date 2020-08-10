@@ -72,6 +72,7 @@ long inlist (char *, unsigned int *, unsigned int *, unsigned *, unsigned *, uns
 unsigned long space (int, int *);
 void addbfcrc (char *, int);
 void addfname (char *, long, unsigned int, unsigned int, unsigned, unsigned);
+void fname_free(void);
 void add_version (char *, struct direntry *);
 void zoo_basename (char *, char []);
 void break_off (void);

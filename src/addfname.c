@@ -72,6 +72,16 @@ unsigned version_no;
 	fentry[lastname] = (struct item *)ealloc(sizeof(struct item));
 }
 
+void fname_free(void)
+{
+	while (lastname) {
+		free(fentry[lastname]->fname);
+		free(fentry[lastname--]);
+	}
+	if (fentry)
+		free(fentry);
+}
+
 /**
  * inlist() Examines global list built by addfname() to see if supplied
  * filename is in the list.
