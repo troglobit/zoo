@@ -412,6 +412,11 @@ char *option;				 /* option string */
 		   add = U' (N' + I') + U (IR  + I'N)
 		*/
 
+		/* Create directory entry for new file (but don't add just yet) */
+		/* NOTE:  we already got file date and time above for update option */
+		/* add tag, type, timezone, struc, system_id, and var_dir_len */
+		newdir(&direntry);
+
 		/* Get the filename to use for this addition.  */
 		whichname = choosefname(&direntry);
 
@@ -463,11 +468,6 @@ char *option;				 /* option string */
 		}
 #endif
 #endif
-
-		/* Create directory entry for new file (but don't add just yet) */
-		/* NOTE:  we already got file date and time above for update option */
-		/* add tag, type, timezone, struc, system_id, and var_dir_len */
-		newdir(&direntry);
 
 		if (!genson && zoo_status == NEW_ZOO || (zoo_header.vdata & VFL_ON) == 0) {
 			direntry.vflag = 0;
