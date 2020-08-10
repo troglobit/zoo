@@ -54,7 +54,7 @@ unsigned version_no;
 	}
 
 	/* allocated more memory if needed */
-	if (lastname >= sz_fentry - 3) {
+	if ((unsigned)lastname >= sz_fentry - 3) {
 		sz_fentry += FENTRY_BSIZE;
 		fentry = (struct item **)
 		    erealloc(fentry, sizeof(struct item *) * sz_fentry);
