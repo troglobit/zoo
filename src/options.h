@@ -41,6 +41,7 @@
 #define ANSI_PROTO
 #define VOIDPTR  void *
 #define NO_STDIO_FN          /* Do we need this? RUARI QUINN */
+#define USE_MALLOC	     /* Most libc's have a working malloc() */
 #endif /* Linux */
 
 /***********************************************************************/
