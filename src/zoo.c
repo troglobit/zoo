@@ -261,6 +261,8 @@ char **argv;
 	if (*option != 'f' && cmd != LIST && strchr("lvVL", *option) == NULL &&
 	    strchr(nameptr(zooname), EXT_CH) == NULL)
 		zooname = newcat(zooname, EXT_DFLT);
+	else
+		zooname = str_dup(zooname); /* symmetry for efree() below */
 #endif
 
 	/*
@@ -364,6 +366,8 @@ char **argv;
 	}
 
 	free(out_buf_adr);
+	efree(zooname);
+	efree(option);
 	efree_all();
 #endif /* OOZ */
 	return rc;			 /* keep lint & compilers happy */
