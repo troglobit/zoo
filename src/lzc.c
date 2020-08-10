@@ -66,6 +66,13 @@ int write (int, VOIDPTR, unsigned);
 
 static BLOCKFILE in_f, out_f;
 
+void lzc_free(void)
+{
+	if (table)
+		free(table);
+	table = NULL;
+}
+
 int lzc (input_f, output_f)
 BLOCKFILE input_f, output_f;
 {

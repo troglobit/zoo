@@ -43,6 +43,8 @@ int isdigit (int);
 #endif /* USE_ASCII */
 
 int kill_files (char *[], int);
+
+void lzc_free(void);
 #ifdef UNBUF_IO
 int lzc (int, int);
 int lzd (int, int);
