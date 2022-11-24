@@ -8,7 +8,7 @@ zoo (2.11-beta1) stable; urgency=medium
   * Redo help and usage
   * Set proper copyright to public-domain for whole zoo package
 
- -- Joachim Nilsson <troglobit@gmail.com>  Sat, 08 Aug 2020 23:36:39 +0200
+ -- Joachim Wiberg <troglobit@gmail.com>  Thu, 24 Nov 2022 18:47:12 +0200
 
 zoo (2.10-28) unstable; urgency=low
 
