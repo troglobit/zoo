@@ -521,6 +521,7 @@ BYTE bytes[];
    int cursize;
    int fixsize;
 	int totalsize;
+   int var_dir_len;
    splitlong(&bytes[DTAG_I], direntry->zoo_tag);
    bytes[DTYP_I] = direntry->type ;
    bytes[PKM_I] = direntry->packing_method ;
@@ -578,14 +579,15 @@ BYTE bytes[];
 		cursize += 3;
    }
 
-   splitint(&bytes[VARDIRLEN_I], direntry->var_dir_len);
+   var_dir_len = direntry->dirlen + direntry->namlen + 10;
+   splitint(&bytes[VARDIRLEN_I], var_dir_len);
    assert(cursize == 
             ((bytes[DIRLEN_I] > 0 || bytes[NAMLEN_I] > 0) ? 2 : 0) +
             fixsize + bytes[DIRLEN_I] + bytes[NAMLEN_I]
          );
 
 	/* total size of dir entry is size of fixed part + size of var. part */
-	totalsize = fixsize + direntry->var_dir_len;
+	totalsize = fixsize + var_dir_len;
 
    /* Do CRC assuming CRC field is zero, and stuff CRC into field. */
    splitint(&bytes[DCRC_I], 0);           /* fill with zeroes */
