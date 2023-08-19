@@ -1,4 +1,4 @@
-EXTRA_DIST       = basic.sh
+EXTRA_DIST       = lib.sh basic.sh
 CLEANFILES       = *~ *.trs *.log
 TEST_EXTENSIONS  = .sh
 
