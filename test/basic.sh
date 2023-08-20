@@ -1,26 +1,31 @@
 #!/bin/sh
-set -x
-export PATH=${PWD}/../src:$PATH
-
-if [ -z "$srcdir" ]; then
+# shellcheck disable=SC1090
+if [ x"${srcdir}" = x ]; then
     srcdir=.
 fi
+. ${srcdir}/lib.sh
 
-ark=`mktemp`
-dst=`mktemp -d -p .`
+test_teardown()
+{
+    rm -rf "$dst"
+    rm "${ark}" "${ark}.zoo"
+}
 
-zoo a $ark ${srcdir}/../doc/*
+ark=$(mktemp /tmp/zooXXXX)
+src="$srcdir/.."
+dst=$(mktemp -d)
+
+cd "$src"          || fail "failed cd $src"
+zoo a "$ark" man/* || fail "failed creating archive"
 
 # Also verify adding more files work as intended.  32/64-bit problems
 # with long in struct zoo_header caused "integrity check" issues.
-zoo a $ark ${srcdir}/../src/*
+zoo a "$ark" src/* || fail "failed adding src files"
+cd -               || fail "failed cd -"
 
-cd ${dst}
-zoo x $ark
-cd -
+cd "$dst"          || fail "failed cd $dst"
+zoo x "$ark"       || fail "failed extracting files"
+cd -               || fail "failed cd -"
 
-# Only verify doc, 2nd src/* step verifies integrity only
-diff -r ${srcdir}/../doc ${dst}/doc
-
-rm -rf ${dst}
-rm $ark
+# Only verify man, 2nd src/* step verifies integrity only
+diff -r "${srcdir}/../man" "${dst}/man"

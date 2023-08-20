@@ -127,8 +127,8 @@ char *option;				 /* option string */
 	long this_dir_offset;		 /* pointers to within archive */
 	long save_position;		 /* pointer to within archive */
 	long prev_pos;			 /* posn of prev file of same name */
-	struct direntry direntry;	 /* directory entry */
-	struct direntry dir2entry;	 /* spare */
+	struct direntry direntry = {0};	 /* directory entry */
+	struct direntry dir2entry = {0}; /* spare */
 	int status;			 /* error status */
 	int success;			 /* successful addition of file? */
 	int addcount = 0;		 /* number added */
@@ -352,12 +352,7 @@ char *option;				 /* option string */
 		}
 #endif
 
-		/* Create directory entry for new file (but don't add just yet) */
-		/* NOTE:  we already got file date and time above for update option */
-		/* add tag, type, timezone, struc, system_id, and var_dir_len */
-		newdir(&direntry);
-
-		/* get file time;  also fix name */
+	/* get file time;  also fix name */
 #ifndef PORTABLE
 		if (z_fmt) {
 			direntry.date = tiny_header.date;
@@ -416,6 +411,11 @@ char *option;				 /* option string */
 
 		   add = U' (N' + I') + U (IR  + I'N)
 		*/
+
+		/* Create directory entry for new file (but don't add just yet) */
+		/* NOTE:  we already got file date and time above for update option */
+		/* add tag, type, timezone, struc, system_id, and var_dir_len */
+		newdir(&direntry);
 
 		/* Get the filename to use for this addition.  */
 		whichname = choosefname(&direntry);

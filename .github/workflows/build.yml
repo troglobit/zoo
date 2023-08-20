@@ -1,0 +1,59 @@
+name: Bob the Builder
+
+# Run on all branches, including all pull requests, except the 'dev'
+# branch since that's where we run Coverity Scan (limited tokens/day)
+on:
+  push:
+    branches:
+      - '**'
+      - '!dev'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    # Verify we can build on latest Ubuntu with both gcc and clang
+    name: ${{ matrix.compiler }}
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+      fail-fast: false
+    runs-on: ubuntu-latest
+    env:
+      MAKEFLAGS: -j3
+      CC: ${{ matrix.compiler }}
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install tree valgrind
+      - uses: actions/checkout@v3
+      - name: Configure
+        run: |
+          set -x
+          ./autogen.sh
+          mkdir -p build/dir
+          cd build/dir
+          ../../configure --prefix=/tmp
+          chmod -R a+w .
+      - name: Build
+        run: |
+          cd build/dir
+          make
+      - name: Install Check
+        run: |
+          cd build/dir
+          make V=1 install-strip
+          tree /tmp || true
+          ldd /tmp/bin/zoo
+          size /tmp/bin/zoo
+          /tmp/bin/zoo help
+      - name: Run Tests
+        run: |
+          cd build/dir
+          make check || (cat test/test-suite.log; false)
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.compiler }}-test-logs
+          path: build/dir/test/*.log
