@@ -38,18 +38,19 @@ FILE *outfile;
 	int bytes_decoded = 0;		/*debug*/ /* count bytes after decoding */
 #endif
 
-	arcfile = infile;					/* stream to be decoded */
+	arcfile = infile;		/* stream to be decoded */
 
 	decode_start();
 	while (!decoded) {
-		n = decode((uint) DICSIZ, out_buf_adr); /* n = count of chars decoded */
+		/* n = count of chars decoded */
+		n = decode((uint) DICSIZ, (uchar *)out_buf_adr);
 #ifdef COUNT_BYTES
 		bytes_decoded += n;	/*debug*/
 #endif
 #ifdef CHECK_BREAK
 		check_break();
 #endif
-		fwrite_crc(out_buf_adr, n, outfile);
+		fwrite_crc((uchar *)out_buf_adr, n, outfile);
 #ifdef SHOW_DOTS
 		(void) putc('.', stderr);
 		(void) fflush(stderr);

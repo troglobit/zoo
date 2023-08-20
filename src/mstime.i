@@ -11,8 +11,8 @@ Function mstime() converts time in seconds since January 1 of BASEYEAR
 to MS-DOS format date and time.
 */
 void mstime(longtime, date, time)
-long longtime;       /* input:  seconds since Jan 1, BASEYEAR   */
-int *date, *time;    /* output: MS-DOS format date and time */
+long longtime;                /* input:  seconds since Jan 1, BASEYEAR   */
+unsigned int *date, *time;    /* output: MS-DOS format date and time */
 
 {
    static int daysinmo[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
