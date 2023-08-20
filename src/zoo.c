@@ -116,7 +116,7 @@ char **argv;
 #ifndef OOZ
 	static char incorrect_args[] = "Incorrect number of arguments.\n";
 	int filecount;			 /* how many filespecs supplied */
-	char *option;
+	char *option, *option_ptr;
 	/* ADD=0 EXT=5 MOV=14 TES=20 PRI=26 DEL=33 LIS=41 UPD=47 FRE=55 COMMENT=64 HELP=73 VER=79 */
 	static char nov_cmds[] =
 	    "-add -extract -move -test -print -delete -list -update -freshen -comment -help -version\n";
@@ -191,7 +191,7 @@ char **argv;
 		return usage(0);
 
 	filecount = argc - 3;
-	option = str_dup(argv[1]);
+	option = option_ptr = str_dup(argv[1]);
 
 #ifdef TRACE_IO
 	if (*option == ':') {		 /* for debugging output */
@@ -209,10 +209,14 @@ char **argv;
 
 	if (*option == 'H')
 		ms_help(option);
-	if (*option == 'h' || *option == 'H')
+	if (*option == 'h' || *option == 'H') {
+		efree(option_ptr);
 		return help();
-	if (strchr("-acDegflLPTuUvVx", *option) == NULL)
+	}
+	if (strchr("-acDegflLPTuUvVx", *option) == NULL) {
+		efree(option_ptr);
 		return usage(1);
+	}
 
 	if (*option == '-') {
 #ifdef NOENUM
@@ -220,15 +224,22 @@ char **argv;
 #else
 		cmd = (enum choice)instr(nov_cmds, str_lwr(option));
 #endif
-		if (strlen(option) < 2 || cmd == NONE)
+		if (strlen(option) < 2 || cmd == NONE) {
+			efree(option_ptr);
 			return usage(1);
-		if (cmd == HELP)
+		}
+		if (cmd == HELP) {
+			efree(option_ptr);
 			return help();
-		if (cmd == VERS)
+		}
+		if (cmd == VERS) {
+			efree(option_ptr);
 			return version();
+		}
 		if (((cmd == ADD  || cmd == MOVE || cmd == FRESHEN || cmd == UPDATE || cmd == DELETE)  && argc < 4) ||
 		    ((cmd == LIST || cmd == TEST || cmd == EXTRACT || cmd == PRINT  || cmd == COMMENT) && argc < 3)) {
 			fprintf(stderr, "%s", incorrect_args);
+			efree(option_ptr);
 			return usage(1);
 		}
 	} else {
@@ -244,6 +255,7 @@ char **argv;
 		    || (strchr("TP", *option) && argc != 3)
 		    || (*option == 'f' && argc != 2)
 		    || (*option == 'g' && ((!wheresA && argc < 4) || (wheresA && argc != 3)))) {
+			efree(option_ptr);
 			if (*option == 'v')
 				return version();
 
@@ -365,9 +377,9 @@ char **argv;
 		}
 	}
 
-	free(out_buf_adr);
+	efree(out_buf_adr);
 	efree(zooname);
-	efree(option);
+	efree(option_ptr);
 	efree_all();
 #endif /* OOZ */
 	return rc;			 /* keep lint & compilers happy */

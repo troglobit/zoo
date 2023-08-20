@@ -119,8 +119,8 @@ while (*option) {
 				goto no_more;
 			}
       default:
-         prterror ('f', inv_option, *option);
-         break;
+         prterror ('w', inv_option, *option);
+         return 1;
    }
    option++;
 }
