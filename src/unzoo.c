@@ -1231,10 +1231,10 @@ int             MakeDirs ( pre, patu )
         strncpy( patl, pre,  sizeof(patl) - 1 );
         if ( sizeof(patl) - strnlen( patl, sizeof(patl) ) >
              strnlen( dirl, sizeof( dirl ) ) + 1)
-            strncat( patl, dirl, sizeof( dirl ) );
+            strncat(patl, dirl, sizeof(patl) - strnlen(patl, sizeof(patl)) - 1);
         if ( sizeof(patl) - strnlen( patl, sizeof(patl) ) >
              strnlen( naml, sizeof( naml ) ) + 1)
-            strncat( patl, naml, sizeof(naml) );
+            strncat(patl, naml, sizeof(patl) - strnlen(patl, sizeof(patl)) - 1);
         /*N 1993/11/03 martin what should I do with the return code?       */
         /*N 1993/11/03 martin it could be 0 if the directory exists!       */
         MAKE_DIRE( patl );
