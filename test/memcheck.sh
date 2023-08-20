@@ -18,13 +18,16 @@ check()
 }
 
 ark=$(mktemp /tmp/zooXXXX)
+src="$srcdir/.."
 dst=$(mktemp -d)
 
-check zoo a "$ark" ${srcdir}/../man/* || fail "Memory leak when creating archive, error code $?"
-check zoo a "$ark" ${srcdir}/../src/* || fail "Memory leak when adding to archive, error code $?"
+cd "$src"                             || fail "failed cd $src"
+check zoo a "$ark" man/*              || fail "Memory leak when creating archive, error code $?"
+check zoo a "$ark" src/*              || fail "Memory leak when adding to archive, error code $?"
+cd -                                  || fail "failed cd -"
 check zoo l "$ark"                    || fail "Memory leak when listing archive, error code $?"
 cd "$dst"                             || fail "failed cd $dst"
 check zoo x "${ark}.zoo"              || fail "Memory leak when extracting archive, error code $?"
 cd -                                  || fail "failed cd -"
 
-diff -r ${srcdir}/../man ${dst}/man
+diff -r "${src}/man" "${dst}/man"

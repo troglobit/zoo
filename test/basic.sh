@@ -28,4 +28,4 @@ zoo x "$ark"       || fail "failed extracting files"
 cd -               || fail "failed cd -"
 
 # Only verify man, 2nd src/* step verifies integrity only
-diff -r "${srcdir}/../man" "${dst}/man"
+diff -r "${src}/man" "${dst}/man"
