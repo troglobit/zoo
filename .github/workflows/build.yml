@@ -35,7 +35,10 @@ jobs:
           ./autogen.sh
           mkdir -p build/dir
           cd build/dir
-          ../../configure --prefix=/tmp
+          if [ "$CC" = "clang" ]; then
+            compat_valgrind="-gdwarf-4"
+          fi
+          ../../configure --prefix=/tmp CFLAGS="$compat_valgrind"
           chmod -R a+w .
       - name: Build
         run: |
