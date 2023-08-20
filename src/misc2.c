@@ -23,7 +23,7 @@
 /* Array of emalloc()'ed ptrs for efree() */
 #ifndef USE_MALLOC
 static size_t    num;
-static VOIDPTR  *arr;
+static VOIDPTR **arr;
 #endif
 
 void makepath(char *);
