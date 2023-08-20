@@ -73,6 +73,7 @@ static int scanfiles(const char *fpath, const struct stat *sb, int tflag, struct
 	case FTW_DP:
 	case FTW_D:
 #if 0 // Future exclude file handling
+		/* remember the other UNICES, only 0 or 1 as return value */
 		if (!strcmp(&fpath[ftwbuf->base], ".git"))
 			return FTW_SKIP_SUBTREE;
 #endif
@@ -80,7 +81,7 @@ static int scanfiles(const char *fpath, const struct stat *sb, int tflag, struct
 	default:
 		if (num + 2 >= MAXADD) {
 			prterror('w', too_many_files, MAXADD - 1);
-			return FTW_STOP;
+			return 1;
 		}
 
 		ptr = realloc(arr, (num + 1) * sizeof(char *));
@@ -251,7 +252,7 @@ char *option;				 /* option string */
 			char *ptr;
 			int i, j;
 
-			nftw(argv[0], scanfiles, 20, FTW_ACTIONRETVAL | FTW_PHYS | FTW_MOUNT);
+			nftw(argv[0], scanfiles, 20, FTW_PHYS | FTW_MOUNT);
 			for (i = 0, j = 0; i < num; i++) {
 				if ((int)strlen(arr[i]) > longest)
 					longest = strlen(arr[i]);

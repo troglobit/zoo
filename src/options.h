@@ -135,12 +135,13 @@
 #define SETBUF
 #define GETTZ
 #define FATTR
-#define T_SIGNAL	int
-#define VARARGS
+#define T_SIGNAL		void
+#define STDARG
 #define NEED_MEMMOVE
-#define T_UINT16		unsigned short		/* must be 16 bit unsigned */
+#define T_UINT16		unsigned short	/* must be 16 bit unsigned */
 #define HAVE_ISATTY
-#define NEED_VPRINTF		/* older BSDs only; newer ones have vprintf */
+#define VOIDPTR			void *
+#define USE_MALLOC
 #endif /* BSD4_3 */
 
 /*  Ultrix 4.1 */
