@@ -602,6 +602,7 @@ bit 23==0 and bit 22==1. */
    } /* end if */
 
 loop_again:
+   efree(whichname);
    /* Make sure we are not seeking to already processed data */
    if (next_ptr <= zoo_pointer)
      prterror ('f', "ZOO chain structure is corrupted\n");

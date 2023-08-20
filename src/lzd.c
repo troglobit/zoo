@@ -376,7 +376,7 @@ goteof: /* special case for CLEAR then Z_EOF, for 0-length files */
 		filt_lzd_word |= (rd_dcode() << nbits);
 		filt_lzd_word &= 0xffff;
 #endif
-      return (0);
+      goto done;
    }
 
    assert(nbits >= 9 && nbits <= 13);
@@ -421,7 +421,7 @@ got_code: /* we got a code and it's not a CLEAR */
          	prterror ('f', "Output error in lzd().\n");
          addbfcrc(out_buf_adr, outbufp - out_buf_adr);
       }
-      return (0);
+      goto done;
    }
 
    in_code = cur_code;              /* save original code */
@@ -580,8 +580,16 @@ add_code:
    old_code = in_code;
 
    assert(nbits >= 9 && nbits <= 13);
-
    goto loop;
+done:
+   if (memflag) {
+	   efree(head);
+	   efree(tail);
+	   efree(stack);
+	   memflag = 0;
+   }
+
+   return (0);
 } /* lzd() */
 
 #else /* SLOW_LZD defined, so use following instead */
