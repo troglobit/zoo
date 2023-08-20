@@ -5,7 +5,6 @@
  *                              -- Rahul Dhesi 2004/06/19
  */
 
-#include <signal.h>
 #include "options.h"
 
 #include "zoo.h"
@@ -333,7 +332,7 @@ ZOOFILE file;
 int length;
 {
 #ifndef NOSIGNAL
-	T_SIGNAL(*oldsignal) ();
+	T_SIGNAL(*oldsignal) (int);
 #endif
 	struct direntry newentry;
 
