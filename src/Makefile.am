@@ -1,5 +1,5 @@
 AM_CPPFLAGS   = @MACHINE@ -DBIG_MEM -DNDEBUG
-EXTRA_DIST    = bilf.c bsd.c linux.c msdos.c vms.c sysv.c turbo.c
+EXTRA_DIST    = bilf.c bsd.c linux.c msdos.c vms.c sysv.c turboc.c
 
 bin_PROGRAMS  = zoo
 if ENABLE_FIZ
