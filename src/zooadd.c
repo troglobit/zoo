@@ -127,8 +127,8 @@ char *option;				 /* option string */
 	long this_dir_offset;		 /* pointers to within archive */
 	long save_position;		 /* pointer to within archive */
 	long prev_pos;			 /* posn of prev file of same name */
-	struct direntry direntry;	 /* directory entry */
-	struct direntry dir2entry;	 /* spare */
+	struct direntry direntry = {0};	 /* directory entry */
+	struct direntry dir2entry = {0}; /* spare */
 	int status;			 /* error status */
 	int success;			 /* successful addition of file? */
 	int addcount = 0;		 /* number added */
