@@ -157,6 +157,7 @@ int *longest;				 /* length of longest name in list */
 			prterror('e', "Could not open %s\n", *argv);
 		}
 #endif
+		free(this_arg);
 		argc--;
 		argv++;
 	}
