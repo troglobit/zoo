@@ -167,6 +167,7 @@ for (fptr = 0;  (this_zoo = flist[fptr]) != NULL; fptr++) {
    int expl_ver;                 /* Explain what V means */
    int expl_star;                /* Explain what * means */
    int first_time;               /* first time through loop for an archive */
+   int alloc_this = 0;
 
    ercount = entrycount = del_count =
       expl_deleted = expl_comment = expl_ver = expl_star = 0;
@@ -178,8 +179,10 @@ for (fptr = 0;  (this_zoo = flist[fptr]) != NULL; fptr++) {
 
 #ifndef WILDCARD
    /* Add default extension if none supplied */
-   if (strchr (nameptr (this_zoo), EXT_CH) == NULL)
+   if (strchr (nameptr (this_zoo), EXT_CH) == NULL) {
       this_zoo = newcat (this_zoo, EXT_DFLT);
+      alloc_this = 1;
+   }
 #endif
 
    zoo_file = zooopen (this_zoo, Z_READ);
@@ -519,7 +522,13 @@ if (fiz_ofs != 0L) {                /* if offset specified, start there */
    } /* end if (talking && !show_name) */
 loop_end:            /* jump here on badly structured archive */
    zooclose (zoo_file);
+
+   if (alloc_this)
+      free(this_zoo);
 } /* end for */
+
+for (fptr = 0; flist[fptr]; fptr++)
+	free(flist[fptr]);
 
 if (talking && show_name) {
    if (file_count) {
