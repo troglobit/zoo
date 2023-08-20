@@ -1,4 +1,4 @@
-AC_INIT([zoo], [2.11-beta1],,, [https://github.com/troglobit/zoo/])
+AC_INIT([zoo], [2.11-rc1],,, [https://github.com/troglobit/zoo/])
 AC_CONFIG_AUX_DIR(build-aux)
 AM_INIT_AUTOMAKE([1.11 foreign])
 AM_SILENT_RULES([yes])
