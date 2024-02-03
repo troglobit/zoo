@@ -111,7 +111,7 @@ used with any char, whether or not it is uppercase.   It will
 be used below by one or two functions.
 */
 
-#define low_ch(c)		(isupper(c) ? tolower(c) : c)
+#define low_ch(c)		(isupper((unsigned char)c) ? tolower((unsigned char)c) : (unsigned char)c)
 
 /************************************************************************/
 /*** Following are functions that make up for various implementations ***/
@@ -214,6 +214,13 @@ BYTE data[];
 {
    return (long) ((unsigned long) data[0] | ((unsigned long) data[1] << 8) |
          ((unsigned long) data[2] << 16) | ((unsigned long) data[3] << 24));
+}
+
+long to_signed_long(data)
+BYTE data[];
+{
+   return (long) ((long) data[0] | ((long) data[1] << 8) |
+         ((long) data[2] << 16) | ((long) (char)data[3] << 24));
 }
 
 #ifndef FIZ
@@ -463,7 +470,7 @@ BYTE bytes[];
 
 	zoo_header->zoo_tag = to_long(&bytes[ZTAG_I]);    /* copy zoo_tag */
 	zoo_header->zoo_start = to_long(&bytes[ZST_I]);   /* copy zoo_start */
-	zoo_header->zoo_minus = to_long(&bytes[ZSTM_I]);
+	zoo_header->zoo_minus = to_signed_long(&bytes[ZSTM_I]);
 
 	zoo_header->major_ver = bytes[MAJV_I];		  /* copy versions */
 	zoo_header->minor_ver = bytes[MINV_I];
