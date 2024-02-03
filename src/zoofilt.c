@@ -30,7 +30,7 @@ unsigned int filt_lzd_word;
 int zoofilt(option)
 char *option;
 {
-	int choice;			/* what to do -- [de]compress */
+	int choice = 0;			/* what to do -- [de]compress */
 	unsigned int filetag;		/* tag stored in input */
 	int stat1, stat2, stat3;	/* status codes */
 	int use_lzh = 0;		/* use lzh instead */
