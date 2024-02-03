@@ -38,7 +38,7 @@ char *str;
 
 	value = 0L;
 	p = str;			 /* save for error message */
-	while (isdigit(*str)) {
+	while (isdigit((unsigned char)*str)) {
 		value = value * 10L + (*str - '0');
 		str++;
 	}
@@ -138,8 +138,10 @@ struct direntry *direntry;
 	combine(result,
 		direntry->dirlen != 0 ? direntry->dirname : "",
 		(direntry->namlen != 0) ? direntry->lfname : direntry->fname);
-	if (strlen(result) >= PATHSIZE)
+	if (strlen(result) >= PATHSIZE) {
 		prterror('f', "Combined dirname and filename too long\n");
+                *result = '\0';
+        }
 
 	return result;
 }

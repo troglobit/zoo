@@ -9,6 +9,8 @@
  *                              -- Rahul Dhesi  1987/07/23
  */
 
+#include <unistd.h>
+
 #ifdef UNBUF_IO
 /*
 Function tell() returns the current seek position for a file 
@@ -16,13 +18,10 @@ descriptor.  4.3BSD on VAX-11/785 has an undocumented tell() function
 but it may not exist on all implementations, so we code one here
 to be on the safe side.  It is needed for unbuffered I/O only.
 */
-long lseek (int, long, int);
 long tell (fd)
 int fd;
-{ return (lseek (fd, 0L, 1)); }
+{ return (lseek (fd, 0L, SEEK_CUR)); }
 #endif
-
-long ftell();
 
 /****************
 Function fixfname() converts the supplied filename to a syntax
@@ -97,8 +96,7 @@ long gettz()
 int zootrunc(f)
 FILE *f;
 {
-	extern long lseek();
-	long seekpos;
+	off_t seekpos;
 	int fd = fileno(f);
 
 	seekpos = lseek(fd, 0L, SEEK_CUR);

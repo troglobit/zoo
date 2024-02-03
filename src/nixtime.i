@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <utime.h>
+#include <sys/time.h>
 
 #include "zoofns.h"
 #include "zooio.h"
@@ -57,12 +58,15 @@ int setutime(path,date,time)
 char *path;
 unsigned int date, time;
 {
-	struct utimbuf utbf;
 	long mstonix();
 	long gettz();
+        long t = mstonix (date, time);
+        struct timeval times[2];
 
-	utbf.actime = utbf.modtime = gettz() + mstonix (date, time);
-	return utime(path, &utbf);
+        times[0].tv_sec = times[1].tv_sec = t + gettz(t);
+        times[0].tv_usec = times[1].tv_usec = 0;
+        return utimes(path, times);
+
 }
 
 /****************

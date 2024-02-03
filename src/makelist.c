@@ -48,6 +48,7 @@ int *longest;				 /* length of longest name in list */
 #endif
 	int gap;			 /* for Shell sort */
 
+	this_path = NULL;
 	flistsize--;			 /* allow for one terminating NULL entry */
 	fptr = *longest = 0;
 

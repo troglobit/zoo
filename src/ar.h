@@ -7,6 +7,10 @@
 # include <limits.h>
 #endif
 
+#ifndef NEED_MEMMOVE
+# include <string.h>
+#endif
+
 /* uchar should be 8 bits or more */
 /* typedef unsigned char  uchar;   -- already in zoo.h */
 
@@ -111,7 +115,6 @@ int make_tree
   void move_left();
 #else
 # define MOVE_LEFT memmove
- extern VOIDPTR memmove();
 #endif
 
 #if 0
